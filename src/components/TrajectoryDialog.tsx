@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from 'dud';
 import { Check, X, MessageCircle, Calendar } from 'lucide-react';
 import { AI_NAMES, computeAIStats } from '../data/computeAIStats';
@@ -58,57 +58,74 @@ export function TrajectoryDialog({ open, onClose, allMatches, realResults, snaps
     const aiSnapshots = snapshots[aiKey] || [];
     const latestSnapshot = aiSnapshots.length > 0 ? aiSnapshots[aiSnapshots.length - 1] : null;
 
-    const predictedMatches = useMemo(() => {
-        const matchIds = new Set<string>();
-        for (const m of allMatches) {
-            const init = m.initialPredictions?.find((p) => p.aiName === selectedAI);
-            if (init?.winner) matchIds.add(m.match.id);
-        }
-        for (const snap of aiSnapshots) {
-            for (const id of Object.keys(snap.predictions)) matchIds.add(id);
-        }
-        return allMatches.filter((m) => matchIds.has(m.match.id));
-    }, [allMatches, selectedAI, aiSnapshots]);
-
-    /** 最新预测的日期窗口：只展示到 nextMatchday 为止 */
-    const predictionCutoff = useMemo(() => {
-        if (!latestSnapshot) return '';
-        // 优先用 nextMatchday 字段，否则取预测中最早 match 的日期往前推一天
-        if (latestSnapshot.nextMatchday) return latestSnapshot.nextMatchday;
-        const dates = Object.keys(latestSnapshot.predictions)
-            .map((id) => allMatches.find((m) => m.match.id === id)?.match.date)
-            .filter(Boolean)
-            .sort();
-        return dates[0] || '';
-    }, [latestSnapshot, allMatches]);
-
     function getTodayStr(): string {
         const d = new Date();
         return d.toISOString().slice(0, 10);
     }
 
-    function getLatestPrediction(matchId: string): string | null {
-        // 超出预测窗口的比赛不展示
-        const matchDate = allMatches.find((m) => m.match.id === matchId)?.match.date || '';
-        if (predictionCutoff && matchDate > predictionCutoff) return null;
+    /** 下一个比赛日的日期 */
+    const nextMatchday = latestSnapshot?.nextMatchday || '';
 
-        // 有每日预测就用每日的
-        if (latestSnapshot?.predictions[matchId]?.winner) {
-            return latestSnapshot.predictions[matchId].winner;
+    /** 从所有快照中聚合最新预测：遍历快照（从新到旧），取每个 match 的最近一次预测 */
+    const aggregatedLatest = useMemo(() => {
+        const map: Record<string, string> = {};
+        for (let i = aiSnapshots.length - 1; i >= 0; i--) {
+            const snap = aiSnapshots[i];
+            for (const [matchId, pred] of Object.entries(snap.predictions)) {
+                if (pred.winner && !map[matchId]) {
+                    map[matchId] = pred.winner;
+                }
+            }
         }
+        return map;
+    }, [aiSnapshots]);
 
-        // 过去的比赛（比赛日 < 今天）：回退到赛前预测
+    /** 所有出现在任意快照中的 matchId */
+    const allPredictedIds = useMemo(() => {
+        const ids = new Set<string>();
+        for (const snap of aiSnapshots) {
+            for (const id of Object.keys(snap.predictions)) {
+                if (snap.predictions[id]?.winner) ids.add(id);
+            }
+        }
+        // 也加入初始预测的 match（用于赛前预测列）
+        for (const m of allMatches) {
+            const init = m.initialPredictions?.find((p) => p.aiName === selectedAI);
+            if (init?.winner) ids.add(m.match.id);
+        }
+        return ids;
+    }, [aiSnapshots, allMatches, selectedAI]);
+
+    const predictedMatches = useMemo(() => {
+        return allMatches.filter((m) => allPredictedIds.has(m.match.id));
+    }, [allMatches, allPredictedIds]);
+
+    function getLatestPrediction(matchId: string): string | null {
+        // 聚合的最新预测优先
+        if (aggregatedLatest[matchId]) return aggregatedLatest[matchId];
+        // 过去的比赛：回退到赛前预测
+        const matchDate = allMatches.find((m) => m.match.id === matchId)?.match.date || '';
         if (matchDate < getTodayStr()) {
             const match = allMatches.find((m) => m.match.id === matchId);
             return match?.initialPredictions?.find((p) => p.aiName === selectedAI)?.winner || null;
         }
-
         return null;
     }
 
     function hasDailyUpdate(matchId: string): boolean {
-        return !!(latestSnapshot?.predictions[matchId]?.winner);
+        return !!aggregatedLatest[matchId];
     }
+
+    /** 弹窗打开或切换到预测记录时，自动滚动到今天 */
+    useEffect(() => {
+        if (!open || tab !== 'predictions') return;
+        const timer = setTimeout(() => {
+            const today = getTodayStr();
+            const el = document.getElementById(`traj-${today}`);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+        return () => clearTimeout(timer);
+    }, [open, tab]);
 
     function isCorrect(matchId: string, predictedWinner: string | null): boolean | null {
         const result = realResults[matchId];
@@ -170,10 +187,15 @@ export function TrajectoryDialog({ open, onClose, allMatches, realResults, snaps
                             const initOk = isCorrect(m.match.id, initW);
                             const latestOk = isCorrect(m.match.id, latestW);
 
+                            // 该比赛是否属于下一个比赛日
+                            const isNextMatchday = nextMatchday && m.match.date === nextMatchday;
+
                             return (
                                 <div key={m.match.id}
+                                    id={`traj-${m.match.date}`}
                                     className={'grid grid-cols-[1fr_70px_1fr] sm:grid-cols-[1fr_90px_1fr] gap-1 sm:gap-2 px-1 sm:px-2 py-2 border-b border-border/50 text-xs'
-                                        + (changed ? ' bg-amber-50/50' : '')}>
+                                        + (changed ? ' bg-amber-50/50' : '')
+                                        + (isNextMatchday ? ' bg-blue-50/50' : '')}>
                                     {/* 赛前预测 */}
                                     <div className="flex items-center gap-1.5">
                                         <StatusIcon ok={initOk} />
@@ -185,7 +207,7 @@ export function TrajectoryDialog({ open, onClose, allMatches, realResults, snaps
                                     </div>
                                     {/* 对阵信息 */}
                                     <div className="flex flex-col items-center justify-center text-center gap-0.5">
-                                        <span className="text-[10px] text-muted-foreground truncate w-full">
+                                        <span className="text-[10px] text-foreground font-bold truncate w-full">
                                             {shortDate(m.match.date)}
                                         </span>
                                         <span className="text-[10px] leading-tight text-muted-foreground/70 truncate w-full">
@@ -221,7 +243,7 @@ export function TrajectoryDialog({ open, onClose, allMatches, realResults, snaps
                                 还没发过言，等待第一次锐评 🍿
                             </p>
                         )}
-                        {aiSnapshots.map((snap) => (
+                        {[...aiSnapshots].reverse().map((snap) => (
                             <div key={snap.date} className="border rounded-lg p-3">
                                 <div className="flex items-center gap-2 mb-2">
                                     <Calendar size={12} className="text-muted-foreground" />
