@@ -1,0 +1,44 @@
+{
+  "A-0": {
+    "homeScore": 2,
+    "awayScore": 0,
+    "winner": "墨西哥",
+    "updated": "2026-06-14T09:38:25.761Z"
+  },
+  "A-1": {
+    "homeScore": 2,
+    "awayScore": 1,
+    "winner": "韩国",
+    "updated": "2026-06-14T09:38:25.762Z"
+  },
+  "B-0": {
+    "homeScore": 1,
+    "awayScore": 1,
+    "winner": "draw",
+    "updated": "2026-06-14T09:38:25.762Z"
+  },
+  "B-1": {
+    "homeScore": 1,
+    "awayScore": 1,
+    "winner": "draw",
+    "updated": "2026-06-14T09:38:25.762Z"
+  },
+  "C-0": {
+    "homeScore": 1,
+    "awayScore": 1,
+    "winner": "draw",
+    "updated": "2026-06-14T09:38:25.762Z"
+  },
+  "C-1": {
+    "homeScore": 0,
+    "awayScore": 1,
+    "winner": "苏格兰",
+    "updated": "2026-06-14T09:38:25.762Z"
+  },
+  "D-0": {
+    "homeScore": 4,
+    "awayScore": 1,
+    "winner": "美国",
+    "updated": "2026-06-14T09:38:25.762Z"
+  }
+}
