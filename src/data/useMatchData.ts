@@ -45,6 +45,7 @@ export interface Match {
 export interface AIPrediction {
     aiName: string;
     winner: string | null;
+    score?: string;
     reason?: string;
 }
 
@@ -73,7 +74,7 @@ export interface DailyPrediction {
     commentary: string;
     methodology: string;
     changed_predictions?: { match: string; old_winner: string; new_winner: string; reason: string }[];
-    predictions: Record<string, { winner: string; reason?: string }>;
+    predictions: Record<string, { winner: string; score?: string; reason?: string }>;
 }
 
 /** 某 AI 某天的预测快照 */
@@ -220,7 +221,7 @@ function loadDailyPredictions(): Record<string, PredictionSnapshot[]> {
             predictions: Object.fromEntries(
                 Object.entries(data.predictions || {}).map(([id, p]: [string, any]) => [
                     id,
-                    { aiName: AI_NAMES[aiKey] || data.ai, winner: p.winner || null, reason: p.reason },
+                    { aiName: AI_NAMES[aiKey] || data.ai, winner: p.winner || null, score: p.score, reason: p.reason },
                 ]),
             ),
         });

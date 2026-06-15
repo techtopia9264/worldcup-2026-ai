@@ -262,7 +262,7 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
     const matchIds = nextMatches.map((m) => m.matchId);
     for (let i = 0; i < matchIds.length; i++) {
         const comma = i < matchIds.length - 1 ? ',' : '';
-        prompt += `    "${matchIds[i]}": { "winner": "" }${comma}\n`;
+        prompt += `    "${matchIds[i]}": { "winner": "", "score": "" }${comma}\n`;
     }
     prompt += '  }\n';
     prompt += '}\n';
@@ -373,7 +373,7 @@ async function main() {
                 nextMatchday: nextMatchday || '',
                 commentary: '',
                 predictions: Object.fromEntries(
-                    nextMatches.map((m) => [m.matchId, { winner: '' }]),
+                    nextMatches.map((m) => [m.matchId, { winner: '', score: '' }]),
                 ),
             };
             writeFileSync(jsonFile, JSON.stringify(template, null, 2), 'utf-8');

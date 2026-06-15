@@ -27,12 +27,14 @@ export function AIPredictionRow({ prediction, realWinner }: AIPredictionRowProps
             <span className="text-muted-foreground w-20 shrink-0">{prediction.aiName}</span>
             <span
                 className={
-                    isWrong
-                        ? 'line-through text-muted-foreground/60'
-                        : 'text-foreground'
+                    'flex items-center gap-1.5'
+                    + (isWrong ? ' line-through text-muted-foreground/60' : ' text-foreground')
                 }
             >
-                {translateWinner(prediction.winner)}
+                <span>{translateWinner(prediction.winner)}</span>
+                {prediction.score && (
+                    <span className="text-[10px] text-muted-foreground font-mono">{prediction.score}</span>
+                )}
             </span>
             <span className="w-6 text-right shrink-0">
                 {isCorrect && <Check size={14} className="text-predict-correct inline" />}
