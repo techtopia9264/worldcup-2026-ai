@@ -6,7 +6,7 @@ export default defineConfig({
     plugins: [react()],
     resolve: {
         alias: {
-            dud: resolve(__dirname, '../dud/packages/dud/src/index.ts'),
+            dud: resolve(__dirname, 'dud-local/index.ts'),
         },
     },
 });

@@ -5,7 +5,7 @@ export default {
     content: [
         './index.html',
         './src/**/*.{ts,tsx}',
-        '../dud/packages/dud/src/**/*.{ts,tsx}',
+        './dud-local/**/*.{ts,tsx}',
     ],
     theme: {
         extend: {

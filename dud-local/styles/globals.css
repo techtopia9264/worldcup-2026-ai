@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        /* 背景/前景 */
+        --background: 0 0% 100%;
+        --foreground: 0 0% 5%;
+
+        /* 卡片 */
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 5%;
+
+        /* 弹出层 */
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 5%;
+
+        /* 主色 — 深灰近黑 */
+        --primary: 0 0% 9%;
+        --primary-foreground: 0 0% 98%;
+
+        /* 次要/弱化 */
+        --muted: 0 0% 96%;
+        --muted-foreground: 0 0% 45%;
+
+        /* 强调 */
+        --accent: 0 0% 96%;
+        --accent-foreground: 0 0% 9%;
+
+        /* 危险/错误 */
+        --destructive: 0 0% 9%;
+        --destructive-foreground: 0 0% 98%;
+
+        /* 边框/输入框 */
+        --border: 0 0% 90%;
+        --input: 0 0% 90%;
+
+        /* 聚焦环 */
+        --ring: 0 0% 9%;
+
+        /* 圆角 */
+        --radius: 0.5rem;
+
+        /* 侧边栏 */
+        --sidebar-width: 16rem;
+        --sidebar-width-icon: 3rem;
+    }
+}
