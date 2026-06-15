@@ -70,7 +70,12 @@ function loadLatestPrediction(aiKey) {
         .map((d) => d.name).sort().reverse();
     for (const dir of dirs) {
         const path = join(predDir, dir, `${aiKey}.json`);
-        if (existsSync(path)) return JSON.parse(readFileSync(path, 'utf-8'));
+        if (!existsSync(path)) continue;
+        const data = JSON.parse(readFileSync(path, 'utf-8'));
+        // 跳过空模板
+        const hasContent = data.commentary
+            || Object.values(data.predictions || {}).some((p) => p.winner && p.winner !== '');
+        if (hasContent) return data;
     }
     return null;
 }
@@ -275,22 +280,37 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
 async function main() {
     const targetAI = process.argv[2] || null;
     const schedule = loadSchedule();
-    const liveData = await fetchLiveData();
+
+    // 拉取 CDN 数据（失败用本地缓存兜底）
+    let liveData = null;
+    try {
+        liveData = await fetchLiveData();
+    } catch {
+        console.log('⚠ CDN 拉取失败，使用本地数据兜底');
+        const cachePath = resolve(ROOT, 'src/data/realResults.json');
+        if (existsSync(cachePath)) {
+            // 从本地 realResults.json 重建简易 match 列表
+            liveData = { matches: [] };
+            console.log('  已加载本地缓存');
+        }
+    }
     const manualResults = loadManualResults();
 
     // 合并结果
     const results = {};
-    for (const m of liveData.matches) {
-        if (!m.score?.ft) continue;
-        const homeZh = EN_TO_ZH[m.team1] || m.team1;
-        const awayZh = EN_TO_ZH[m.team2] || m.team2;
-        const matchId = findMatchId(schedule, m, homeZh, awayZh);
-        if (!matchId) continue;
-        results[matchId] = {
-            homeScore: m.score.ft[0],
-            awayScore: m.score.ft[1],
-            winner: m.score.ft[0] > m.score.ft[1] ? homeZh : m.score.ft[0] < m.score.ft[1] ? awayZh : 'draw',
-        };
+    if (liveData?.matches) {
+        for (const m of liveData.matches) {
+            if (!m.score?.ft) continue;
+            const homeZh = EN_TO_ZH[m.team1] || m.team1;
+            const awayZh = EN_TO_ZH[m.team2] || m.team2;
+            const matchId = findMatchId(schedule, m, homeZh, awayZh);
+            if (!matchId) continue;
+            results[matchId] = {
+                homeScore: m.score.ft[0],
+                awayScore: m.score.ft[1],
+                winner: m.score.ft[0] > m.score.ft[1] ? homeZh : m.score.ft[0] < m.score.ft[1] ? awayZh : 'draw',
+            };
+        }
     }
     Object.assign(results, manualResults);
     const standings = computeStandings(schedule, results);
@@ -331,8 +351,8 @@ async function main() {
     // 生成
     const aiKeys = targetAI ? [targetAI] : AI_KEYS;
 
-    // 创建今日预测目录 + JSON 模板文件
-    const predDir = resolve(ROOT, 'predictions', today);
+    // 创建下一个比赛日的目录 + JSON 模板文件
+    const predDir = resolve(ROOT, 'predictions', nextMatchday || today);
     if (!existsSync(predDir)) mkdirSync(predDir, { recursive: true });
 
     for (const aiKey of aiKeys) {
@@ -357,13 +377,15 @@ async function main() {
                 ),
             };
             writeFileSync(jsonFile, JSON.stringify(template, null, 2), 'utf-8');
-            console.log(`✅ ${promptFile}  +  predictions/${today}/${aiKey}.json (新建)`);
+            const folderName = nextMatchday || today;
+            console.log(`✅ ${promptFile}  +  predictions/${folderName}/${aiKey}.json (新建)`);
         } else {
             console.log(`✅ ${promptFile}  (JSON 已存在，跳过)`);
         }
     }
     console.log(`\n📊 已结束 ${Object.keys(results).length} 场 · 下一个比赛日 ${nextMatchday}（${nextMatches.length} 场）`);
-    console.log(`📁 JSON 模板已生成到 predictions/${today}/，收到 AI 回复后替换内容即可`);
+    const folderName = nextMatchday || today;
+    console.log(`📁 JSON 模板已生成到 predictions/${folderName}/，收到 AI 回复后替换内容即可`);
 }
 
 main().catch((e) => { console.error('❌', e.message); process.exit(1); });
