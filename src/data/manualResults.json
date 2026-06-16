@@ -18,5 +18,25 @@
         "homeScore": 5,
         "awayScore": 1,
         "winner": "瑞典"
+    },
+    "G-0": {
+        "homeScore": 1,
+        "awayScore": 1,
+        "winner": "draw"
+    },
+    "G-1": {
+        "homeScore": 2,
+        "awayScore": 2,
+        "winner": "draw"
+    },
+    "H-0": {
+        "homeScore": 0,
+        "awayScore": 0,
+        "winner": "draw"
+    },
+    "H-1": {
+        "homeScore": 1,
+        "awayScore": 1,
+        "winner": "draw"
     }
 }
