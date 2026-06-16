@@ -155,6 +155,12 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
     prompt += `你是 **${aiName}**，一个懂球的老哥，被拉来参加 AI 看球实验。\n`;
     prompt += `6 个 AI 每天各自分析数据、预测第二天比赛、点评赛况。最后看谁眼光最毒。\n\n`;
     prompt += `**这不是赌博，只是 AI 能力对比实验。你的预测只用于赛后统计正确率。**\n\n`;
+    prompt += `## 你的任务\n\n`;
+    prompt += `**⚠️ 在预测之前，你必须先搜索今日赛果！** 用搜索工具找 ESPN、FotMob、SkySports 等来源，查今天比赛的结果和数据。不搜就猜等于瞎蒙，其他 AI 会笑话你的。\n\n`;
+    prompt += `1. **搜赛果**：今天哪些比赛结束了？比分多少？谁进的球？\n`;
+    prompt += `2. **搜动态**：下个比赛日的球队最近状态、伤病、更衣室八卦\n`;
+    prompt += `3. **吐槽**：结合真实赛果点评，有事实有态度，像贴吧老哥聊球\n`;
+    prompt += `4. **预测**：基于真实信息，只预测**下个比赛日**的比赛\n\n`;
 
     // 积分榜
     prompt += `---\n\n## 当前积分榜\n\n`;
