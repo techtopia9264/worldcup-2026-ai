@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Button } from 'dud';
-import { BarChart3, Table2, GitCommitHorizontal, Trophy } from 'lucide-react';
+import { BarChart3, MessageCircle, GitCommitHorizontal, Trophy } from 'lucide-react';
 import { MatchCard } from './components/MatchCard';
 import { DayDivider } from './components/DayDivider';
 import { DayNavigator } from './components/DayNavigator';
 import { AIScoreboard } from './components/AIScoreboard';
 import { AIChart } from './components/AIChart';
 import { TrajectoryDialog } from './components/TrajectoryDialog';
+import { CommentaryDialog } from './components/CommentaryDialog';
 import { StandingsTable } from './components/StandingsTable';
 import { useMatchData } from './data/useMatchData';
 import { useRealResults } from './data/useRealResults';
@@ -28,6 +29,7 @@ export default function App() {
     const totalMatches = allMatches.length;
     const scrolledRef = useRef(false);
     const [scoreboardOpen, setScoreboardOpen] = useState(false);
+    const [commentaryOpen, setCommentaryOpen] = useState(false);
     const [chartOpen, setChartOpen] = useState(false);
     const [trajectoryOpen, setTrajectoryOpen] = useState(false);
     const [standingsOpen, setStandingsOpen] = useState(false);
@@ -101,10 +103,10 @@ export default function App() {
                         variant="outline"
                         size="sm"
                         className="gap-1 text-xs h-7 px-2.5"
-                        onClick={() => setScoreboardOpen(true)}
+                        onClick={() => setCommentaryOpen(true)}
                     >
-                        <Table2 size={13} />
-                        AI 成绩单
+                        <MessageCircle size={13} />
+                        AI 锐评
                     </Button>
                     <Button
                         size="sm"
@@ -142,12 +144,19 @@ export default function App() {
             {/* 右侧日期导航 */}
             <DayNavigator days={dayGroups} />
 
-            {/* AI 成绩单弹窗 */}
+            {/* AI 成绩单弹窗（隐藏入口，保留组件） */}
             <AIScoreboard
                 open={scoreboardOpen}
                 onClose={() => setScoreboardOpen(false)}
                 allMatches={allMatches}
                 realResults={realResults}
+            />
+
+            {/* AI 锐评弹窗 */}
+            <CommentaryDialog
+                open={commentaryOpen}
+                onClose={() => setCommentaryOpen(false)}
+                snapshots={predictionSnapshots}
             />
 
             {/* 预测轨迹弹窗 */}

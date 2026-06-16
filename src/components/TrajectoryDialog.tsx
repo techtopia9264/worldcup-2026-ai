@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from 'dud';
-import { Check, X, MessageCircle, Calendar } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 import { AI_NAMES, computeAIStats } from '../data/computeAIStats';
 import { translateWinner as translate } from '../data/translations';
 import type { MatchWithPredictions, PredictionSnapshot } from '../data/useMatchData';
@@ -44,11 +44,8 @@ interface TrajectoryDialogProps {
     snapshots: Record<string, PredictionSnapshot[]>;
 }
 
-type Tab = 'predictions' | 'commentary';
-
 export function TrajectoryDialog({ open, onClose, allMatches, realResults, snapshots }: TrajectoryDialogProps) {
     const [selectedAI, setSelectedAI] = useState(AI_NAMES[0]);
-    const [tab, setTab] = useState<Tab>('predictions');
     const aiStats = useMemo(() => computeAIStats(allMatches, realResults), [allMatches, realResults]);
 
     const stats = aiStats[selectedAI] || { correct: 0, total: 0 };
@@ -118,14 +115,14 @@ export function TrajectoryDialog({ open, onClose, allMatches, realResults, snaps
 
     /** 弹窗打开或切换到预测记录时，自动滚动到今天 */
     useEffect(() => {
-        if (!open || tab !== 'predictions') return;
+        if (!open) return;
         const timer = setTimeout(() => {
             const today = getTodayStr();
             const el = document.getElementById(`traj-${today}`);
             if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 300);
         return () => clearTimeout(timer);
-    }, [open, tab]);
+    }, [open]);
 
     function isCorrect(matchId: string, predictedWinner: string | null): boolean | null {
         const result = realResults[matchId];
@@ -158,21 +155,7 @@ export function TrajectoryDialog({ open, onClose, allMatches, realResults, snaps
                     ))}
                 </div>
 
-                <div className="flex gap-0 border-b mt-3">
-                    <button onClick={() => setTab('predictions')}
-                        className={'flex items-center gap-1 px-3 py-2 text-xs border-b-2 transition-colors -mb-[1px]'
-                            + (tab === 'predictions' ? ' border-foreground text-foreground font-medium' : ' border-transparent text-muted-foreground hover:text-foreground')}>
-                        ⚽ 预测记录
-                    </button>
-                    <button onClick={() => setTab('commentary')}
-                        className={'flex items-center gap-1 px-3 py-2 text-xs border-b-2 transition-colors -mb-[1px]'
-                            + (tab === 'commentary' ? ' border-foreground text-foreground font-medium' : ' border-transparent text-muted-foreground hover:text-foreground')}>
-                        <MessageCircle size={12} /> 每日锐评 {aiSnapshots.length > 0 && `(${aiSnapshots.length})`}
-                    </button>
-                </div>
-
-                {tab === 'predictions' && (
-                    <div className="flex-1 overflow-auto mt-2">
+                    <div className="flex-1 overflow-auto mt-3">
                         <div className="grid grid-cols-[1fr_70px_1fr] sm:grid-cols-[1fr_90px_1fr] gap-1 sm:gap-2 px-1 sm:px-2 py-1.5 text-[10px] font-medium text-muted-foreground sticky top-0 bg-background z-10 border-b">
                             <span>赛前</span>
                             <span className="text-center">VS</span>
@@ -234,44 +217,7 @@ export function TrajectoryDialog({ open, onClose, allMatches, realResults, snaps
                             );
                         })}
                     </div>
-                )}
 
-                {tab === 'commentary' && (
-                    <div className="flex-1 overflow-auto mt-2 space-y-3">
-                        {aiSnapshots.length === 0 && (
-                            <p className="text-xs text-muted-foreground text-center py-8">
-                                还没发过言，等待第一次锐评 🍿
-                            </p>
-                        )}
-                        {[...aiSnapshots].reverse().map((snap) => (
-                            <div key={snap.date} className="border rounded-lg p-3">
-                                <div className="flex items-center gap-2 mb-2">
-                                    <Calendar size={12} className="text-muted-foreground" />
-                                    <span className="text-xs font-medium text-foreground">{snap.date}</span>
-                                    {snap.nextMatchday && (
-                                        <span className="text-[10px] text-muted-foreground">
-                                            → 预测 {snap.nextMatchday}
-                                        </span>
-                                    )}
-                                </div>
-                                <p className="text-xs text-foreground leading-relaxed whitespace-pre-wrap">
-                                    {snap.commentary}
-                                </p>
-                                {snap.changedPredictions.length > 0 && (
-                                    <div className="mt-2 pt-2 border-t">
-                                        <p className="text-[10px] font-medium text-muted-foreground mb-1">预测调整：</p>
-                                        {snap.changedPredictions.map((c, i) => (
-                                            <div key={i} className="text-[10px] text-muted-foreground">
-                                                {c.match} · {translate(c.oldWinner)} → <span className="text-foreground font-medium">{translate(c.newWinner)}</span>
-                                                <span className="ml-1">— {c.reason}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                )}
             </DialogContent>
         </Dialog>
     );
