@@ -58,5 +58,20 @@
         "homeScore": 3,
         "awayScore": 1,
         "winner": "奥地利"
+    },
+    "K-1": {
+        "homeScore": 1,
+        "awayScore": 3,
+        "winner": "哥伦比亚"
+    },
+    "L-0": {
+        "homeScore": 4,
+        "awayScore": 2,
+        "winner": "英格兰"
+    },
+    "L-1": {
+        "homeScore": 1,
+        "awayScore": 0,
+        "winner": "加纳"
     }
 }
