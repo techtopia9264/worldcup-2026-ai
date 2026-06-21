@@ -342,7 +342,7 @@ async function main() {
     let nextMatchday = null, nextMatches = [];
     for (const m of remainingSchedule) {
         const mDate = m.date?.slice(0, 10);
-        if (mDate >= today) {
+        if (mDate > today) {
             if (!nextMatchday || mDate < nextMatchday) { nextMatchday = mDate; nextMatches = [m]; }
             else if (mDate === nextMatchday) nextMatches.push(m);
         }
