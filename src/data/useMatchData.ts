@@ -239,14 +239,18 @@ function loadDailyPredictions(): Record<string, PredictionSnapshot[]> {
 function getDailyPredictionData() {
     const snapshots = loadDailyPredictions();
 
-    // 每个 AI 的最新预测
+    // 从所有快照中聚合每个 AI 对每个 match 的最新预测
+    // 遍历从新到旧，每个 matchId 只取第一次出现（最新的非空 winner）
     const latest: Record<string, Record<string, AIPrediction>> = {};
     for (const key of AI_KEYS) {
         latest[key] = {};
         const aiSnapshots = snapshots[key];
-        if (aiSnapshots.length > 0) {
-            const last = aiSnapshots[aiSnapshots.length - 1];
-            Object.assign(latest[key], last.predictions);
+        for (let i = aiSnapshots.length - 1; i >= 0; i--) {
+            for (const [matchId, pred] of Object.entries(aiSnapshots[i].predictions)) {
+                if (pred.winner && !latest[key][matchId]) {
+                    latest[key][matchId] = pred;
+                }
+            }
         }
     }
 

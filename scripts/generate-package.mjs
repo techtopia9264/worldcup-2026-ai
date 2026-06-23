@@ -62,22 +62,38 @@ function loadManualResults() {
     return {};
 }
 
+/** 从所有快照聚合某 AI 的最新预测（遍历新→旧，每个matchId取第一次出现） */
 function loadLatestPrediction(aiKey) {
     const predDir = resolve(ROOT, 'predictions');
     if (!existsSync(predDir)) return null;
     const dirs = readdirSync(predDir, { withFileTypes: true })
         .filter((d) => d.isDirectory() && /^\d{4}-\d{2}-\d{2}$/.test(d.name))
         .map((d) => d.name).sort().reverse();
+    // 聚合所有快照
+    const aggregated = { predictions: {}, commentary: '', date: '', nextMatchday: '' };
+    let hasAny = false;
     for (const dir of dirs) {
         const path = join(predDir, dir, `${aiKey}.json`);
         if (!existsSync(path)) continue;
         const data = JSON.parse(readFileSync(path, 'utf-8'));
-        // 跳过空模板
         const hasContent = data.commentary
             || Object.values(data.predictions || {}).some((p) => p.winner && p.winner !== '');
-        if (hasContent) return data;
+        if (!hasContent) continue;
+        if (!hasAny) {
+            // 第一次（最新）的快照作为元信息来源
+            aggregated.commentary = data.commentary || '';
+            aggregated.date = data.date || '';
+            aggregated.nextMatchday = data.nextMatchday || '';
+            hasAny = true;
+        }
+        // 聚合 predictions：只填尚未出现的 matchId
+        for (const [matchId, pred] of Object.entries(data.predictions || {})) {
+            if (pred.winner && !aggregated.predictions[matchId]) {
+                aggregated.predictions[matchId] = pred;
+            }
+        }
     }
-    return null;
+    return hasAny ? aggregated : null;
 }
 
 function loadInitialPrediction(aiKey) {
