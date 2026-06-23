@@ -113,5 +113,25 @@
         "homeScore": 2,
         "awayScore": 2,
         "winner": "draw"
+    },
+    "I-2": {
+        "homeScore": 3,
+        "awayScore": 0,
+        "winner": "法国"
+    },
+    "I-3": {
+        "homeScore": 3,
+        "awayScore": 2,
+        "winner": "挪威"
+    },
+    "J-2": {
+        "homeScore": 2,
+        "awayScore": 0,
+        "winner": "阿根廷"
+    },
+    "J-3": {
+        "homeScore": 1,
+        "awayScore": 2,
+        "winner": "阿尔及利亚"
     }
 }
