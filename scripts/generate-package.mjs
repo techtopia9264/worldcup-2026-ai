@@ -178,6 +178,20 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
     prompt += `3. **吐槽**：结合真实赛果点评，有事实有态度，像贴吧老哥聊球\n`;
     prompt += `4. **预测**：基于真实信息，只预测**下个比赛日**的比赛\n\n`;
 
+    // 第三轮特殊提示
+    const isThirdRound = nextMatches.some((m) => {
+        const mIdx = parseInt((m.matchId.match(/-(\d+)$/) || [])[1]);
+        return mIdx >= 4; // 第三轮 matchId 从 4 开始
+    });
+    if (isThirdRound) {
+        prompt += `## 🔥 特殊节点：小组赛第三轮\n\n`;
+        prompt += `今天是小组赛第二轮结束、第三轮开启的关键节点。在预测前，请特别关注：\n\n`;
+        prompt += `- **第二轮总结**：整体评价第二轮的比赛——哪些强队翻身了、哪些黑马露馅了\n`;
+        prompt += `- **积分榜分析**：结合上面的积分榜和净胜球，分析各组出线形势——谁必须赢、谁打平就能出线、谁已淘汰\n`;
+        prompt += `- **第三轮策略**：第三轮同组两场同时开打，已出线的队可能轮换，背水一战的队会拼命。别只看纸面实力！\n\n`;
+        prompt += `> 💡 第三轮是"算分期"，要综合积分、净胜球和出线形势来预测，不只是猜谁强谁弱。\n\n`;
+    }
+
     // 积分榜
     prompt += `---\n\n## 当前积分榜\n\n`;
     prompt += `| # | 国家 | 组 | 场 | 胜 | 平 | 负 | 进球 | 失球 | 净胜 | 积分 |\n`;
