@@ -254,32 +254,6 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
         prompt += `（首次参与，无历史预测）\n`;
     }
 
-    // 其他 AI 的预测和评论
-    prompt += `\n---\n\n## 其他 AI 的最新预测\n\n`;
-    const others = Object.entries(otherAIPredictions).filter(([k]) => k !== aiKey);
-    if (others.length > 0) {
-        prompt += `以下是其他 AI 上次对比赛的分析和预测，供你参考：\n\n`;
-        for (const [otherKey, pred] of others) {
-            if (!pred) continue;
-            const otherName = AI_NAMES[otherKey];
-            prompt += `### ${otherName}\n`;
-            prompt += `> ${(pred.commentary || '（无评论）').slice(0, 200)}${(pred.commentary || '').length > 200 ? '...' : ''}\n\n`;
-            const preds = pred.predictions || {};
-            const predKeys = Object.keys(preds);
-            if (predKeys.length > 0) {
-                prompt += `预测：\n`;
-                for (const k of predKeys) {
-                    prompt += `- \`${k}\`：${preds[k].winner || '—'}\n`;
-                }
-            } else {
-                prompt += `（无预测数据）\n`;
-            }
-            prompt += '\n';
-        }
-    } else {
-        prompt += `暂无其他 AI 的数据。\n\n`;
-    }
-
     // matchId 参考
     prompt += `---\n\n## matchId 参考\n\n`;
     prompt += `小组赛：{组别}-{索引}，如 A-0（第1场）、A-1（第2场）……每个小组6场。\n`;
@@ -325,9 +299,27 @@ async function main() {
         console.log('⚠ CDN 拉取失败，使用本地数据兜底');
         const cachePath = resolve(ROOT, 'src/data/realResults.json');
         if (existsSync(cachePath)) {
-            // 从本地 realResults.json 重建简易 match 列表
+            // 从本地 realResults.json 加载已缓存的结果
+            const cached = JSON.parse(readFileSync(cachePath, 'utf-8'));
             liveData = { matches: [] };
-            console.log('  已加载本地缓存');
+            for (const [matchId, r] of Object.entries(cached)) {
+                // 反查队名
+                let home = '', away = '';
+                for (const [group, matches] of Object.entries(schedule.groupCompetition || {})) {
+                    for (let i = 0; i < matches.length; i++) {
+                        if (`${group}-${i}` === matchId) { home = matches[i].home; away = matches[i].away; }
+                    }
+                }
+                if (home && away) {
+                    liveData.matches.push({
+                        team1: Object.keys(EN_TO_ZH).find((k) => EN_TO_ZH[k] === home) || home,
+                        team2: Object.keys(EN_TO_ZH).find((k) => EN_TO_ZH[k] === away) || away,
+                        score: { ft: [r.homeScore, r.awayScore] },
+                        num: null,
+                    });
+                }
+            }
+            console.log(`  已加载本地缓存 ${liveData.matches.length} 场`);
         }
     }
     const manualResults = loadManualResults();

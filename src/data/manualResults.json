@@ -153,5 +153,35 @@
         "homeScore": 0,
         "awayScore": 1,
         "winner": "克罗地亚"
+    },
+    "A-4": {
+        "homeScore": 0,
+        "awayScore": 3,
+        "winner": "墨西哥"
+    },
+    "A-5": {
+        "homeScore": 1,
+        "awayScore": 0,
+        "winner": "南非"
+    },
+    "B-4": {
+        "homeScore": 2,
+        "awayScore": 1,
+        "winner": "瑞士"
+    },
+    "B-5": {
+        "homeScore": 3,
+        "awayScore": 1,
+        "winner": "波黑"
+    },
+    "C-4": {
+        "homeScore": 0,
+        "awayScore": 3,
+        "winner": "巴西"
+    },
+    "C-5": {
+        "homeScore": 4,
+        "awayScore": 2,
+        "winner": "摩洛哥"
     }
 }
