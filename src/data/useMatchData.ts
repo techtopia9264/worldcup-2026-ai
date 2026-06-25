@@ -63,6 +63,8 @@ export interface DayGroup {
     dateLabel: string;
     /** "周四" */
     weekdayLabel: string;
+    /** 阶段标签，如 "小组赛 G1" "小组赛 G3" "32强赛" */
+    stageLabel: string;
     matches: MatchWithPredictions[];
 }
 
@@ -371,6 +373,32 @@ export function useMatchData(): {
         dayMap[m.match.date].push(m);
     }
 
+    // 构建日期→阶段标签映射（从当天比赛推断）
+    const stageMap: Record<string, string> = {};
+    for (const [dateStr, matches] of Object.entries(dayMap)) {
+        const sample = matches[0];
+        if (!sample) continue;
+        const { stage } = sample.match;
+        if (stage === 'group') {
+            // 从 matchId 推断轮次：索引 0-1 = G1, 2-3 = G2, 4-5 = G3
+            const idx = parseInt(sample.match.id.split('-')[1], 10);
+            const round = idx < 2 ? 'G1' : idx < 4 ? 'G2' : 'G3';
+            stageMap[dateStr] = `小组赛 ${round}`;
+        } else if (stage === 'round_of_32') {
+            stageMap[dateStr] = '32强赛';
+        } else if (stage === 'round_of_16') {
+            stageMap[dateStr] = '16强赛';
+        } else if (stage === 'quarterfinals') {
+            stageMap[dateStr] = '¼决赛';
+        } else if (stage === 'semifinals') {
+            stageMap[dateStr] = '半决赛';
+        } else if (stage === 'third_place') {
+            stageMap[dateStr] = '三四名';
+        } else if (stage === 'final') {
+            stageMap[dateStr] = '决赛';
+        }
+    }
+
     const dayGroups: DayGroup[] = [];
     const sortedDates = Object.keys(dayMap).sort();
     for (const dateStr of sortedDates) {
@@ -379,6 +407,7 @@ export function useMatchData(): {
             date: dateStr,
             dateLabel,
             weekdayLabel,
+            stageLabel: stageMap[dateStr] || '',
             matches: dayMap[dateStr],
         });
     }

@@ -19,14 +19,14 @@ export function AIChart({ open, onClose, allMatches, realResults }: AIChartProps
     const scoredMatches = useMemo(() => getScoredMatches(allMatches, realResults), [allMatches, realResults]);
     const aiStats = useMemo(() => computeAIStats(allMatches, realResults), [allMatches, realResults]);
 
-    const maxPct = useMemo(() => {
+    // 最高正确数
+    const maxCorrect = useMemo(() => {
         let max = 0;
         for (const name of AI_NAMES) {
             const s = aiStats[name];
-            const pct = s.total > 0 ? (s.correct / s.total) * 100 : 0;
-            if (pct > max) max = pct;
+            if (s && s.correct > max) max = s.correct;
         }
-        return Math.max(max, 10); // 至少 10% 做基准
+        return max;
     }, [aiStats]);
 
     return (
@@ -43,13 +43,13 @@ export function AIChart({ open, onClose, allMatches, realResults }: AIChartProps
                     {AI_NAMES.map((name) => {
                         const s = aiStats[name];
                         const pct = s.total > 0 ? Math.round((s.correct / s.total) * 100) : 0;
-                        const barWidth = s.total > 0 ? (pct / maxPct) * 100 : 0;
+                        const barWidth = pct; // 直接使用百分比，以 100% 为基准
 
                         return (
                             <div key={name} className="flex items-center gap-3">
                                 {/* 标签 */}
                                 <span className="text-sm text-foreground w-20 shrink-0 text-right">
-                                    {name}
+                                    {s.correct === maxCorrect && '👑 '}{name}
                                 </span>
                                 {/* 进度条 */}
                                 <div className="flex-1 h-7 bg-muted rounded-sm relative overflow-hidden">

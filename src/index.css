@@ -29,3 +29,12 @@
 .text-predict-correct {
     color: #16a34a;
 }
+
+/* 隐藏滚动条但可滚动 */
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}

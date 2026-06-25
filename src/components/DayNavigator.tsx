@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import type { DayGroup } from '../data/useMatchData';
 
 interface DayNavigatorProps {
     days: DayGroup[];
+    activeDate: string;
+    onSelectDate: (date: string) => void;
 }
 
 /** 获取今天的日期字符串 YYYY-MM-DD */
@@ -11,74 +13,75 @@ function getTodayStr(): string {
     return d.toISOString().slice(0, 10);
 }
 
-/** 格式化日期为缩写，如 "06/12" */
-function shortDate(dateStr: string): string {
-    const parts = dateStr.split('-');
-    return `${parts[1]}/${parts[2]}`;
-}
-
 /**
- * 右侧固定日期导航
- * 点击跳转到对应日期，高亮当前可视日期
+ * 底部固定日期导航条
+ * 横向平铺，可滚动，自动滚动到今天，上阴影
  */
-export function DayNavigator({ days }: DayNavigatorProps) {
-    const [activeIndex, setActiveIndex] = useState(0);
+export function DayNavigator({ days, activeDate, onSelectDate }: DayNavigatorProps) {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const todayRef = useRef<HTMLButtonElement>(null);
 
-    // 监听滚动，高亮当前可视区域内的日期
+    // 自动滚动到今天
     useEffect(() => {
-        const handleScroll = () => {
-            for (let i = days.length - 1; i >= 0; i--) {
-                const el = document.getElementById(`day-${days[i].date}`);
-                if (el) {
-                    const rect = el.getBoundingClientRect();
-                    // 分割线进入视口上半部就算当前天
-                    if (rect.top <= window.innerHeight * 0.3) {
-                        setActiveIndex(i);
-                        return;
-                    }
-                }
-            }
-            setActiveIndex(0);
-        };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [days]);
-
-    /** 点击跳转 */
-    function scrollToDay(date: string) {
-        const el = document.getElementById(`day-${date}`);
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (todayRef.current && containerRef.current) {
+            const container = containerRef.current;
+            const todayBtn = todayRef.current;
+            const scrollLeft = todayBtn.offsetLeft - container.clientWidth / 2 + todayBtn.clientWidth / 2;
+            container.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
         }
-    }
+    }, []);
+
+    // 选中项变化时也滚动到可视区域
+    useEffect(() => {
+        if (!containerRef.current) return;
+        const activeBtn = containerRef.current.querySelector(`[data-date="${activeDate}"]`) as HTMLElement;
+        if (activeBtn) {
+            const scrollLeft = activeBtn.offsetLeft - containerRef.current.clientWidth / 2 + activeBtn.clientWidth / 2;
+            containerRef.current.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
+        }
+    }, [activeDate]);
+
+    const today = getTodayStr();
 
     return (
-        <nav className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden xl:block">
-            <div className="grid grid-cols-3 gap-0.5 bg-background/80 backdrop-blur rounded-lg border p-1.5 shadow-sm">
+        <nav className="fixed bottom-0 left-0 right-0 z-40 bg-background/95 backdrop-blur border-t shadow-[0_-4px_12px_rgba(0,0,0,0.08)] pb-safe">
+            <div
+                ref={containerRef}
+                className="flex gap-0.5 overflow-x-auto px-3 pt-2 pb-1 no-scrollbar items-end"
+            >
                 {days.map((day, i) => {
-                    const isToday = day.date === getTodayStr();
-                    const isPast = day.date < getTodayStr();
+                    const isToday = day.date === today;
+                    const isActive = day.date === activeDate;
+                    const isPast = day.date < today;
+                    // 只在阶段变化时显示标签
+                    const prevStage = i > 0 ? days[i - 1].stageLabel : '';
+                    const showLabel = day.stageLabel && day.stageLabel !== prevStage;
 
-                    let btnClass = 'text-[11px] px-1.5 py-1 rounded text-center transition-colors hover:bg-muted whitespace-nowrap w-11';
+                    let btnClass =
+                        'text-[11px] py-1 rounded-full transition-colors shrink-0 whitespace-nowrap flex flex-col items-center min-w-[42px]';
 
-                    if (i === activeIndex) {
-                        btnClass += ' bg-foreground text-background hover:bg-foreground/90 font-medium';
+                    if (isActive) {
+                        btnClass += ' bg-foreground text-background font-semibold px-2.5';
                     } else if (isPast) {
-                        btnClass += ' text-muted-foreground/40';
+                        btnClass += ' text-muted-foreground/50 hover:bg-muted px-2';
                     } else {
-                        btnClass += ' text-muted-foreground';
+                        btnClass += ' text-muted-foreground hover:bg-muted px-2';
                     }
 
                     return (
                         <button
                             key={day.date}
-                            onClick={() => scrollToDay(day.date)}
+                            ref={isToday ? todayRef : undefined}
+                            data-date={day.date}
+                            onClick={() => onSelectDate(day.date)}
                             className={btnClass}
-                            title={day.dateLabel + ' ' + day.weekdayLabel}
                         >
-                            {isToday ? '今天' : shortDate(day.date)}
+                            {isToday ? '今天' : day.dateLabel.replace(/月/, '/').replace('日', '')}
+                            {showLabel && (
+                                <span className="text-[9px] opacity-60 leading-tight">
+                                    {day.stageLabel}
+                                </span>
+                            )}
                         </button>
                     );
                 })}

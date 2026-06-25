@@ -33,37 +33,30 @@ export function StandingsTable({ open, onClose, allMatches, realResults }: Stand
                     <Table>
                         <TableHeader className="sticky top-0 bg-background z-10">
                             <TableRow>
-                                <TableHead className="text-xs w-8">#</TableHead>
                                 <TableHead className="text-xs">国家</TableHead>
-                                <TableHead className="text-xs text-center w-12">组</TableHead>
-                                <TableHead className="text-xs text-center w-12">场</TableHead>
+                                <TableHead className="text-xs text-center w-12 font-bold">积分</TableHead>
                                 <TableHead className="text-xs text-center w-10">胜</TableHead>
                                 <TableHead className="text-xs text-center w-10">平</TableHead>
                                 <TableHead className="text-xs text-center w-10">负</TableHead>
                                 <TableHead className="text-xs text-center w-16">进球</TableHead>
                                 <TableHead className="text-xs text-center w-16">失球</TableHead>
                                 <TableHead className="text-xs text-center w-12">净胜</TableHead>
-                                <TableHead className="text-xs text-center w-12 font-bold">积分</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {standings.map((s, i) => {
+                            {standings.map((s) => {
                                 const isTop32 = top32.includes(s.team);
                                 return (
                                     <TableRow
                                         key={s.team}
                                         className={isTop32 ? 'bg-green-50' : 'bg-background'}
                                     >
-                                        <TableCell className="text-xs text-muted-foreground py-1.5">
-                                            {i + 1}
-                                        </TableCell>
                                         <TableCell className="text-xs font-medium py-1.5">
                                             {s.team}
                                         </TableCell>
-                                        <TableCell className="text-xs text-center text-muted-foreground py-1.5">
-                                            {s.group}
+                                        <TableCell className="text-xs text-center font-bold py-1.5">
+                                            {s.points}
                                         </TableCell>
-                                        <TableCell className="text-xs text-center py-1.5">{s.played}</TableCell>
                                         <TableCell className="text-xs text-center py-1.5">{s.won}</TableCell>
                                         <TableCell className="text-xs text-center py-1.5">{s.drawn}</TableCell>
                                         <TableCell className="text-xs text-center py-1.5">{s.lost}</TableCell>
@@ -73,9 +66,6 @@ export function StandingsTable({ open, onClose, allMatches, realResults }: Stand
                                             <span className={s.goalDiff > 0 ? 'text-predict-correct' : s.goalDiff < 0 ? 'text-muted-foreground' : ''}>
                                                 {s.goalDiff > 0 ? '+' : ''}{s.goalDiff || 0}
                                             </span>
-                                        </TableCell>
-                                        <TableCell className="text-xs text-center font-bold py-1.5">
-                                            {s.points}
                                         </TableCell>
                                     </TableRow>
                                 );

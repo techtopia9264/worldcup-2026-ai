@@ -104,24 +104,24 @@ export function CommentaryDialog({ open, onClose, snapshots }: CommentaryDialogP
                     </p>
                 </DialogHeader>
 
-                {/* AI 筛选按钮 */}
-                <div className="flex gap-1.5 mt-3 flex-wrap">
+                {/* AI 筛选按钮 — 紧凑文本风格 */}
+                <div className="flex gap-0.5 mt-2 flex-wrap">
                     <button onClick={() => setSelectedAI('all')}
                         className={
-                            'text-xs px-3 py-1.5 rounded-md transition-colors border'
+                            'text-[11px] px-2 py-1 rounded transition-colors'
                             + (selectedAI === 'all'
-                                ? ' bg-foreground text-background border-foreground font-medium'
-                                : ' bg-background text-muted-foreground border-border hover:bg-muted')
+                                ? ' text-foreground font-semibold underline underline-offset-4'
+                                : ' text-muted-foreground hover:text-foreground')
                         }>
                         全部 ({aiCounts.all})
                     </button>
                     {AI_NAMES.map((name) => (
                         <button key={name} onClick={() => setSelectedAI(name)}
                             className={
-                                'text-xs px-3 py-1.5 rounded-md transition-colors border'
+                                'text-[11px] px-2 py-1 rounded transition-colors'
                                 + (name === selectedAI
-                                    ? ' bg-foreground text-background border-foreground font-medium'
-                                    : ' bg-background text-muted-foreground border-border hover:bg-muted')
+                                    ? ' text-foreground font-semibold underline underline-offset-4'
+                                    : ' text-muted-foreground hover:text-foreground')
                             }>
                             {name} ({aiCounts[name] || 0})
                         </button>
@@ -147,8 +147,8 @@ export function CommentaryDialog({ open, onClose, snapshots }: CommentaryDialogP
 
                             {/* 该日期下所有 AI 的锐评 */}
                             <div className="space-y-2">
-                                {dateGroups[date].map((entry) => (
-                                    <div key={`${entry.date}-${entry.aiKey}`}
+                                {dateGroups[date].map((entry, idx) => (
+                                    <div key={`${entry.date}-${entry.aiKey}-${idx}`}
                                         className={'border rounded-lg p-3 border-l-[3px] '
                                             + (AI_COLORS[entry.aiName] || 'border-l-muted-foreground/30')}>
                                         <div className="flex items-center gap-2 mb-2">
