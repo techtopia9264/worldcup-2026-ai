@@ -184,9 +184,33 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
         return mIdx >= 4; // 第三轮 matchId 从 4 开始
     });
     if (isThirdRound) {
+        // 检查哪些组已完赛
+        const completedGroups = new Set();
+        const pendingGroups = new Set();
+        for (const [matchId] of Object.entries(results)) {
+            const g = matchId.match(/^([A-Z])/);
+            if (g) {
+                if ([0,1,2,3,4,5].every((i) => results[`${g[1]}-${i}`])) {
+                    completedGroups.add(g[1]);
+                }
+            }
+        }
+        for (const m of nextMatches) {
+            const g = m.matchId.match(/^([A-Z])/);
+            if (g) pendingGroups.add(g[1]);
+        }
+        const completedArr = [...completedGroups].sort();
+
         prompt += `## 🔥 特殊节点：小组赛第三轮\n\n`;
-        prompt += `今天是小组赛第二轮结束、第三轮开启的关键节点。在预测前，请特别关注：\n\n`;
-        prompt += `- **第二轮总结**：整体评价第二轮的比赛——哪些强队翻身了、哪些黑马露馅了\n`;
+        if (completedArr.length > 0) {
+            prompt += `以下小组已结束全部比赛：**${completedArr.join('、')} 组**。\n\n`;
+            prompt += `请在评论中分析这些已完赛小组的最终出线形势：\n`;
+            prompt += `- 各组前两名是谁？第三名积分多少？能否以"最佳第三"晋级？\n`;
+            prompt += `- 哪些队被淘汰了？有没有令人意外的出局者？\n`;
+            prompt += `- 整体上这届世界杯各组有什么规律或特点？\n\n`;
+        }
+        prompt += `以下是下一个比赛日（${nextMatchday}）的小组：**${[...pendingGroups].join('、')} 组**。\n\n`;
+        prompt += `在预测前，请特别关注：\n`;
         prompt += `- **积分榜分析**：结合上面的积分榜和净胜球，分析各组出线形势——谁必须赢、谁打平就能出线、谁已淘汰\n`;
         prompt += `- **第三轮策略**：第三轮同组两场同时开打，已出线的队可能轮换，背水一战的队会拼命。别只看纸面实力！\n\n`;
         prompt += `> 💡 第三轮是"算分期"，要综合积分、净胜球和出线形势来预测，不只是猜谁强谁弱。\n\n`;

@@ -183,5 +183,35 @@
         "homeScore": 4,
         "awayScore": 2,
         "winner": "摩洛哥"
+    },
+    "D-4": {
+        "homeScore": 3,
+        "awayScore": 2,
+        "winner": "土耳其"
+    },
+    "D-5": {
+        "homeScore": 0,
+        "awayScore": 0,
+        "winner": "draw"
+    },
+    "E-4": {
+        "homeScore": 2,
+        "awayScore": 1,
+        "winner": "厄瓜多尔"
+    },
+    "E-5": {
+        "homeScore": 0,
+        "awayScore": 2,
+        "winner": "科特迪瓦"
+    },
+    "F-4": {
+        "homeScore": 1,
+        "awayScore": 1,
+        "winner": "draw"
+    },
+    "F-5": {
+        "homeScore": 1,
+        "awayScore": 3,
+        "winner": "荷兰"
     }
 }
