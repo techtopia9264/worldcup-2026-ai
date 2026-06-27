@@ -213,5 +213,35 @@
         "homeScore": 1,
         "awayScore": 3,
         "winner": "荷兰"
+    },
+    "G-4": {
+        "homeScore": 1,
+        "awayScore": 1,
+        "winner": "draw"
+    },
+    "G-5": {
+        "homeScore": 1,
+        "awayScore": 5,
+        "winner": "比利时"
+    },
+    "H-4": {
+        "homeScore": 0,
+        "awayScore": 0,
+        "winner": "draw"
+    },
+    "H-5": {
+        "homeScore": 0,
+        "awayScore": 1,
+        "winner": "西班牙"
+    },
+    "I-4": {
+        "homeScore": 1,
+        "awayScore": 4,
+        "winner": "法国"
+    },
+    "I-5": {
+        "homeScore": 5,
+        "awayScore": 0,
+        "winner": "塞内加尔"
     }
 }
