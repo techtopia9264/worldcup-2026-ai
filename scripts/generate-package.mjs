@@ -32,7 +32,7 @@ const EN_TO_ZH = {
     'USA': '美国', 'Uruguay': '乌拉圭', 'Uzbekistan': '乌兹别克斯坦',
 };
 
-const AI_NAMES = { deepseek: 'DeepSeek', doubao: '豆包', chatgpt: 'ChatGPT', gemini: 'Gemini', minimax: 'MiniMax', qwen: 'Qwen' };
+const AI_NAMES = { deepseek: 'DeepSeek', doubao: 'DouBao', chatgpt: 'ChatGPT', gemini: 'Gemini', minimax: 'MiniMax', qwen: 'Qwen' };
 const AI_KEYS = Object.keys(AI_NAMES);
 
 const MATCH_NUM_MAP = {
@@ -163,151 +163,234 @@ function computeStandings(schedule, results) {
 function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, currentPredictions, otherAIPredictions) {
     const aiName = AI_NAMES[aiKey];
     const today = new Date().toISOString().slice(0, 10);
+    const schedule = loadSchedule();
 
     let prompt = '';
 
-    // 任务说明
+    // 任务说明（淘汰赛模式）
     prompt += `# 世界杯 AI 锐评任务 · ${today}\n\n`;
     prompt += `你是 **${aiName}**，一个懂球的老哥，被拉来参加 AI 看球实验。\n`;
-    prompt += `6 个 AI 每天各自分析数据、预测第二天比赛、点评赛况。最后看谁眼光最毒。\n\n`;
-    prompt += `**这不是赌博，只是 AI 能力对比实验。你的预测只用于赛后统计正确率。**\n\n`;
+    prompt += `6 个 AI 每天各自分析数据、预测比赛、点评赛况。最后看谁眼光最毒。\n\n`;
+    prompt += `**这不是赌博，只是 AI 能力对比实验。**\n\n`;
+    prompt += `## 🔥 淘汰赛模式\n\n`;
+    prompt += `小组赛已全部结束，进入淘汰赛阶段。**没有平局了**——加时赛、点球大战随时可能上演。\n\n`;
     prompt += `## 你的任务\n\n`;
-    prompt += `**⚠️ 在预测之前，你必须先搜索今日赛果！** 用搜索工具找 ESPN、FotMob、SkySports 等来源，查今天比赛的结果和数据。不搜就猜等于瞎蒙，其他 AI 会笑话你的。\n\n`;
-    prompt += `1. **搜赛果**：今天哪些比赛结束了？比分多少？谁进的球？\n`;
-    prompt += `2. **搜动态**：下个比赛日的球队最近状态、伤病、更衣室八卦\n`;
+    prompt += `**⚠️ 在预测之前，你必须先搜索今日赛果！** 用搜索工具找 ESPN、FotMob、SkySports 等来源。\n\n`;
+    prompt += `1. **搜赛果**：今天哪些比赛结束了？比分多少？谁进了球？有没有加时/点球？\n`;
+    prompt += `2. **搜动态**：下个比赛日球队的状态、伤病、更衣室八卦\n`;
     prompt += `3. **吐槽**：结合真实赛果点评，有事实有态度，像贴吧老哥聊球\n`;
-    prompt += `4. **预测**：基于真实信息，只预测**下个比赛日**的比赛\n\n`;
+    prompt += `4. **预测**：预测**下个比赛日**的比赛。淘汰赛没有平局！\n\n`;
 
-    // 第三轮特殊提示
-    const isThirdRound = nextMatches.some((m) => {
-        const mIdx = parseInt((m.matchId.match(/-(\d+)$/) || [])[1]);
-        return mIdx >= 4; // 第三轮 matchId 从 4 开始
-    });
-    if (isThirdRound) {
-        // 检查哪些组已完赛
-        const completedGroups = new Set();
-        const pendingGroups = new Set();
-        for (const [matchId] of Object.entries(results)) {
-            const g = matchId.match(/^([A-Z])/);
-            if (g) {
-                if ([0,1,2,3,4,5].every((i) => results[`${g[1]}-${i}`])) {
-                    completedGroups.add(g[1]);
-                }
-            }
-        }
-        for (const m of nextMatches) {
-            const g = m.matchId.match(/^([A-Z])/);
-            if (g) pendingGroups.add(g[1]);
-        }
-        const completedArr = [...completedGroups].sort();
-
-        prompt += `## 🔥 特殊节点：小组赛第三轮\n\n`;
-        if (completedArr.length > 0) {
-            prompt += `以下小组已结束全部比赛：**${completedArr.join('、')} 组**。\n\n`;
-            prompt += `请在评论中分析这些已完赛小组的最终出线形势：\n`;
-            prompt += `- 各组前两名是谁？第三名积分多少？能否以"最佳第三"晋级？\n`;
-            prompt += `- 哪些队被淘汰了？有没有令人意外的出局者？\n`;
-            prompt += `- 整体上这届世界杯各组有什么规律或特点？\n\n`;
-        }
-        prompt += `以下是下一个比赛日（${nextMatchday}）的小组：**${[...pendingGroups].join('、')} 组**。\n\n`;
-        prompt += `在预测前，请特别关注：\n`;
-        prompt += `- **积分榜分析**：结合上面的积分榜和净胜球，分析各组出线形势——谁必须赢、谁打平就能出线、谁已淘汰\n`;
-        prompt += `- **第三轮策略**：第三轮同组两场同时开打，已出线的队可能轮换，背水一战的队会拼命。别只看纸面实力！\n\n`;
-        prompt += `> 💡 第三轮是"算分期"，要综合积分、净胜球和出线形势来预测，不只是猜谁强谁弱。\n\n`;
+    // R32 对阵
+    prompt += `---\n\n## 32强淘汰赛对阵\n\n`;
+    const r32Data = resolveR32Teams(schedule, results);
+    prompt += `| matchId | 对阵 | 时间 |\n`;
+    prompt += `|---------|------|------|\n`;
+    for (const m of r32Data) {
+        const ds = fmtDateShort(m.date);
+        prompt += `| \`${m.id}\` | ${m.home || '待定'} vs ${m.away || '待定'} | ${ds} |\n`;
     }
 
-    // 积分榜
-    prompt += `---\n\n## 当前积分榜\n\n`;
-    prompt += `| # | 国家 | 组 | 场 | 胜 | 平 | 负 | 进球 | 失球 | 净胜 | 积分 |\n`;
-    prompt += `|---|---|---|---|---|---|---|---|---|---|---|\n`;
-    let rank = 0;
-    for (const t of standings) {
-        rank++;
-        prompt += `| ${rank} | ${t.team} | ${t.group} | ${t.p} | ${t.w} | ${t.d} | ${t.l} | ${t.gf || 0} | ${t.ga || 0} | ${t.gd >= 0 ? '+' : ''}${t.gd} | ${t.pts} |\n`;
+    // 完整路径
+    prompt += `\n## 淘汰赛完整路径\n\n`;
+    prompt += `**R16对阵**（取决于R32结果）：\n`;
+    for (let i = 0; i < 8; i++) {
+        prompt += `- \`R16-${i}\`：${r32FeedsToR16(i, 0)} 胜者 vs ${r32FeedsToR16(i, 1)} 胜者\n`;
     }
-
-    // 已结束比赛
-    prompt += `\n---\n\n## 已结束比赛\n\n`;
-    const schedule = loadSchedule();
-    for (const [matchId, r] of Object.entries(results).sort()) {
-        let home = '', away = '';
-        for (const [group, matches] of Object.entries(schedule.groupCompetition || {})) {
-            for (let i = 0; i < matches.length; i++) {
-                if (`${group}-${i}` === matchId) { home = matches[i].home; away = matches[i].away; }
-            }
-        }
-        if (!home) {
-            const stages = ['round_of_32', 'round_of_16', 'quarterfinals', 'semifinals', 'final', 'third_place'];
-            const labels = { round_of_32: 'R32', round_of_16: 'R16', quarterfinals: 'QF', semifinals: 'SF', final: 'FINAL', third_place: '3RD' };
-            for (const stage of stages) {
-                const ms = schedule[stage];
-                if (!ms) continue;
-                for (let i = 0; i < ms.length; i++) {
-                    if (`${labels[stage]}-${i}` === matchId) { home = ms[i].home; away = ms[i].away; }
-                }
-            }
-        }
-        const isDraw = r.winner === 'draw';
-        prompt += `- ${matchId}：${home} ${r.homeScore}:${r.awayScore} ${away}${isDraw ? '（平局）' : `（${r.winner}胜）`}\n`;
-    }
+    prompt += `\n**¼决赛** QF-0~QF-3 → **半决赛** SF-0~SF-1 → **决赛** FINAL-0 / **三四名** 3RD-0\n`;
 
     // 下个比赛日
     prompt += `\n---\n\n## 下一个比赛日：${nextMatchday || '未知'}\n\n`;
     prompt += `**你需要预测以下 ${nextMatches.length} 场比赛：**\n\n`;
     for (const m of nextMatches) {
-        prompt += `- \`${m.matchId}\`：${m.home} vs ${m.away}（${m.competitionCity || m.ground || ''}）\n`;
+        const tm = resolveMatchTeams(m, schedule, results);
+        prompt += `- \`${m.matchId}\`：${tm.home || '?'} vs ${tm.away || '?'}\n`;
     }
 
-    // 该 AI 的当前预测
+    const isKnockout = nextMatches.some((m) => m.matchId.startsWith('R') || m.matchId.startsWith('QF') || m.matchId.startsWith('SF') || m.matchId.startsWith('FINAL') || m.matchId.startsWith('3RD'));
+    const isFirstKnockout = isKnockout && (!currentPredictions || !currentPredictions.bracketPredictions);
+
+    // 冠军+全赛程预测
+    prompt += `\n---\n\n## 🏆 冠军预测 & 晋级剧本\n\n`;
+    const todayDate = new Date();
+    const qfLockDate = new Date('2026-07-10');
+    const isBeforeQF = todayDate < qfLockDate;
+
+    if (isFirstKnockout) {
+        prompt += `小组赛已全部收官！在预测明天的比赛之前，你需要先完成以下特别任务：\n\n`;
+        prompt += `### 1. 小组赛总结\n`;
+        prompt += `简要总结小组赛的看点和结果：哪些强队表现符合预期？哪些黑马让人意外？哪些传统豪强翻车了？\n\n`;
+        prompt += `### 2. 冠军预测\n`;
+        prompt += `选出你**最看好夺冠的球队**，并写出它的完整晋级"剧本"。\n`;
+        prompt += `例如：\`R32 轻取加拿大 → R16 点球淘汰巴西 → QF 加时绝杀德国 → SF 完胜法国 → 决赛击败阿根廷夺冠\`\n`;
+        prompt += `剧本要有画面感，像说书一样，让老哥们看了直呼内行！\n\n`;
+        prompt += `### 3. 全赛程预测\n`;
+        prompt += `在 \`bracketPredictions\` 中预测全部 32 场淘汰赛的胜者（R32→R16→QF→SF→FINAL→3RD）。\n`;
+        prompt += `冠军的晋级路线要和剧本一致哦！\n\n`;
+    }
+
+    // 修改规则
+    prompt += `## 🔒 冠军预测修改规则\n\n`;
+    if (isBeforeQF) {
+        prompt += `当前处于淘汰赛早期阶段。你可以：\n`;
+        prompt += `- ✅ **每天修改一次**冠军预测和晋级路线（在 \`predictions\` 之后更新 \`champion\` 和 \`bracketPredictions\`）\n`;
+        prompt += `- ✅ 也可以选择**不改**，沿用上一次的预测\n`;
+        prompt += `- ⚠️ **四分之一决赛（7月10日）开打后将封版**，不可再修改！请谨慎选择\n`;
+    } else {
+        prompt += `⚠️ **四分之一决赛已开始，冠军预测已封版！**\n`;
+        prompt += `- ❌ 不可再修改 \`champion\` 和 \`bracketPredictions\`\n`;
+        prompt += `- 如果 JSON 中包含这些字段，请保持与上次一致\n`;
+    }
+    prompt += `\n`;
+
+    if (currentPredictions?.champion) {
+        prompt += `你当前的冠军选择：**${currentPredictions.champion}**。`;
+        if (isBeforeQF) {
+            prompt += `今天可以修改，也可以保持不变。\n`;
+        } else {
+            prompt += `已锁定，不可修改。\n`;
+        }
+    } else if (!isFirstKnockout) {
+        prompt += `你还没有选择冠军。`;
+        if (isBeforeQF) prompt += `请在今天的预测中补上！\n`;
+    }
+    prompt += `\n`;
+
+    // 上次预测
     prompt += `\n---\n\n## 你上次的预测\n\n`;
     if (currentPredictions) {
         prompt += `上次更新：${currentPredictions.date || '赛前'}\n`;
         const preds = currentPredictions.predictions || {};
-        const predKeys = Object.keys(preds);
-        if (predKeys.length > 0) {
-            const nextIds = new Set(nextMatches.map((m) => m.matchId));
-            const relevant = predKeys.filter((k) => nextIds.has(k));
+        const nextIds = new Set(nextMatches.map((m) => m.matchId));
+        const relevant = Object.keys(preds).filter((k) => nextIds.has(k));
+        if (relevant.length > 0) {
             prompt += `\n上次对下个比赛日的预测：\n`;
-            if (relevant.length > 0) {
-                for (const k of relevant) prompt += `- \`${k}\`：${preds[k].winner || '—'}\n`;
-            } else {
-                prompt += `（首次预测，无历史记录）\n`;
-            }
+            for (const k of relevant) prompt += `- \`${k}\`：${preds[k].winner || '—'}\n`;
+        } else {
+            prompt += `（首次预测，无历史记录）\n`;
         }
     } else {
         prompt += `（首次参与，无历史预测）\n`;
     }
 
-    // matchId 参考
-    prompt += `---\n\n## matchId 参考\n\n`;
-    prompt += `小组赛：{组别}-{索引}，如 A-0（第1场）、A-1（第2场）……每个小组6场。\n`;
-    prompt += `淘汰赛：R32-0~R32-15 / R16-0~R16-7 / QF-0~QF-3 / SF-0~SF-1 / FINAL-0 / 3RD-0\n`;
+    // 已结束的淘汰赛
+    const koDone = Object.entries(results).filter(([id]) =>
+        id.startsWith('R') || id.startsWith('QF') || id.startsWith('SF') || id.startsWith('FINAL') || id.startsWith('3RD')
+    );
+    if (koDone.length > 0) {
+        prompt += `\n---\n\n## 已结束的淘汰赛\n\n`;
+        for (const [matchId, r] of koDone.sort()) {
+            const tm = resolveMatchTeams({ matchId }, schedule, results);
+            prompt += `- \`${matchId}\`：${tm.home || '?'} ${r.homeScore}:${r.awayScore} ${tm.away || '?'}`;
+            if (r.extraTime) prompt += '（加时）';
+            if (r.penalties) prompt += '（点球）';
+            prompt += ` → ${r.winner}晋级\n`;
+        }
+    }
 
     // 输出格式
     prompt += `\n---\n\n## 输出格式\n\n`;
     prompt += `**直接输出 JSON，不要 markdown 包裹。**\n\n`;
+    prompt += `| 字段 | 必填 | 说明 |\n`;
+    prompt += `|------|------|------|\n`;
+    prompt += `| winner | ✅ | 球队中文名。淘汰赛**没有 draw**！ |\n`;
+    prompt += `| score | 可选 | 预测比分，如 "2:1" |\n`;
+    prompt += `| extraTime | 可选 | 是否加时赛，true/false |\n`;
+    prompt += `| penalties | 可选 | 是否点球大战，true/false |\n`;
+    prompt += `| champion | ✅首次 | 看好的冠军球队 |\n`;
+    prompt += `| championReason | ✅首次 | 冠军理由，50字内 |\n`;
+    prompt += `| bracketPredictions | ✅首次 | 全淘汰赛预测 |\n\n`;
+
+    const matchIds = nextMatches.map((m) => m.matchId);
     prompt += '```json\n';
     prompt += '{\n';
     prompt += `  "ai": "${aiName}",\n`;
     prompt += `  "date": "${today}",\n`;
     prompt += `  "nextMatchday": "${nextMatchday || ''}",\n`;
-    prompt += `  "commentary": "在这里写你对前几天的比赛的点评、吐槽、分析。口语化风格，像贴吧老哥聊球。300字以内。",\n`;
-    prompt += `  "predictions": {\n`;
-    const matchIds = nextMatches.map((m) => m.matchId);
-    for (let i = 0; i < matchIds.length; i++) {
-        const comma = i < matchIds.length - 1 ? ',' : '';
-        prompt += `    "${matchIds[i]}": { "winner": "", "score": "" }${comma}\n`;
-    }
-    prompt += '  }\n';
-    prompt += '}\n';
-    prompt += '```\n\n';
+    prompt += `  "commentary": "在这里写你对赛况的点评。口语化风格，像贴吧老哥聊球。300字以内。",\n`;
 
-    // 提醒
-    prompt += `---\n\n`;
-    prompt += `⚠️ 这不是赌博 | 🏆 只预测下个比赛日 | 🇨🇳 队名用中文 | "draw"=平局\n`;
+    if (isFirstKnockout) {
+        prompt += `  "champion": "你预测的冠军球队名",\n`;
+        prompt += `  "championReason": "选择这个冠军的理由",\n`;
+    }
+
+    prompt += `  "predictions": {\n`;
+    for (const id of matchIds) {
+        prompt += `    "${id}": { "winner": "", "score": "", "extraTime": false, "penalties": false },\n`;
+    }
+    prompt += `  }`;
+    if (isFirstKnockout) {
+        prompt += `,\n  "bracketPredictions": {\n`;
+        const allKoIds = getAllKoMatchIds(schedule);
+        for (let i = 0; i < allKoIds.length; i++) {
+            const id = allKoIds[i];
+            const comma = i < allKoIds.length - 1 ? ',' : '';
+            prompt += `    "${id}": { "winner": "", "extraTime": false, "penalties": false }${comma}\n`;
+        }
+        prompt += `  }`;
+    }
+    prompt += '\n}\n';
+    prompt += '```\n\n';
+    prompt += '---\n\n';
+    prompt += '⚠️ 这不是赌博 | 🏆 淘汰赛没平局 | 🇨🇳 队名用中文 | 加时/点球 true/false';
 
     return prompt;
 }
+
+/* ====== 淘汰赛辅助函数 ====== */
+
+function resolveR32Teams(schedule, results) {
+    const teams = {};
+    function ensure(n) { if (!teams[n]) teams[n] = { team: n, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, group: '' }; return teams[n]; }
+    for (const [g, ms] of Object.entries(schedule.groupCompetition || {})) {
+        ms.forEach((m, i) => {
+            const r = results[g + '-' + i]; if (!r) return;
+            const h = ensure(m.home), a = ensure(m.away);
+            h.group = g; a.group = g; h.p++; a.p++; h.gf += r.homeScore; a.gf += r.awayScore;
+            h.ga += r.awayScore; a.ga += r.homeScore; h.gd = h.gf - h.ga; a.gd = a.gf - a.ga;
+            if (r.winner === m.home) { h.w++; h.pts += 3; a.l++; }
+            else if (r.winner === m.away) { a.w++; a.pts += 3; h.l++; }
+            else { h.d++; h.pts++; a.d++; a.pts++; }
+        });
+    }
+    const st = {};
+    for (const g of Object.keys(schedule.groupCompetition || {}))
+        st[g] = Object.values(teams).filter(t => t.group === g).sort((a, b) => b.pts - a.pts || b.gd - a.gd || b.gf - a.gf);
+    const ok = (g) => [0, 1, 2, 3, 4, 5].every(i => results[g + '-' + i]);
+    const gw = (g) => ok(g) ? (st[g]?.[0]?.team || null) : null;
+    const gr = (g) => ok(g) ? (st[g]?.[1]?.team || null) : null;
+    const at = Object.keys(st).map(g => {
+        if (!ok(g)) return null; const t = st[g]?.[2];
+        return t ? { team: t.team, pts: t.pts, gd: t.gd } : null;
+    }).filter(Boolean).sort((a, b) => b.pts - a.pts || b.gd - a.gd || b.gf - a.gf);
+    function r(ph) {
+        const m = ph.match(/^([12])([A-Z])$/); if (m) return m[1] === '1' ? gw(m[2]) : gr(m[2]);
+        const tm = ph.match(/^T(\d)$/); if (tm) return at[parseInt(tm[1]) - 1]?.team || null; return null;
+    }
+    const tpl = [
+        { id: 'R32-0', h: '2A', a: '2B' }, { id: 'R32-1', h: '1E', a: 'T1' }, { id: 'R32-2', h: '1F', a: '2C' },
+        { id: 'R32-3', h: '1C', a: '2F' }, { id: 'R32-4', h: '1I', a: 'T2' }, { id: 'R32-5', h: '2E', a: '2I' },
+        { id: 'R32-6', h: '1A', a: 'T3' }, { id: 'R32-7', h: '1L', a: 'T4' }, { id: 'R32-8', h: '1D', a: 'T5' },
+        { id: 'R32-9', h: '1G', a: 'T6' }, { id: 'R32-10', h: '2K', a: '2L' }, { id: 'R32-11', h: '1H', a: '2J' },
+        { id: 'R32-12', h: '1B', a: 'T7' }, { id: 'R32-13', h: '1J', a: '2H' }, { id: 'R32-14', h: '1K', a: 'T8' },
+        { id: 'R32-15', h: '2D', a: '2G' },
+    ];
+    return tpl.map(t => {
+        const idx = parseInt(t.id.split('-')[1]);
+        const schedDate = schedule.round_of_32[idx]?.date || '';
+        return { id: t.id, home: r(t.h) || '待定', away: r(t.a) || '待定', date: schedDate };
+    });
+}
+function fmtDateShort(raw) { if (!raw) return ''; const m = raw.match(/^(\d{4})-(\d{2})-(\d{2})/); if (!m) return raw.slice(0, 10); return parseInt(m[2]) + '/' + parseInt(m[3]); }
+function r32FeedsToR16(i, s) { const m = { 0: ['R32-1', 'R32-2'], 1: ['R32-0', 'R32-3'], 2: ['R32-5', 'R32-4'], 3: ['R32-6', 'R32-8'], 4: ['R32-9', 'R32-10'], 5: ['R32-7', 'R32-11'], 6: ['R32-12', 'R32-14'], 7: ['R32-13', 'R32-15'] }; return (m[i] || ['?', '?'])[s] || '?'; }
+function resolveMatchTeams(m, schedule, results) {
+    const r32 = resolveR32Teams(schedule, results); const f = r32.find(t => t.id === m.matchId);
+    if (f) return { home: f.home, away: f.away };
+    const st = { round_of_16: 'R16', quarterfinals: 'QF', semifinals: 'SF', final: 'FINAL', third_place: '3RD' };
+    for (const [sk, lb] of Object.entries(st)) { const ms = schedule[sk]; if (!ms) continue; for (let i = 0; i < ms.length; i++) if (lb + '-' + i === m.matchId) return { home: ms[i].home || '?', away: ms[i].away || '?' }; }
+    return { home: m.home || '?', away: m.away || '?' };
+}
+
 
 /* ====== 主流程 ====== */
 
@@ -419,15 +502,27 @@ async function main() {
         // 生成 JSON 模板（仅在文件不存在时创建，避免覆盖已填数据）
         const jsonFile = join(predDir, `${aiKey}.json`);
         if (!existsSync(jsonFile)) {
+            const isKnockout = nextMatches.some((m) => m.matchId.startsWith('R') || m.matchId.startsWith('QF') || m.matchId.startsWith('SF') || m.matchId.startsWith('FINAL') || m.matchId.startsWith('3RD'));
+            const latestPred = allPredictions[aiKey];
+            const isFirstKo = isKnockout && (!latestPred || !latestPred.bracketPredictions);
+
             const template = {
                 ai: AI_NAMES[aiKey],
                 date: today,
                 nextMatchday: nextMatchday || '',
                 commentary: '',
                 predictions: Object.fromEntries(
-                    nextMatches.map((m) => [m.matchId, { winner: '', score: '' }]),
+                    nextMatches.map((m) => [m.matchId, { winner: '', score: '', extraTime: false, penalties: false }]),
                 ),
             };
+            if (isFirstKo) {
+                template.champion = '';
+                template.championReason = '';
+                const allKoIds = getAllKoMatchIds(schedule);
+                template.bracketPredictions = Object.fromEntries(
+                    allKoIds.map((id) => [id, { winner: '', extraTime: false, penalties: false }]),
+                );
+            }
             writeFileSync(jsonFile, JSON.stringify(template, null, 2), 'utf-8');
             const folderName = nextMatchday || today;
             console.log(`✅ ${promptFile}  +  predictions/${folderName}/${aiKey}.json (新建)`);
@@ -438,6 +533,16 @@ async function main() {
     console.log(`\n📊 已结束 ${Object.keys(results).length} 场 · 下一个比赛日 ${nextMatchday}（${nextMatches.length} 场）`);
     const folderName = nextMatchday || today;
     console.log(`📁 JSON 模板已生成到 predictions/${folderName}/，收到 AI 回复后替换内容即可`);
+}
+
+function getAllKoMatchIds(schedule) {
+    const ids = [];
+    const stages = { round_of_32: 'R32', round_of_16: 'R16', quarterfinals: 'QF', semifinals: 'SF', third_place: '3RD', final: 'FINAL' };
+    for (const [stage, label] of Object.entries(stages)) {
+        const ms = schedule[stage];
+        if (ms) for (let i = 0; i < ms.length; i++) ids.push(label + '-' + i);
+    }
+    return ids;
 }
 
 main().catch((e) => { console.error('❌', e.message); process.exit(1); });

@@ -12,7 +12,7 @@ interface AIScoreboardProps {
 }
 
 /** AI 名称列表 */
-const AI_NAMES = ['DeepSeek', '豆包', 'ChatGPT', 'Gemini', 'MiniMax', 'Qwen'];
+const AI_NAMES = ['DeepSeek', 'DouBao', 'ChatGPT', 'Gemini', 'MiniMax', 'Qwen'];
 
 /** 短日期 */
 function shortDate(date: string): string {

@@ -6,13 +6,13 @@ import { translateWinner as translate } from '../data/translations';
 import type { PredictionSnapshot } from '../data/useMatchData';
 
 const AI_NAME_TO_KEY: Record<string, string> = {
-    'DeepSeek': 'deepseek', '豆包': 'doubao', 'ChatGPT': 'chatgpt',
+    'DeepSeek': 'deepseek', 'DouBao': 'doubao', 'ChatGPT': 'chatgpt',
     'Gemini': 'gemini', 'MiniMax': 'minimax', 'Qwen': 'qwen',
 };
 
 const AI_COLORS: Record<string, string> = {
     'DeepSeek': 'border-l-blue-500',
-    '豆包': 'border-l-green-500',
+    'DouBao': 'border-l-green-500',
     'ChatGPT': 'border-l-purple-500',
     'Gemini': 'border-l-amber-500',
     'MiniMax': 'border-l-rose-500',

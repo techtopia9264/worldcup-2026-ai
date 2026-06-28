@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Button } from 'dud';
-import { BarChart3, MessageCircle, GitCommitHorizontal, Trophy } from 'lucide-react';
+import { BarChart3, MessageCircle, GitCommitHorizontal, Swords } from 'lucide-react';
 import { MatchCard } from './components/MatchCard';
 import { DayDivider } from './components/DayDivider';
 import { DayNavigator } from './components/DayNavigator';
@@ -8,7 +8,7 @@ import { AIScoreboard } from './components/AIScoreboard';
 import { AIChart } from './components/AIChart';
 import { TrajectoryDialog } from './components/TrajectoryDialog';
 import { CommentaryDialog } from './components/CommentaryDialog';
-import { StandingsTable } from './components/StandingsTable';
+import { BracketView, BracketInline } from './components/BracketView';
 import { useMatchData } from './data/useMatchData';
 import { useRealResults } from './data/useRealResults';
 
@@ -49,7 +49,8 @@ export default function App() {
     const [commentaryOpen, setCommentaryOpen] = useState(false);
     const [chartOpen, setChartOpen] = useState(false);
     const [trajectoryOpen, setTrajectoryOpen] = useState(false);
-    const [standingsOpen, setStandingsOpen] = useState(false);
+    const [bracketOpen, setBracketOpen] = useState(false);
+    const [viewMode, setViewMode] = useState<'cards' | 'bracket'>('cards');
 
     // 当前选中天的比赛
     const activeDay = useMemo(
@@ -67,6 +68,12 @@ export default function App() {
                 <p className="mt-2 text-sm text-muted-foreground">
                     6 个 AI 模型，{totalMatches} 场比赛
                 </p>
+                <button
+                    onClick={() => setViewMode(viewMode === 'cards' ? 'bracket' : 'cards')}
+                    className="mt-2 text-xs text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors"
+                >
+                    {viewMode === 'cards' ? '切换到淘汰赛晋级图' : '切换回赛程卡片模式'}
+                </button>
             </header>
 
             {/* 按钮栏 — sticky 吸附顶部 */}
@@ -81,15 +88,17 @@ export default function App() {
                         <GitCommitHorizontal size={13} />
                         预测轨迹
                     </Button>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="gap-1 text-xs h-7 px-2.5"
-                        onClick={() => setStandingsOpen(true)}
-                    >
-                        <Trophy size={13} />
-                        积分榜
-                    </Button>
+                    {viewMode === 'cards' && (
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            className="gap-1 text-xs h-7 px-2.5"
+                            onClick={() => setBracketOpen(true)}
+                        >
+                            <Swords size={13} />
+                            对阵图
+                        </Button>
+                    )}
                     <Button
                         variant="outline"
                         size="sm"
@@ -111,32 +120,44 @@ export default function App() {
             </div>
 
             {/* 比赛列表 — 只展示当前天 */}
-            <main className="max-w-5xl mx-auto px-4 pt-4 pb-40">
-                {activeDay && (
-                    <section>
-                        <DayDivider
-                            dateLabel={activeDay.dateLabel}
-                            weekdayLabel={activeDay.weekdayLabel}
-                        />
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {activeDay.matches.map((m) => (
-                                <MatchCard
-                                    key={m.match.id}
-                                    data={m}
-                                    realResult={realResults[m.match.id] || null}
-                                />
-                            ))}
-                        </div>
-                    </section>
-                )}
-            </main>
+            {viewMode === 'cards' ? (
+                <main className="max-w-5xl mx-auto px-4 pt-4 pb-40">
+                    {activeDay && (
+                        <section>
+                            <DayDivider
+                                dateLabel={activeDay.dateLabel}
+                                weekdayLabel={activeDay.weekdayLabel}
+                            />
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {activeDay.matches.map((m) => (
+                                    <MatchCard
+                                        key={m.match.id}
+                                        data={m}
+                                        realResult={realResults[m.match.id] || null}
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                    )}
+                </main>
+            ) : (
+                <main className="max-w-6xl mx-auto px-4 pt-4 pb-40">
+                    <BracketInline
+                        allMatches={allMatches}
+                        realResults={realResults}
+                        snapshots={predictionSnapshots}
+                    />
+                </main>
+            )}
 
-            {/* 底部日期导航 */}
-            <DayNavigator
-                days={dayGroups}
-                activeDate={activeDate}
-                onSelectDate={setActiveDate}
-            />
+            {/* 底部日期导航（仅卡片模式） */}
+            {viewMode === 'cards' && (
+                <DayNavigator
+                    days={dayGroups}
+                    activeDate={activeDate}
+                    onSelectDate={setActiveDate}
+                />
+            )}
 
             {/* AI 成绩单弹窗（隐藏入口，保留组件） */}
             <AIScoreboard
@@ -162,20 +183,21 @@ export default function App() {
                 snapshots={predictionSnapshots}
             />
 
-            {/* 积分榜弹窗 */}
-            <StandingsTable
-                open={standingsOpen}
-                onClose={() => setStandingsOpen(false)}
-                allMatches={allMatches}
-                realResults={realResults}
-            />
-
             {/* 成绩图表弹窗 */}
             <AIChart
                 open={chartOpen}
                 onClose={() => setChartOpen(false)}
                 allMatches={allMatches}
                 realResults={realResults}
+            />
+
+            {/* 淘汰赛对阵图 */}
+            <BracketView
+                open={bracketOpen}
+                onClose={() => setBracketOpen(false)}
+                allMatches={allMatches}
+                realResults={realResults}
+                snapshots={predictionSnapshots}
             />
         </div>
     );

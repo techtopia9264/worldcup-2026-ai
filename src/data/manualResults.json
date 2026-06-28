@@ -243,5 +243,35 @@
         "homeScore": 5,
         "awayScore": 0,
         "winner": "塞内加尔"
+    },
+    "J-4": {
+        "homeScore": 3,
+        "awayScore": 3,
+        "winner": "draw"
+    },
+    "J-5": {
+        "homeScore": 1,
+        "awayScore": 3,
+        "winner": "阿根廷"
+    },
+    "K-4": {
+        "homeScore": 0,
+        "awayScore": 0,
+        "winner": "draw"
+    },
+    "K-5": {
+        "homeScore": 3,
+        "awayScore": 1,
+        "winner": "民主刚果"
+    },
+    "L-4": {
+        "homeScore": 0,
+        "awayScore": 2,
+        "winner": "英格兰"
+    },
+    "L-5": {
+        "homeScore": 2,
+        "awayScore": 1,
+        "winner": "克罗地亚"
     }
 }

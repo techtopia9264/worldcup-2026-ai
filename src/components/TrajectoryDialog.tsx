@@ -7,7 +7,7 @@ import type { MatchWithPredictions, PredictionSnapshot } from '../data/useMatchD
 import type { RealResult } from './MatchCard';
 
 const AI_NAME_TO_KEY: Record<string, string> = {
-    'DeepSeek': 'deepseek', '豆包': 'doubao', 'ChatGPT': 'chatgpt',
+    'DeepSeek': 'deepseek', 'DouBao': 'doubao', 'ChatGPT': 'chatgpt',
     'Gemini': 'gemini', 'MiniMax': 'minimax', 'Qwen': 'qwen',
 };
 

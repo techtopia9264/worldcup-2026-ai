@@ -1,872 +1,872 @@
 {
-  "groupCompetition": {
-    "A": [
-      {
-        "date": "2026-06-12 03:00 AM",
-        "home": "墨西哥",
-        "away": "南非",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-12 10:00 AM",
-        "home": "韩国",
-        "away": "捷克",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-19 12:00 AM",
-        "home": "捷克",
-        "away": "南非",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-19 09:00 AM",
-        "home": "墨西哥",
-        "away": "韩国",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-25 09:00 AM",
-        "home": "捷克",
-        "away": "墨西哥",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-25 09:00 AM",
-        "home": "南非",
-        "away": "韩国",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      }
+    "groupCompetition": {
+        "A": [
+            {
+                "date": "2026-06-12 03:00 AM",
+                "home": "墨西哥",
+                "away": "南非",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-12 10:00 AM",
+                "home": "韩国",
+                "away": "捷克",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-19 12:00 AM",
+                "home": "捷克",
+                "away": "南非",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-19 09:00 AM",
+                "home": "墨西哥",
+                "away": "韩国",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-25 09:00 AM",
+                "home": "捷克",
+                "away": "墨西哥",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-25 09:00 AM",
+                "home": "南非",
+                "away": "韩国",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            }
+        ],
+        "B": [
+            {
+                "date": "2026-06-13 03:00 AM",
+                "home": "加拿大",
+                "away": "波黑",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-14 03:00 AM",
+                "home": "卡塔尔",
+                "away": "瑞士",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-19 03:00 AM",
+                "home": "瑞士",
+                "away": "波黑",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-19 06:00 AM",
+                "home": "加拿大",
+                "away": "卡塔尔",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-25 03:00 AM",
+                "home": "瑞士",
+                "away": "加拿大",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-25 03:00 AM",
+                "home": "波黑",
+                "away": "卡塔尔",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            }
+        ],
+        "C": [
+            {
+                "date": "2026-06-14 06:00 AM",
+                "home": "巴西",
+                "away": "摩洛哥",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-14 09:00 AM",
+                "home": "海地",
+                "away": "苏格兰",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-20 06:00 AM",
+                "home": "苏格兰",
+                "away": "摩洛哥",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-20 09:00 AM",
+                "home": "巴西",
+                "away": "海地",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-25 06:00 AM",
+                "home": "苏格兰",
+                "away": "巴西",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-25 06:00 AM",
+                "home": "摩洛哥",
+                "away": "海地",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            }
+        ],
+        "D": [
+            {
+                "date": "2026-06-13 09:00 AM",
+                "home": "美国",
+                "away": "巴拉圭",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-14 12:00 PM",
+                "home": "澳大利亚",
+                "away": "土耳其",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-20 03:00 AM",
+                "home": "美国",
+                "away": "澳大利亚",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-20 12:00 PM",
+                "home": "土耳其",
+                "away": "巴拉圭",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-26 10:00 AM",
+                "home": "土耳其",
+                "away": "美国",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-26 10:00 AM",
+                "home": "巴拉圭",
+                "away": "澳大利亚",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            }
+        ],
+        "E": [
+            {
+                "date": "2026-06-15 01:00 AM",
+                "home": "德国",
+                "away": "库拉索",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-15 07:00 AM",
+                "home": "科特迪瓦",
+                "away": "厄瓜多尔",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-21 04:00 AM",
+                "home": "德国",
+                "away": "科特迪瓦",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-21 08:00 AM",
+                "home": "厄瓜多尔",
+                "away": "库拉索",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-26 04:00 AM",
+                "home": "厄瓜多尔",
+                "away": "德国",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-26 04:00 AM",
+                "home": "库拉索",
+                "away": "科特迪瓦",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            }
+        ],
+        "F": [
+            {
+                "date": "2026-06-15 04:00 AM",
+                "home": "荷兰",
+                "away": "日本",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-15 10:00 AM",
+                "home": "瑞典",
+                "away": "突尼斯",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-21 01:00 AM",
+                "home": "荷兰",
+                "away": "瑞典",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-21 12:00 PM",
+                "home": "突尼斯",
+                "away": "日本",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-26 07:00 AM",
+                "home": "日本",
+                "away": "瑞典",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-26 07:00 AM",
+                "home": "突尼斯",
+                "away": "荷兰",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            }
+        ],
+        "G": [
+            {
+                "date": "2026-06-16 03:00 AM",
+                "home": "比利时",
+                "away": "埃及",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-16 09:00 AM",
+                "home": "伊朗",
+                "away": "新西兰",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-22 03:00 AM",
+                "home": "比利时",
+                "away": "伊朗",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-22 09:00 AM",
+                "home": "新西兰",
+                "away": "埃及",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-27 11:00 AM",
+                "home": "埃及",
+                "away": "伊朗",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-27 11:00 AM",
+                "home": "新西兰",
+                "away": "比利时",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            }
+        ],
+        "H": [
+            {
+                "date": "2026-06-16 12:00 AM",
+                "home": "西班牙",
+                "away": "佛得角",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-16 06:00 AM",
+                "home": "沙特",
+                "away": "乌拉圭",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-22 12:00 AM",
+                "home": "西班牙",
+                "away": "沙特",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-22 06:00 AM",
+                "home": "乌拉圭",
+                "away": "佛得角",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-27 08:00 AM",
+                "home": "佛得角",
+                "away": "沙特",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-27 08:00 AM",
+                "home": "乌拉圭",
+                "away": "西班牙",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            }
+        ],
+        "I": [
+            {
+                "date": "2026-06-17 03:00 AM",
+                "home": "法国",
+                "away": "塞内加尔",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-17 06:00 AM",
+                "home": "伊拉克",
+                "away": "挪威",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-23 05:00 AM",
+                "home": "法国",
+                "away": "伊拉克",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-23 08:00 AM",
+                "home": "挪威",
+                "away": "塞内加尔",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-27 03:00 AM",
+                "home": "挪威",
+                "away": "法国",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-27 03:00 AM",
+                "home": "塞内加尔",
+                "away": "伊拉克",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            }
+        ],
+        "J": [
+            {
+                "date": "2026-06-17 09:00 AM",
+                "home": "阿根廷",
+                "away": "阿尔及利亚",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-17 12:00 PM",
+                "home": "奥地利",
+                "away": "约旦",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-23 01:00 AM",
+                "home": "阿根廷",
+                "away": "奥地利",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-23 11:00 AM",
+                "home": "约旦",
+                "away": "阿尔及利亚",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-28 10:00 AM",
+                "home": "阿尔及利亚",
+                "away": "奥地利",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-28 10:00 AM",
+                "home": "约旦",
+                "away": "阿根廷",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            }
+        ],
+        "K": [
+            {
+                "date": "2026-06-18 01:00 AM",
+                "home": "葡萄牙",
+                "away": "民主刚果",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-18 10:00 AM",
+                "home": "乌兹别克斯坦",
+                "away": "哥伦比亚",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-24 01:00 AM",
+                "home": "葡萄牙",
+                "away": "乌兹别克斯坦",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-24 10:00 AM",
+                "home": "哥伦比亚",
+                "away": "民主刚果",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-28 07:30 AM",
+                "home": "哥伦比亚",
+                "away": "葡萄牙",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-28 07:30 AM",
+                "home": "民主刚果",
+                "away": "乌兹别克斯坦",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            }
+        ],
+        "L": [
+            {
+                "date": "2026-06-18 04:00 AM",
+                "home": "英格兰",
+                "away": "克罗地亚",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-18 07:00 AM",
+                "home": "加纳",
+                "away": "巴拿马",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-24 04:00 AM",
+                "home": "英格兰",
+                "away": "加纳",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-24 07:00 AM",
+                "home": "巴拿马",
+                "away": "克罗地亚",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-28 05:00 AM",
+                "home": "巴拿马",
+                "away": "英格兰",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            },
+            {
+                "date": "2026-06-28 05:00 AM",
+                "home": "克罗地亚",
+                "away": "加纳",
+                "competitionCity": "",
+                "winner": "",
+                "status": ""
+            }
+        ]
+    },
+    "round_of_32": [
+        {
+            "date": "2026-06-29 03:00 AM",
+            "home": "A组亚军",
+            "away": "B组亚军",
+            "competitionCity": "洛杉矶 SoFi 体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-06-30 04:30 AM",
+            "home": "E组冠军",
+            "away": "小组第三",
+            "competitionCity": "波士顿 吉列体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-06-30 09:00 AM",
+            "home": "F组冠军",
+            "away": "C组亚军",
+            "competitionCity": "蒙特雷 BBVA 体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-06-30 01:00 AM",
+            "home": "C组冠军",
+            "away": "F组亚军",
+            "competitionCity": "休斯顿 NRG 体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-01 05:00 AM",
+            "home": "I组冠军",
+            "away": "小组第三",
+            "competitionCity": "纽约 大都会人寿体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-01 01:00 AM",
+            "home": "E组亚军",
+            "away": "I组亚军",
+            "competitionCity": "达拉斯 AT&T 体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-01 09:00 AM",
+            "home": "A组冠军",
+            "away": "小组第三",
+            "competitionCity": "墨西哥城 阿兹特克体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-02 00:00 AM",
+            "home": "L组冠军",
+            "away": "小组第三",
+            "competitionCity": "亚特兰大 梅赛德斯-奔驰体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-02 08:00 AM",
+            "home": "D组冠军",
+            "away": "小组第三",
+            "competitionCity": "旧金山湾区 李维斯体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-02 04:00 AM",
+            "home": "G组冠军",
+            "away": "小组第三",
+            "competitionCity": "西雅图 流明球场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-03 07:00 AM",
+            "home": "K组亚军",
+            "away": "L组亚军",
+            "competitionCity": "多伦多 BMO 球场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-03 03:00 AM",
+            "home": "H组冠军",
+            "away": "J组亚军",
+            "competitionCity": "洛杉矶 SoFi 体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-03 11:00 AM",
+            "home": "B组冠军",
+            "away": "小组第三",
+            "competitionCity": "温哥华 BC Place",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-04 06:00 AM",
+            "home": "J组冠军",
+            "away": "H组亚军",
+            "competitionCity": "迈阿密 硬石体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-04 09:30 AM",
+            "home": "K组冠军",
+            "away": "小组第三",
+            "competitionCity": "堪萨斯城 箭头体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-04 02:00 AM",
+            "home": "D组亚军",
+            "away": "G组亚军",
+            "competitionCity": "达拉斯 AT&T体育场",
+            "winner": "",
+            "status": ""
+        }
     ],
-    "B": [
-      {
-        "date": "2026-06-13 03:00 AM",
-        "home": "加拿大",
-        "away": "波黑",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-14 03:00 AM",
-        "home": "卡塔尔",
-        "away": "瑞士",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-19 03:00 AM",
-        "home": "瑞士",
-        "away": "波黑",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-19 06:00 AM",
-        "home": "加拿大",
-        "away": "卡塔尔",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-25 03:00 AM",
-        "home": "瑞士",
-        "away": "加拿大",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-25 03:00 AM",
-        "home": "波黑",
-        "away": "卡塔尔",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      }
+    "round_of_16": [
+        {
+            "date": "2026-07-05 03:00 AM",
+            "home": "胜74",
+            "away": "胜77",
+            "competitionCity": "费城 林肯金融球场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-05 09:00 AM",
+            "home": "胜73",
+            "away": "胜75",
+            "competitionCity": "休斯顿 NRG体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-06 03:00 AM",
+            "home": "胜76",
+            "away": "胜78",
+            "competitionCity": "纽约 大都会人寿体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-06 09:00 AM",
+            "home": "胜79",
+            "away": "胜80",
+            "competitionCity": "墨西哥城 阿兹特克体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-07 03:00 AM",
+            "home": "胜83",
+            "away": "胜84",
+            "competitionCity": "达拉斯 AT&T体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-07 09:00 AM",
+            "home": "胜81",
+            "away": "胜82",
+            "competitionCity": "西雅图 流明球场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-08 03:00 AM",
+            "home": "胜86",
+            "away": "胜88",
+            "competitionCity": "亚特兰大 梅赛德斯-奔驰体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-08 09:00 AM",
+            "home": "胜85",
+            "away": "胜87",
+            "competitionCity": "温哥华 不列颠哥伦比亚体育场",
+            "winner": "",
+            "status": ""
+        }
     ],
-    "C": [
-      {
-        "date": "2026-06-14 06:00 AM",
-        "home": "巴西",
-        "away": "摩洛哥",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-14 09:00 AM",
-        "home": "海地",
-        "away": "苏格兰",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-20 06:00 AM",
-        "home": "苏格兰",
-        "away": "摩洛哥",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-20 09:00 AM",
-        "home": "巴西",
-        "away": "海地",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-25 06:00 AM",
-        "home": "苏格兰",
-        "away": "巴西",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-25 06:00 AM",
-        "home": "摩洛哥",
-        "away": "海地",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      }
+    "quarterfinals": [
+        {
+            "date": "2026-07-10 03:00 AM",
+            "home": "胜89",
+            "away": "胜90",
+            "competitionCity": "波士顿 吉列体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-11 03:00 AM",
+            "home": "胜93",
+            "away": "胜94",
+            "competitionCity": "洛杉矶 SoFi体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-12 03:00 AM",
+            "home": "胜91",
+            "away": "胜92",
+            "competitionCity": "迈阿密 硬石体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-12 09:00 AM",
+            "home": "胜95",
+            "away": "胜96",
+            "competitionCity": "堪萨斯城 箭头体育",
+            "winner": "",
+            "status": ""
+        }
     ],
-    "D": [
-      {
-        "date": "2026-06-13 09:00 AM",
-        "home": "美国",
-        "away": "巴拉圭",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-14 12:00 PM",
-        "home": "澳大利亚",
-        "away": "土耳其",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-20 03:00 AM",
-        "home": "美国",
-        "away": "澳大利亚",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-20 12:00 PM",
-        "home": "土耳其",
-        "away": "巴拉圭",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-26 10:00 AM",
-        "home": "土耳其",
-        "away": "美国",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-26 10:00 AM",
-        "home": "巴拉圭",
-        "away": "澳大利亚",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      }
+    "semifinals": [
+        {
+            "date": "2026-07-15 03:00 AM",
+            "home": "胜97",
+            "away": "胜98",
+            "competitionCity": "达拉斯 AT&T 体育场",
+            "winner": "",
+            "status": ""
+        },
+        {
+            "date": "2026-07-16 03:00 AM",
+            "home": "胜99",
+            "away": "胜100",
+            "competitionCity": "亚特兰大 梅赛德斯-奔驰体育场",
+            "winner": "",
+            "status": ""
+        }
     ],
-    "E": [
-      {
-        "date": "2026-06-15 01:00 AM",
-        "home": "德国",
-        "away": "库拉索",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-15 07:00 AM",
-        "home": "科特迪瓦",
-        "away": "厄瓜多尔",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-21 04:00 AM",
-        "home": "德国",
-        "away": "科特迪瓦",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-21 08:00 AM",
-        "home": "厄瓜多尔",
-        "away": "库拉索",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-26 04:00 AM",
-        "home": "厄瓜多尔",
-        "away": "德国",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-26 04:00 AM",
-        "home": "库拉索",
-        "away": "科特迪瓦",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      }
+    "final": [
+        {
+            "date": "2026-07-20 03:00 AM",
+            "home": "半决赛胜者",
+            "away": "半决赛胜者",
+            "competitionCity": "纽约 大都会人寿体育场",
+            "winner": "",
+            "status": ""
+        }
     ],
-    "F": [
-      {
-        "date": "2026-06-15 04:00 AM",
-        "home": "荷兰",
-        "away": "日本",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-15 10:00 AM",
-        "home": "瑞典",
-        "away": "突尼斯",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-21 01:00 AM",
-        "home": "荷兰",
-        "away": "瑞典",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-21 12:00 PM",
-        "home": "突尼斯",
-        "away": "日本",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-26 07:00 AM",
-        "home": "日本",
-        "away": "瑞典",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-26 07:00 AM",
-        "home": "突尼斯",
-        "away": "荷兰",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      }
-    ],
-    "G": [
-      {
-        "date": "2026-06-16 03:00 AM",
-        "home": "比利时",
-        "away": "埃及",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-16 09:00 AM",
-        "home": "伊朗",
-        "away": "新西兰",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-22 03:00 AM",
-        "home": "比利时",
-        "away": "伊朗",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-22 09:00 AM",
-        "home": "新西兰",
-        "away": "埃及",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-27 11:00 AM",
-        "home": "埃及",
-        "away": "伊朗",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-27 11:00 AM",
-        "home": "新西兰",
-        "away": "比利时",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      }
-    ],
-    "H": [
-      {
-        "date": "2026-06-16 12:00 AM",
-        "home": "西班牙",
-        "away": "佛得角",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-16 06:00 AM",
-        "home": "沙特",
-        "away": "乌拉圭",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-22 12:00 AM",
-        "home": "西班牙",
-        "away": "沙特",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-22 06:00 AM",
-        "home": "乌拉圭",
-        "away": "佛得角",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-27 08:00 AM",
-        "home": "佛得角",
-        "away": "沙特",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-27 08:00 AM",
-        "home": "乌拉圭",
-        "away": "西班牙",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      }
-    ],
-    "I": [
-      {
-        "date": "2026-06-17 03:00 AM",
-        "home": "法国",
-        "away": "塞内加尔",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-17 06:00 AM",
-        "home": "伊拉克",
-        "away": "挪威",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-23 05:00 AM",
-        "home": "法国",
-        "away": "伊拉克",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-23 08:00 AM",
-        "home": "挪威",
-        "away": "塞内加尔",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-27 03:00 AM",
-        "home": "挪威",
-        "away": "法国",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-27 03:00 AM",
-        "home": "塞内加尔",
-        "away": "伊拉克",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      }
-    ],
-    "J": [
-      {
-        "date": "2026-06-17 09:00 AM",
-        "home": "阿根廷",
-        "away": "阿尔及利亚",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-17 12:00 PM",
-        "home": "奥地利",
-        "away": "约旦",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-23 01:00 AM",
-        "home": "阿根廷",
-        "away": "奥地利",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-23 11:00 AM",
-        "home": "约旦",
-        "away": "阿尔及利亚",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-28 10:00 AM",
-        "home": "阿尔及利亚",
-        "away": "奥地利",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-28 10:00 AM",
-        "home": "约旦",
-        "away": "阿根廷",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      }
-    ],
-    "K": [
-      {
-        "date": "2026-06-18 01:00 AM",
-        "home": "葡萄牙",
-        "away": "民主刚果",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-18 10:00 AM",
-        "home": "乌兹别克斯坦",
-        "away": "哥伦比亚",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-24 01:00 AM",
-        "home": "葡萄牙",
-        "away": "乌兹别克斯坦",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-24 10:00 AM",
-        "home": "哥伦比亚",
-        "away": "民主刚果",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-28 07:30 AM",
-        "home": "哥伦比亚",
-        "away": "葡萄牙",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-28 07:30 AM",
-        "home": "民主刚果",
-        "away": "乌兹别克斯坦",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      }
-    ],
-    "L": [
-      {
-        "date": "2026-06-18 04:00 AM",
-        "home": "英格兰",
-        "away": "克罗地亚",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-18 07:00 AM",
-        "home": "加纳",
-        "away": "巴拿马",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-24 04:00 AM",
-        "home": "英格兰",
-        "away": "加纳",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-24 07:00 AM",
-        "home": "巴拿马",
-        "away": "克罗地亚",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-28 05:00 AM",
-        "home": "巴拿马",
-        "away": "英格兰",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      },
-      {
-        "date": "2026-06-28 05:00 AM",
-        "home": "克罗地亚",
-        "away": "加纳",
-        "competitionCity": "",
-        "winner": "",
-        "status": ""
-      }
+    "third_place": [
+        {
+            "date": "2026-07-19 03:00 AM",
+            "home": "半决赛负者",
+            "away": "半决赛负者",
+            "competitionCity": "迈阿密 硬石体育场",
+            "winner": "",
+            "status": ""
+        }
     ]
-  },
-  "round_of_32": [
-    {
-      "date": "2026-06-29 TBD",
-      "home": "A组亚军",
-      "away": "B组亚军",
-      "competitionCity": "洛杉矶 SoFi 体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-06-30 TBD",
-      "home": "E组冠军",
-      "away": "小组第三",
-      "competitionCity": "波士顿 吉列体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-06-30 TBD",
-      "home": "F组冠军",
-      "away": "C组亚军",
-      "competitionCity": "蒙特雷 BBVA 体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-06-30 TBD",
-      "home": "C组冠军",
-      "away": "F组亚军",
-      "competitionCity": "休斯顿 NRG 体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-06-30 TBD",
-      "home": "I组冠军",
-      "away": "小组第三",
-      "competitionCity": "纽约 大都会人寿体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-01 TBD",
-      "home": "E组亚军",
-      "away": "I组亚军",
-      "competitionCity": "达拉斯 AT&T 体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-01 TBD",
-      "home": "A组冠军",
-      "away": "小组第三",
-      "competitionCity": "墨西哥城 阿兹特克体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-01 TBD",
-      "home": "L组冠军",
-      "away": "小组第三",
-      "competitionCity": "亚特兰大 梅赛德斯-奔驰体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-02 TBD",
-      "home": "D组冠军",
-      "away": "小组第三",
-      "competitionCity": "旧金山湾区 李维斯体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-02 TBD",
-      "home": "G组冠军",
-      "away": "小组第三",
-      "competitionCity": "西雅图 流明球场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-02 TBD",
-      "home": "K组亚军",
-      "away": "L组亚军",
-      "competitionCity": "多伦多 BMO 球场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-03 TBD",
-      "home": "H组冠军",
-      "away": "J组亚军",
-      "competitionCity": "洛杉矶 SoFi 体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-03 TBD",
-      "home": "B组冠军",
-      "away": "小组第三",
-      "competitionCity": "温哥华 BC Place",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-03 TBD",
-      "home": "J组冠军",
-      "away": "H组亚军",
-      "competitionCity": "迈阿密 硬石体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-04 TBD",
-      "home": "K组冠军",
-      "away": "小组第三",
-      "competitionCity": "堪萨斯城 箭头体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-04 TBD",
-      "home": "D组亚军",
-      "away": "G组亚军",
-      "competitionCity": "达拉斯 AT&T体育场",
-      "winner": "",
-      "status": ""
-    }
-  ],
-  "round_of_16": [
-    {
-      "date": "2026-07-05 TBD",
-      "home": "胜74",
-      "away": "胜77",
-      "competitionCity": "费城 林肯金融球场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-05 TBD",
-      "home": "胜73",
-      "away": "胜75",
-      "competitionCity": "休斯顿 NRG体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-06 TBD",
-      "home": "胜76",
-      "away": "胜78",
-      "competitionCity": "纽约 大都会人寿体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-06 TBD",
-      "home": "胜79",
-      "away": "胜80",
-      "competitionCity": "墨西哥城 阿兹特克体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-07 TBD",
-      "home": "胜83",
-      "away": "胜84",
-      "competitionCity": "达拉斯 AT&T体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-07 TBD",
-      "home": "胜81",
-      "away": "胜82",
-      "competitionCity": "西雅图 流明球场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-08 TBD",
-      "home": "胜86",
-      "away": "胜88",
-      "competitionCity": "亚特兰大 梅赛德斯-奔驰体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-08 TBD",
-      "home": "胜85",
-      "away": "胜87",
-      "competitionCity": "温哥华 不列颠哥伦比亚体育场",
-      "winner": "",
-      "status": ""
-    }
-  ],
-  "quarterfinals": [
-    {
-      "date": "2026-07-10 TBD",
-      "home": "胜89",
-      "away": "胜90",
-      "competitionCity": "波士顿 吉列体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-11 TBD",
-      "home": "胜93",
-      "away": "胜94",
-      "competitionCity": "洛杉矶 SoFi体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-12 TBD",
-      "home": "胜91",
-      "away": "胜92",
-      "competitionCity": "迈阿密 硬石体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-12 TBD",
-      "home": "胜95",
-      "away": "胜96",
-      "competitionCity": "堪萨斯城 箭头体育",
-      "winner": "",
-      "status": ""
-    }
-  ],
-  "semifinals": [
-    {
-      "date": "2026-07-15 TBD",
-      "home": "胜97",
-      "away": "胜98",
-      "competitionCity": "达拉斯 AT&T 体育场",
-      "winner": "",
-      "status": ""
-    },
-    {
-      "date": "2026-07-16 TBD",
-      "home": "胜99",
-      "away": "胜100",
-      "competitionCity": "亚特兰大 梅赛德斯-奔驰体育场",
-      "winner": "",
-      "status": ""
-    }
-  ],
-  "final": [
-    {
-      "date": "2026-07-20 TBD",
-      "home": "半决赛胜者",
-      "away": "半决赛胜者",
-      "competitionCity": "纽约 大都会人寿体育场",
-      "winner": "",
-      "status": ""
-    }
-  ],
-  "third_place": [
-    {
-      "date": "2026-07-19 TBD",
-      "home": "半决赛负者",
-      "away": "半决赛负者",
-      "competitionCity": "迈阿密 硬石体育场",
-      "winner": "",
-      "status": ""
-    }
-  ]
 }

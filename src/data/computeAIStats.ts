@@ -1,7 +1,7 @@
 import type { MatchWithPredictions } from './useMatchData';
 import type { RealResult } from '../components/MatchCard';
 
-export const AI_NAMES = ['DeepSeek', '豆包', 'ChatGPT', 'Gemini', 'MiniMax', 'Qwen'];
+export const AI_NAMES = ['DeepSeek', 'DouBao', 'ChatGPT', 'Gemini', 'MiniMax', 'Qwen'];
 
 export interface AIStats {
     correct: number;

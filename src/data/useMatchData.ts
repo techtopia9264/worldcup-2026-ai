@@ -69,6 +69,15 @@ export interface DayGroup {
 }
 
 /** 每日预测文件格式 */
+/** 单场预测 */
+export interface SinglePrediction {
+    winner: string;
+    score?: string;
+    reason?: string;
+    extraTime?: boolean;   // 是否加时赛
+    penalties?: boolean;   // 是否点球大战
+}
+
 export interface DailyPrediction {
     ai: string;
     date: string;
@@ -76,7 +85,12 @@ export interface DailyPrediction {
     commentary: string;
     methodology: string;
     changed_predictions?: { match: string; old_winner: string; new_winner: string; reason: string }[];
-    predictions: Record<string, { winner: string; score?: string; reason?: string }>;
+    predictions: Record<string, SinglePrediction>;
+    /** 淘汰赛：整个对阵图预测（首次淘汰赛预测时填写） */
+    bracketPredictions?: Record<string, SinglePrediction>;
+    /** 淘汰赛：看好的冠军 */
+    champion?: string;
+    championReason?: string;
 }
 
 /** 某 AI 某天的预测快照 */
@@ -88,13 +102,17 @@ export interface PredictionSnapshot {
     nextMatchday?: string;
     changedPredictions: { match: string; oldWinner: string; newWinner: string; reason: string }[];
     predictions: Record<string, AIPrediction>;
+    /** 淘汰赛冠军预测 */
+    champion?: string;
+    championReason?: string;
+    bracketPredictions?: Record<string, SinglePrediction>;
 }
 
 /* ====== 常量 ====== */
 
 const AI_NAMES: Record<string, string> = {
     deepseek: 'DeepSeek',
-    doubao: '豆包',
+    doubao: 'DouBao',
     chatgpt: 'ChatGPT',
     gemini: 'Gemini',
     minimax: 'MiniMax',
@@ -214,6 +232,9 @@ function loadDailyPredictions(): Record<string, PredictionSnapshot[]> {
             commentary: data.commentary || '',
             methodology: data.methodology || '',
             nextMatchday: data.nextMatchday || '',
+            champion: data.champion || undefined,
+            championReason: data.championReason || undefined,
+            bracketPredictions: data.bracketPredictions || undefined,
             changedPredictions: (data.changed_predictions || []).map((c: any) => ({
                 match: c.match,
                 oldWinner: c.old_winner,
@@ -413,4 +434,32 @@ export function useMatchData(): {
     }
 
     return { dayGroups, predictionSnapshots: snapshots };
+}
+
+/** 聚合每个 AI 最新的冠军+晋级路线预测 */
+export function getLatestBracketPredictions(snapshots: Record<string, PredictionSnapshot[]>) {
+    const result: Record<string, {
+        champion?: string;
+        championReason?: string;
+        bracketPredictions?: Record<string, SinglePrediction>;
+        date: string;
+    }> = {};
+
+    for (const [aiKey, aiSnapshots] of Object.entries(snapshots)) {
+        // 从新到旧找第一个有 bracketPredictions 的快照
+        for (let i = aiSnapshots.length - 1; i >= 0; i--) {
+            const snap = aiSnapshots[i];
+            if (snap.bracketPredictions || snap.champion) {
+                result[aiKey] = {
+                    champion: snap.champion,
+                    championReason: snap.championReason,
+                    bracketPredictions: snap.bracketPredictions,
+                    date: snap.date,
+                };
+                break;
+            }
+        }
+    }
+
+    return result;
 }
