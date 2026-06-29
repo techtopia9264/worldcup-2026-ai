@@ -199,6 +199,16 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
     }
     prompt += `\n**¼决赛** QF-0~QF-3 → **半决赛** SF-0~SF-1 → **决赛** FINAL-0 / **三四名** 3RD-0\n`;
 
+    // 专家赛评（如果有）
+    const reviewPath = resolve(ROOT, 'reviews', `${today}.md`);
+    if (existsSync(reviewPath)) {
+        const review = readFileSync(reviewPath, 'utf8').trim();
+        if (review) {
+            prompt += `\n---\n\n## 📝 前方记者赛评\n\n`;
+            prompt += `> ${review.replace(/\n/g, '\n> ')}\n`;
+        }
+    }
+
     // 下个比赛日
     prompt += `\n---\n\n## 下一个比赛日：${nextMatchday || '未知'}\n\n`;
     prompt += `**你需要预测以下 ${nextMatches.length} 场比赛：**\n\n`;
