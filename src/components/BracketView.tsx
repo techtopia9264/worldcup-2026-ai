@@ -23,7 +23,7 @@ interface BracketViewProps {
 
 /* ====== 国旗+队名 ====== */
 function TeamRow({ team, score, isHighlight, isLoser }: {
-    team: string | null; score?: number; isHighlight?: boolean; isLoser?: boolean;
+    team: string | null; score?: number | string; isHighlight?: boolean; isLoser?: boolean;
 }) {
     if (!team) return <div className="flex items-center gap-1 py-0.5 px-1"><span className="text-[10px] text-muted-foreground/40 italic">待定</span></div>;
     const flagUrl = getFlagUrl(team) || '';
@@ -49,14 +49,19 @@ function MatchCard({ node, aiPred }: { node: BracketNode; aiPred?: { winner: str
     const homePredW = predictedW && node.home === predictedW;
     const awayPredW = predictedW && node.away === predictedW;
 
+    // 点球比分格式化
+    const [penHome, penAway] = node.penalties ? node.penalties.split('-') : [];
+    const homeScoreStr = penHome ? `${node.homeScore}(${penHome})` : node.homeScore;
+    const awayScoreStr = penAway ? `${node.awayScore}(${penAway})` : node.awayScore;
+
     return (
         <div className={'border rounded p-1 bg-background shrink-0 w-[110px] shadow-sm'
             + (node.stage === 'FINAL' ? ' border-2 border-amber-500/50' : '')
             + (isChampionPath ? ' border-predict-correct ring-2 ring-predict-correct/40' : predictedW ? ' border-predict-correct/30' : ' border-border')}
             data-match-id={node.id}>
             {node.date && <div className="text-[9px] text-muted-foreground text-center mb-0.5 font-mono">{node.date}</div>}
-            <TeamRow team={node.home} score={node.homeScore} isHighlight={homePredW || homeW} isLoser={hasResult && !homeW} />
-            <TeamRow team={node.away} score={node.awayScore} isHighlight={awayPredW || awayW} isLoser={hasResult && !awayW} />
+            <TeamRow team={node.home} score={homeScoreStr} isHighlight={homePredW || homeW} isLoser={hasResult && !homeW} />
+            <TeamRow team={node.away} score={awayScoreStr} isHighlight={awayPredW || awayW} isLoser={hasResult && !awayW} />
             {predictedW && !hasResult && (
                 <div className="flex items-center justify-center gap-0.5 mt-0.5">
                     <Star size={8} className="text-predict-correct/60" />

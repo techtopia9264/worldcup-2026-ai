@@ -8,6 +8,8 @@ export interface RealResult {
     homeScore: number;
     awayScore: number;
     winner: string;
+    /** 点球大战比分，如 "3-4"（仅点球决胜时存在） */
+    penalties?: string;
 }
 
 interface MatchCardProps {
@@ -115,7 +117,9 @@ export function MatchCard({ data, realResult }: MatchCardProps) {
                                 {match.home}
                             </span>
                             <span className="mx-2 font-bold text-foreground">
-                                {realResult.homeScore} : {realResult.awayScore}
+                                {realResult.penalties
+                                    ? `${realResult.homeScore}(${realResult.penalties.split('-')[0]}) : ${realResult.awayScore}(${realResult.penalties.split('-')[1]})`
+                                    : `${realResult.homeScore} : ${realResult.awayScore}`}
                             </span>
                             <span className={realWinner === match.away ? 'font-bold text-foreground' : (realWinner === 'draw' ? 'text-foreground' : 'text-muted-foreground')}>
                                 {match.away}

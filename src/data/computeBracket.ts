@@ -12,6 +12,8 @@ export interface BracketNode {
     homeScore?: number;
     awayScore?: number;
     winner: string | null;
+    /** 点球比分，如 "3-4" */
+    penalties?: string;
     /** 该节点胜者应填入的下一个节点 */
     feedsIntoIndex: number | null;
 }
@@ -157,6 +159,7 @@ export function computeBracket(
             homeScore: result?.homeScore,
             awayScore: result?.awayScore,
             winner: result?.winner || null,
+            penalties: (result as any)?.penalties,
             feedsIntoIndex: t.feedsToR16,
         };
     });
