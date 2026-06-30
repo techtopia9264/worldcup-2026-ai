@@ -1,0 +1,62 @@
+{
+  "ai": "DouBao",
+  "date": "2026-06-30",
+  "nextMatchday": "2026-07-01",
+  "commentary": "昨天两场点球大战太刺激，德国、荷兰双双止步，黑马摩洛哥淘汰橙衣军团，巴西稳扎稳打取胜。明日三场各有看点，法国阵容深度碾压残阵瑞典；科特迪瓦后防核心伤缺，难挡哈兰德冲击；墨西哥主场优势明显，克制瑞典高空打法。",
+  "champion": "西班牙",
+  "championReason": "传控体系成熟均衡，中场控制力拉满，淘汰赛容错率高，边路与中路进攻衔接流畅，大赛稳定性强。",
+  "predictions": {
+    "R32-4": {
+      "winner": "法国",
+      "score": "2:0",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-5": {
+      "winner": "挪威",
+      "score": "2:1",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-6": {
+      "winner": "墨西哥",
+      "score": "1:0",
+      "extraTime": true,
+      "penalties": false
+    }
+  },
+  "bracketPredictions": {
+    "R32-0": { "winner": "加拿大", "extraTime": false, "penalties": false },
+    "R32-1": { "winner": "民主刚果", "extraTime": true, "penalties": true },
+    "R32-2": { "winner": "摩洛哥", "extraTime": true, "penalties": true },
+    "R32-3": { "winner": "巴西", "extraTime": false, "penalties": false },
+    "R32-4": { "winner": "法国", "extraTime": false, "penalties": false },
+    "R32-5": { "winner": "挪威", "extraTime": false, "penalties": false },
+    "R32-6": { "winner": "墨西哥", "extraTime": true, "penalties": false },
+    "R32-7": { "winner": "英格兰", "extraTime": false, "penalties": false },
+    "R32-8": { "winner": "美国", "extraTime": false, "penalties": false },
+    "R32-9": { "winner": "比利时", "extraTime": false, "penalties": false },
+    "R32-10": { "winner": "葡萄牙", "extraTime": true, "penalties": true },
+    "R32-11": { "winner": "西班牙", "extraTime": false, "penalties": false },
+    "R32-12": { "winner": "瑞士", "extraTime": false, "penalties": false },
+    "R32-13": { "winner": "阿根廷", "extraTime": false, "penalties": false },
+    "R32-14": { "winner": "哥伦比亚", "extraTime": false, "penalties": false },
+    "R32-15": { "winner": "澳大利亚", "extraTime": false, "penalties": false },
+    "R16-0": { "winner": "摩洛哥", "extraTime": false, "penalties": false },
+    "R16-1": { "winner": "巴西", "extraTime": false, "penalties": false },
+    "R16-2": { "winner": "法国", "extraTime": false, "penalties": false },
+    "R16-3": { "winner": "英格兰", "extraTime": false, "penalties": false },
+    "R16-4": { "winner": "葡萄牙", "extraTime": false, "penalties": false },
+    "R16-5": { "winner": "西班牙", "extraTime": false, "penalties": false },
+    "R16-6": { "winner": "瑞士", "extraTime": true, "penalties": true },
+    "R16-7": { "winner": "阿根廷", "extraTime": false, "penalties": false },
+    "QF-0": { "winner": "巴西", "extraTime": false, "penalties": false },
+    "QF-1": { "winner": "法国", "extraTime": false, "penalties": false },
+    "QF-2": { "winner": "西班牙", "extraTime": false, "penalties": false },
+    "QF-3": { "winner": "阿根廷", "extraTime": true, "penalties": true },
+    "SF-0": { "winner": "法国", "extraTime": false, "penalties": false },
+    "SF-1": { "winner": "西班牙", "extraTime": false, "penalties": false },
+    "3RD-0": { "winner": "巴西", "extraTime": false, "penalties": false },
+    "FINAL-0": { "winner": "西班牙", "extraTime": true, "penalties": true }
+  }
+}
