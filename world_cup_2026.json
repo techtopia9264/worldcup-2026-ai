@@ -733,7 +733,7 @@
     ],
     "round_of_16": [
         {
-            "date": "2026-07-05 03:00 AM",
+            "date": "2026-07-05 05:00 AM",
             "home": "胜74",
             "away": "胜77",
             "competitionCity": "费城 林肯金融球场",
@@ -741,7 +741,7 @@
             "status": ""
         },
         {
-            "date": "2026-07-05 09:00 AM",
+            "date": "2026-07-05 01:00 AM",
             "home": "胜73",
             "away": "胜75",
             "competitionCity": "休斯顿 NRG体育场",
@@ -749,7 +749,7 @@
             "status": ""
         },
         {
-            "date": "2026-07-06 03:00 AM",
+            "date": "2026-07-06 04:00 AM",
             "home": "胜76",
             "away": "胜78",
             "competitionCity": "纽约 大都会人寿体育场",
@@ -757,7 +757,7 @@
             "status": ""
         },
         {
-            "date": "2026-07-06 09:00 AM",
+            "date": "2026-07-06 08:00 AM",
             "home": "胜79",
             "away": "胜80",
             "competitionCity": "墨西哥城 阿兹特克体育场",
@@ -773,7 +773,7 @@
             "status": ""
         },
         {
-            "date": "2026-07-07 09:00 AM",
+            "date": "2026-07-07 08:00 AM",
             "home": "胜81",
             "away": "胜82",
             "competitionCity": "西雅图 流明球场",
@@ -781,7 +781,7 @@
             "status": ""
         },
         {
-            "date": "2026-07-08 03:00 AM",
+            "date": "2026-07-08 00:00 AM",
             "home": "胜86",
             "away": "胜88",
             "competitionCity": "亚特兰大 梅赛德斯-奔驰体育场",
@@ -789,7 +789,7 @@
             "status": ""
         },
         {
-            "date": "2026-07-08 09:00 AM",
+            "date": "2026-07-08 04:00 AM",
             "home": "胜85",
             "away": "胜87",
             "competitionCity": "温哥华 不列颠哥伦比亚体育场",
@@ -799,7 +799,7 @@
     ],
     "quarterfinals": [
         {
-            "date": "2026-07-10 03:00 AM",
+            "date": "2026-07-10 04:00 AM",
             "home": "胜89",
             "away": "胜90",
             "competitionCity": "波士顿 吉列体育场",
@@ -815,7 +815,7 @@
             "status": ""
         },
         {
-            "date": "2026-07-12 03:00 AM",
+            "date": "2026-07-12 05:00 AM",
             "home": "胜91",
             "away": "胜92",
             "competitionCity": "迈阿密 硬石体育场",
@@ -826,7 +826,7 @@
             "date": "2026-07-12 09:00 AM",
             "home": "胜95",
             "away": "胜96",
-            "competitionCity": "堪萨斯城 箭头体育",
+            "competitionCity": "堪萨斯城 箭头体育场",
             "winner": "",
             "status": ""
         }
@@ -861,7 +861,7 @@
     ],
     "third_place": [
         {
-            "date": "2026-07-19 03:00 AM",
+            "date": "2026-07-19 05:00 AM",
             "home": "半决赛负者",
             "away": "半决赛负者",
             "competitionCity": "迈阿密 硬石体育场",
