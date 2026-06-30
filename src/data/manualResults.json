@@ -286,6 +286,13 @@
         "extraTime": true,
         "penalties": "3-4"
     },
+    "R32-2": {
+        "homeScore": 1,
+        "awayScore": 1,
+        "winner": "摩洛哥",
+        "extraTime": true,
+        "penalties": "2-3"
+    },
     "R32-3": {
         "homeScore": 2,
         "awayScore": 1,
