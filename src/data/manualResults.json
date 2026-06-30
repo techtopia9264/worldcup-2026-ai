@@ -278,5 +278,17 @@
         "homeScore": 0,
         "awayScore": 1,
         "winner": "加拿大"
+    },
+    "R32-1": {
+        "homeScore": 1,
+        "awayScore": 1,
+        "winner": "巴拉圭",
+        "extraTime": true,
+        "penalties": "3-4"
+    },
+    "R32-3": {
+        "homeScore": 2,
+        "awayScore": 1,
+        "winner": "巴西"
     }
 }
