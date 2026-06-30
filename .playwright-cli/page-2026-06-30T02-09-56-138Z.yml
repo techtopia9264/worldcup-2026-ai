@@ -1,0 +1,258 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - heading "2026 世界杯 · AI 预测" [level=1] [ref=e5]
+    - paragraph [ref=e6]: 6 个 AI 模型，104 场比赛
+    - button "切换到淘汰赛晋级图" [ref=e7] [cursor=pointer]
+  - generic [ref=e9]:
+    - button "预测轨迹" [ref=e10] [cursor=pointer]:
+      - img
+      - text: 预测轨迹
+    - button "对阵图" [ref=e11] [cursor=pointer]:
+      - img
+      - text: 对阵图
+    - button "AI 锐评" [ref=e12] [cursor=pointer]:
+      - img
+      - text: AI 锐评
+    - button "成绩图表" [ref=e13] [cursor=pointer]:
+      - img
+      - text: 成绩图表
+  - main [ref=e14]:
+    - generic [ref=e15]:
+      - generic [ref=e18]:
+        - generic [ref=e19]: 6月30日
+        - generic [ref=e20]: 周二
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - generic [ref=e25]: 已结束
+          - generic [ref=e26]:
+            - generic [ref=e27]:
+              - generic [ref=e28]: 32强赛
+              - generic [ref=e29]: ·
+              - generic [ref=e30]: 01:00
+              - generic [ref=e31]: ·
+              - generic [ref=e32]: 休斯顿 NRG 体育场
+              - generic [ref=e33]: 32强赛
+            - generic [ref=e34]:
+              - generic [ref=e35]:
+                - img "巴西" [ref=e37]
+                - generic [ref=e38]: 巴西
+              - generic [ref=e40]: VS
+              - generic [ref=e41]:
+                - img "日本" [ref=e43]
+                - generic [ref=e44]: 日本
+            - generic [ref=e45]:
+              - heading "AI 预测" [level=4] [ref=e46]
+              - generic [ref=e47]:
+                - generic [ref=e48]:
+                  - generic [ref=e49]: DeepSeek
+                  - generic [ref=e50]:
+                    - generic [ref=e51]: 巴西
+                    - generic [ref=e52]: 2:0
+                  - img [ref=e54]
+                - generic [ref=e56]:
+                  - generic [ref=e57]: DouBao
+                  - generic [ref=e58]:
+                    - generic [ref=e59]: 巴西
+                    - generic [ref=e60]: 3:1
+                  - img [ref=e62]
+                - generic [ref=e64]:
+                  - generic [ref=e65]: ChatGPT
+                  - generic [ref=e66]:
+                    - generic [ref=e67]: 巴西
+                    - generic [ref=e68]: 2:1
+                  - img [ref=e70]
+                - generic [ref=e72]:
+                  - generic [ref=e73]: Gemini
+                  - generic [ref=e74]:
+                    - generic [ref=e75]: 巴西
+                    - generic [ref=e76]: 2:1
+                  - img [ref=e78]
+                - generic [ref=e80]:
+                  - generic [ref=e81]: MiniMax
+                  - generic [ref=e82]:
+                    - generic [ref=e83]: 巴西
+                    - generic [ref=e84]: 2-1
+                  - img [ref=e86]
+                - generic [ref=e88]:
+                  - generic [ref=e89]: Qwen
+                  - generic [ref=e90]:
+                    - generic [ref=e91]: 巴西
+                    - generic [ref=e92]: 3:0
+                  - img [ref=e94]
+            - generic [ref=e96]:
+              - heading "真实结果" [level=4] [ref=e97]
+              - generic [ref=e98]:
+                - text: 巴西
+                - generic [ref=e99]: "2 : 1"
+                - text: 日本
+        - generic [ref=e100]:
+          - generic [ref=e102]: 已结束
+          - generic [ref=e103]:
+            - generic [ref=e104]:
+              - generic [ref=e105]: 32强赛
+              - generic [ref=e106]: ·
+              - generic [ref=e107]: 04:30
+              - generic [ref=e108]: ·
+              - generic [ref=e109]: 波士顿 吉列体育场
+              - generic [ref=e110]: 32强赛
+            - generic [ref=e111]:
+              - generic [ref=e112]:
+                - img "德国" [ref=e114]
+                - generic [ref=e115]: 德国
+              - generic [ref=e117]: VS
+              - generic [ref=e118]:
+                - img "巴拉圭" [ref=e120]
+                - generic [ref=e121]: 巴拉圭
+            - generic [ref=e122]:
+              - heading "AI 预测" [level=4] [ref=e123]
+              - generic [ref=e124]:
+                - generic [ref=e125]:
+                  - generic [ref=e126]: DeepSeek
+                  - generic [ref=e127]:
+                    - generic [ref=e128]: 德国
+                    - generic [ref=e129]: 3:0
+                  - img [ref=e131]
+                - generic [ref=e134]:
+                  - generic [ref=e135]: DouBao
+                  - generic [ref=e136]:
+                    - generic [ref=e137]: 德国
+                    - generic [ref=e138]: 2:0
+                  - img [ref=e140]
+                - generic [ref=e143]:
+                  - generic [ref=e144]: ChatGPT
+                  - generic [ref=e145]:
+                    - generic [ref=e146]: 德国
+                    - generic [ref=e147]: 3:0
+                  - img [ref=e149]
+                - generic [ref=e152]:
+                  - generic [ref=e153]: Gemini
+                  - generic [ref=e154]:
+                    - generic [ref=e155]: 德国
+                    - generic [ref=e156]: 3:0
+                  - img [ref=e158]
+                - generic [ref=e161]:
+                  - generic [ref=e162]: MiniMax
+                  - generic [ref=e163]:
+                    - generic [ref=e164]: 德国
+                    - generic [ref=e165]: 3-0
+                  - img [ref=e167]
+                - generic [ref=e170]:
+                  - generic [ref=e171]: Qwen
+                  - generic [ref=e172]:
+                    - generic [ref=e173]: 德国
+                    - generic [ref=e174]: 3:1
+                  - img [ref=e176]
+            - generic [ref=e179]:
+              - heading "真实结果" [level=4] [ref=e180]
+              - generic [ref=e181]:
+                - text: 德国
+                - generic [ref=e182]: "1 : 1"
+                - text: 巴拉圭
+        - generic [ref=e183]:
+          - generic [ref=e185]: 待开始
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - generic [ref=e188]: 32强赛
+              - generic [ref=e189]: ·
+              - generic [ref=e190]: 09:00
+              - generic [ref=e191]: ·
+              - generic [ref=e192]: 蒙特雷 BBVA 体育场
+              - generic [ref=e193]: 32强赛
+            - generic [ref=e194]:
+              - generic [ref=e195]:
+                - img "荷兰" [ref=e197]
+                - generic [ref=e198]: 荷兰
+              - generic [ref=e200]: VS
+              - generic [ref=e201]:
+                - img "摩洛哥" [ref=e203]
+                - generic [ref=e204]: 摩洛哥
+            - generic [ref=e205]:
+              - heading "AI 预测" [level=4] [ref=e206]
+              - generic [ref=e207]:
+                - generic [ref=e208]:
+                  - generic [ref=e209]: DeepSeek
+                  - generic [ref=e210]:
+                    - generic [ref=e211]: 荷兰
+                    - generic [ref=e212]: 2:1
+                - generic [ref=e213]:
+                  - generic [ref=e214]: DouBao
+                  - generic [ref=e215]:
+                    - generic [ref=e216]: 荷兰
+                    - generic [ref=e217]: 2:1
+                - generic [ref=e218]:
+                  - generic [ref=e219]: ChatGPT
+                  - generic [ref=e220]:
+                    - generic [ref=e221]: 荷兰
+                    - generic [ref=e222]: 2:1
+                - generic [ref=e223]:
+                  - generic [ref=e224]: Gemini
+                  - generic [ref=e225]:
+                    - generic [ref=e226]: 荷兰
+                    - generic [ref=e227]: 2:1
+                - generic [ref=e228]:
+                  - generic [ref=e229]: MiniMax
+                  - generic [ref=e230]:
+                    - generic [ref=e231]: 荷兰
+                    - generic [ref=e232]: 2-1
+                - generic [ref=e233]:
+                  - generic [ref=e234]: Qwen
+                  - generic [ref=e235]:
+                    - generic [ref=e236]: 荷兰
+                    - generic [ref=e237]: 2:1
+            - generic [ref=e238]:
+              - heading "真实结果" [level=4] [ref=e239]
+              - paragraph [ref=e240]: —
+  - navigation [ref=e241]:
+    - generic [ref=e242]:
+      - button "6/12 小组赛 G1" [ref=e243] [cursor=pointer]:
+        - text: 6/12
+        - generic [ref=e244]: 小组赛 G1
+      - button "6/13" [ref=e245] [cursor=pointer]
+      - button "6/14" [ref=e246] [cursor=pointer]
+      - button "6/15" [ref=e247] [cursor=pointer]
+      - button "6/16" [ref=e248] [cursor=pointer]
+      - button "6/17" [ref=e249] [cursor=pointer]
+      - button "6/18" [ref=e250] [cursor=pointer]
+      - button "6/19 小组赛 G2" [ref=e251] [cursor=pointer]:
+        - text: 6/19
+        - generic [ref=e252]: 小组赛 G2
+      - button "6/20" [ref=e253] [cursor=pointer]
+      - button "6/21" [ref=e254] [cursor=pointer]
+      - button "6/22" [ref=e255] [cursor=pointer]
+      - button "6/23" [ref=e256] [cursor=pointer]
+      - button "6/24" [ref=e257] [cursor=pointer]
+      - button "6/25 小组赛 G3" [ref=e258] [cursor=pointer]:
+        - text: 6/25
+        - generic [ref=e259]: 小组赛 G3
+      - button "6/26" [ref=e260] [cursor=pointer]
+      - button "6/27" [ref=e261] [cursor=pointer]
+      - button "6/28" [ref=e262] [cursor=pointer]
+      - button "6/29 32强赛" [ref=e263] [cursor=pointer]:
+        - text: 6/29
+        - generic [ref=e264]: 32强赛
+      - button "今天" [ref=e265] [cursor=pointer]
+      - button "7/1" [ref=e266] [cursor=pointer]
+      - button "7/2" [ref=e267] [cursor=pointer]
+      - button "7/3" [ref=e268] [cursor=pointer]
+      - button "7/4" [ref=e269] [cursor=pointer]
+      - button "7/5 16强赛" [ref=e270] [cursor=pointer]:
+        - text: 7/5
+        - generic [ref=e271]: 16强赛
+      - button "7/6" [ref=e272] [cursor=pointer]
+      - button "7/7" [ref=e273] [cursor=pointer]
+      - button "7/8" [ref=e274] [cursor=pointer]
+      - button "7/10 ¼决赛" [ref=e275] [cursor=pointer]:
+        - text: 7/10
+        - generic [ref=e276]: ¼决赛
+      - button "7/11" [ref=e277] [cursor=pointer]
+      - button "7/12" [ref=e278] [cursor=pointer]
+      - button "7/15 半决赛" [ref=e279] [cursor=pointer]:
+        - text: 7/15
+        - generic [ref=e280]: 半决赛
+      - button "7/16" [ref=e281] [cursor=pointer]
+      - button "7/19 三四名" [ref=e282] [cursor=pointer]:
+        - text: 7/19
+        - generic [ref=e283]: 三四名
+      - button "7/20 决赛" [ref=e284] [cursor=pointer]:
+        - text: 7/20
+        - generic [ref=e285]: 决赛

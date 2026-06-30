@@ -28,7 +28,7 @@ interface R32Template {
 
 const R32_TEMPLATES: R32Template[] = [
     // 上半区 (→ SF-0)
-    { id: 'R32-1', home: '1E', away: 'T1', feedsToR16: 0, slot: 0 },
+    { id: 'R32-1', home: '1E', away: 'T7', feedsToR16: 0, slot: 0 },
     { id: 'R32-2', home: '1F', away: '2C', feedsToR16: 0, slot: 1 },
     { id: 'R32-0', home: '2A', away: '2B', feedsToR16: 1, slot: 0 },
     { id: 'R32-3', home: '1C', away: '2F', feedsToR16: 1, slot: 1 },
@@ -37,12 +37,12 @@ const R32_TEMPLATES: R32Template[] = [
     { id: 'R32-6', home: '1A', away: 'T3', feedsToR16: 3, slot: 0 },
     { id: 'R32-8', home: '1D', away: 'T5', feedsToR16: 3, slot: 1 },
     // 下半区 (→ SF-1)
-    { id: 'R32-9', home: '1G', away: 'T6', feedsToR16: 4, slot: 0 },
+    { id: 'R32-9', home: '1G', away: 'T8', feedsToR16: 4, slot: 0 },
     { id: 'R32-10', home: '2K', away: '2L', feedsToR16: 4, slot: 1 },
-    { id: 'R32-7', home: '1L', away: 'T4', feedsToR16: 5, slot: 0 },
+    { id: 'R32-7', home: '1L', away: 'T1', feedsToR16: 5, slot: 0 },
     { id: 'R32-11', home: '1H', away: '2J', feedsToR16: 5, slot: 1 },
-    { id: 'R32-12', home: '1B', away: 'T7', feedsToR16: 6, slot: 0 },
-    { id: 'R32-14', home: '1K', away: 'T8', feedsToR16: 6, slot: 1 },
+    { id: 'R32-12', home: '1B', away: 'T6', feedsToR16: 6, slot: 0 },
+    { id: 'R32-14', home: '1K', away: 'T4', feedsToR16: 6, slot: 1 },
     { id: 'R32-13', home: '1J', away: '2H', feedsToR16: 7, slot: 0 },
     { id: 'R32-15', home: '2D', away: '2G', feedsToR16: 7, slot: 1 },
 ];
@@ -89,15 +89,15 @@ const STAGE_DATES: Record<string, string[]> = {
         '2026-07-03 11:00', '2026-07-04 09:30', '2026-07-04 06:00', '2026-07-04 02:00',
     ],
     R16: [
-        '2026-07-05 03:00', '2026-07-05 09:00', '2026-07-06 03:00', '2026-07-06 09:00',
-        '2026-07-07 03:00', '2026-07-07 09:00', '2026-07-08 03:00', '2026-07-08 09:00',
+        '2026-07-05 05:00', '2026-07-05 01:00', '2026-07-06 04:00', '2026-07-06 08:00',
+        '2026-07-07 03:00', '2026-07-07 08:00', '2026-07-08 00:00', '2026-07-08 04:00',
     ],
     QF: [
-        '2026-07-10 03:00', '2026-07-11 03:00', '2026-07-12 03:00', '2026-07-12 09:00',
+        '2026-07-10 04:00', '2026-07-11 03:00', '2026-07-12 05:00', '2026-07-12 09:00',
     ],
     SF: ['2026-07-15 03:00', '2026-07-16 03:00'],
     FINAL: ['2026-07-20 03:00'],
-    '3RD': ['2026-07-19 03:00'],
+    '3RD': ['2026-07-19 05:00'],
 };
 
 /** 计算淘汰赛对阵数据，含胜者晋升 */
