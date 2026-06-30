@@ -4,3 +4,4 @@ dist/
 *-prompt.md
 *-package.json
 data_package.json
+.playwright-cli/
