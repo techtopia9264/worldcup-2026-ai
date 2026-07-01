@@ -297,5 +297,20 @@
         "homeScore": 2,
         "awayScore": 1,
         "winner": "巴西"
+    },
+    "R32-4": {
+        "homeScore": 3,
+        "awayScore": 0,
+        "winner": "法国"
+    },
+    "R32-5": {
+        "homeScore": 1,
+        "awayScore": 2,
+        "winner": "挪威"
+    },
+    "R32-6": {
+        "homeScore": 2,
+        "awayScore": 0,
+        "winner": "墨西哥"
     }
 }
