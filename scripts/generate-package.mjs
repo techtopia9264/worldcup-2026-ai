@@ -167,6 +167,16 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
 
     let prompt = '';
 
+    // 致歉声明（数据错误修复后首次生成）
+    const apologyPath = resolve(ROOT, 'reviews', 'apology.md');
+    if (existsSync(apologyPath)) {
+        const apology = readFileSync(apologyPath, 'utf8').trim();
+        if (apology) {
+            prompt += `> ${apology.replace(/\n/g, '\n> ')}\n`;
+            prompt += '\n---\n\n';
+        }
+    }
+
     // 任务说明（淘汰赛模式）
     prompt += `# 世界杯 AI 锐评任务 · ${today}\n\n`;
     prompt += `你是 **${aiName}**，一个懂球的老哥，被拉来参加 AI 看球实验。\n`;
