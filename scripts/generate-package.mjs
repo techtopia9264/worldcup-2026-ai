@@ -375,14 +375,15 @@ function resolveR32Teams(schedule, results) {
     }).filter(Boolean).sort((a, b) => b.pts - a.pts || b.gd - a.gd || b.gf - a.gf);
     function r(ph) {
         const m = ph.match(/^([12])([A-Z])$/); if (m) return m[1] === '1' ? gw(m[2]) : gr(m[2]);
+        const t3 = ph.match(/^3([A-Z])$/); if (t3) return ok(t3[1]) ? (st[t3[1]]?.[2]?.team || null) : null;
         const tm = ph.match(/^T(\d)$/); if (tm) return at[parseInt(tm[1]) - 1]?.team || null; return null;
     }
     const tpl = [
-        { id: 'R32-0', h: '2A', a: '2B' }, { id: 'R32-1', h: '1E', a: 'T7' }, { id: 'R32-2', h: '1F', a: '2C' },
-        { id: 'R32-3', h: '1C', a: '2F' }, { id: 'R32-4', h: '1I', a: 'T2' }, { id: 'R32-5', h: '2E', a: '2I' },
-        { id: 'R32-6', h: '1A', a: 'T3' }, { id: 'R32-7', h: '1L', a: 'T1' }, { id: 'R32-8', h: '1D', a: 'T5' },
-        { id: 'R32-9', h: '1G', a: 'T8' }, { id: 'R32-10', h: '2K', a: '2L' }, { id: 'R32-11', h: '1H', a: '2J' },
-        { id: 'R32-12', h: '1B', a: 'T6' }, { id: 'R32-13', h: '1J', a: '2H' }, { id: 'R32-14', h: '1K', a: 'T4' },
+        { id: 'R32-0', h: '2A', a: '2B' }, { id: 'R32-1', h: '1E', a: '3D' }, { id: 'R32-2', h: '1F', a: '2C' },
+        { id: 'R32-3', h: '1C', a: '2F' }, { id: 'R32-4', h: '1I', a: '3F' }, { id: 'R32-5', h: '2E', a: '2I' },
+        { id: 'R32-6', h: '1A', a: '3E' }, { id: 'R32-7', h: '1L', a: '3K' }, { id: 'R32-8', h: '1D', a: '3B' },
+        { id: 'R32-9', h: '1G', a: '3I' }, { id: 'R32-10', h: '2K', a: '2L' }, { id: 'R32-11', h: '1H', a: '2J' },
+        { id: 'R32-12', h: '1B', a: '3J' }, { id: 'R32-13', h: '1J', a: '2H' }, { id: 'R32-14', h: '1K', a: '3L' },
         { id: 'R32-15', h: '2D', a: '2G' },
     ];
     return tpl.map(t => {

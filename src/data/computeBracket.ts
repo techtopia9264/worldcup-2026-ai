@@ -30,21 +30,21 @@ interface R32Template {
 
 const R32_TEMPLATES: R32Template[] = [
     // 上半区 (→ SF-0)
-    { id: 'R32-1', home: '1E', away: 'T7', feedsToR16: 0, slot: 0 },
+    { id: 'R32-1', home: '1E', away: '3D', feedsToR16: 0, slot: 0 },
     { id: 'R32-2', home: '1F', away: '2C', feedsToR16: 0, slot: 1 },
     { id: 'R32-0', home: '2A', away: '2B', feedsToR16: 1, slot: 0 },
     { id: 'R32-3', home: '1C', away: '2F', feedsToR16: 1, slot: 1 },
     { id: 'R32-5', home: '2E', away: '2I', feedsToR16: 2, slot: 0 },
-    { id: 'R32-4', home: '1I', away: 'T2', feedsToR16: 2, slot: 1 },
-    { id: 'R32-6', home: '1A', away: 'T3', feedsToR16: 3, slot: 0 },
-    { id: 'R32-8', home: '1D', away: 'T5', feedsToR16: 3, slot: 1 },
+    { id: 'R32-4', home: '1I', away: '3F', feedsToR16: 2, slot: 1 },
+    { id: 'R32-6', home: '1A', away: '3E', feedsToR16: 3, slot: 0 },
+    { id: 'R32-8', home: '1D', away: '3B', feedsToR16: 3, slot: 1 },
     // 下半区 (→ SF-1)
-    { id: 'R32-9', home: '1G', away: 'T8', feedsToR16: 4, slot: 0 },
+    { id: 'R32-9', home: '1G', away: '3I', feedsToR16: 4, slot: 0 },
     { id: 'R32-10', home: '2K', away: '2L', feedsToR16: 4, slot: 1 },
-    { id: 'R32-7', home: '1L', away: 'T1', feedsToR16: 5, slot: 0 },
+    { id: 'R32-7', home: '1L', away: '3K', feedsToR16: 5, slot: 0 },
     { id: 'R32-11', home: '1H', away: '2J', feedsToR16: 5, slot: 1 },
-    { id: 'R32-12', home: '1B', away: 'T6', feedsToR16: 6, slot: 0 },
-    { id: 'R32-14', home: '1K', away: 'T4', feedsToR16: 6, slot: 1 },
+    { id: 'R32-12', home: '1B', away: '3J', feedsToR16: 6, slot: 0 },
+    { id: 'R32-14', home: '1K', away: '3L', feedsToR16: 6, slot: 1 },
     { id: 'R32-13', home: '1J', away: '2H', feedsToR16: 7, slot: 0 },
     { id: 'R32-15', home: '2D', away: '2G', feedsToR16: 7, slot: 1 },
 ];
@@ -137,6 +137,8 @@ export function computeBracket(
     const resolve = (ph: string): string | null => {
         const m = ph.match(/^([12])([A-Z])$/);
         if (m) return m[1] === '1' ? getWinner(m[2]) : getRunnerUp(m[2]);
+        const t3 = ph.match(/^3([A-Z])$/);
+        if (t3) return isGroupComplete(t3[1]) ? (groupMap[t3[1]]?.[2]?.team || null) : null;
         const tm = ph.match(/^T(\d)$/);
         if (tm) return allThirds[parseInt(tm[1], 10) - 1]?.team || null;
         return null;

@@ -1,1 +1,190 @@
-{"ai":"ChatGPT","date":"2026-07-01","nextMatchday":"2026-07-02","commentary":"法国3比0踢得像训练赛，姆巴佩状态热得发烫，冠军相越来越明显。挪威靠哈兰德最后时刻一锤定音，硬仗能力值得高看。墨西哥继续稳守反击，东道主优势兑现。官方修正了淘汰赛对阵后，整个签表终于合理了，德国、荷兰早早出局让下半区彻底开放，后面的比赛拼的不只是实力，更是临场执行力。","champion":"法国","championReason":"攻守最均衡，姆巴佩领衔，淘汰赛状态最佳。","predictions":{"R32-7":{"winner":"英格兰","score":"3:0","extraTime":false,"penalties":false},"R32-8":{"winner":"美国","score":"2:1","extraTime":false,"penalties":false},"R32-9":{"winner":"比利时","score":"2:1","extraTime":false,"penalties":false}},"bracketPredictions":{"R32-0":{"winner":"加拿大","extraTime":false,"penalties":false},"R32-1":{"winner":"阿尔及利亚","extraTime":true,"penalties":true},"R32-2":{"winner":"摩洛哥","extraTime":true,"penalties":true},"R32-3":{"winner":"巴西","extraTime":false,"penalties":false},"R32-4":{"winner":"法国","extraTime":false,"penalties":false},"R32-5":{"winner":"挪威","extraTime":false,"penalties":false},"R32-6":{"winner":"墨西哥","extraTime":false,"penalties":false},"R32-7":{"winner":"英格兰","extraTime":false,"penalties":false},"R32-8":{"winner":"美国","extraTime":false,"penalties":false},"R32-9":{"winner":"比利时","extraTime":false,"penalties":false},"R32-10":{"winner":"葡萄牙","extraTime":false,"penalties":false},"R32-11":{"winner":"西班牙","extraTime":false,"penalties":false},"R32-12":{"winner":"瑞士","extraTime":false,"penalties":false},"R32-13":{"winner":"阿根廷","extraTime":false,"penalties":false},"R32-14":{"winner":"哥伦比亚","extraTime":false,"penalties":false},"R32-15":{"winner":"埃及","extraTime":true,"penalties":false},"R16-0":{"winner":"摩洛哥","extraTime":false,"penalties":false},"R16-1":{"winner":"巴西","extraTime":false,"penalties":false},"R16-2":{"winner":"法国","extraTime":false,"penalties":false},"R16-3":{"winner":"墨西哥","extraTime":false,"penalties":false},"R16-4":{"winner":"葡萄牙","extraTime":false,"penalties":false},"R16-5":{"winner":"西班牙","extraTime":false,"penalties":false},"R16-6":{"winner":"哥伦比亚","extraTime":true,"penalties":true},"R16-7":{"winner":"阿根廷","extraTime":false,"penalties":false},"QF-0":{"winner":"巴西","extraTime":false,"penalties":false},"QF-1":{"winner":"法国","extraTime":false,"penalties":false},"QF-2":{"winner":"西班牙","extraTime":false,"penalties":false},"QF-3":{"winner":"阿根廷","extraTime":false,"penalties":false},"SF-0":{"winner":"法国","extraTime":false,"penalties":false},"SF-1":{"winner":"阿根廷","extraTime":true,"penalties":false},"3RD-0":{"winner":"巴西","extraTime":false,"penalties":false},"FINAL-0":{"winner":"法国","extraTime":false,"penalties":false}}}
+{
+  "ai": "ChatGPT",
+  "date": "2026-07-01",
+  "nextMatchday": "2026-07-02",
+  "commentary": "",
+  "predictions": {
+    "R32-7": {
+      "winner": "",
+      "score": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-8": {
+      "winner": "",
+      "score": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-9": {
+      "winner": "",
+      "score": "",
+      "extraTime": false,
+      "penalties": false
+    }
+  },
+  "champion": "",
+  "championReason": "",
+  "bracketPredictions": {
+    "R32-0": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-1": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-2": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-3": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-4": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-5": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-6": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-7": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-8": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-9": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-10": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-11": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-12": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-13": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-14": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-15": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-0": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-1": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-2": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-3": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-4": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-5": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-6": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-7": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "QF-0": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "QF-1": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "QF-2": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "QF-3": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "SF-0": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "SF-1": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "3RD-0": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "FINAL-0": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    }
+  }
+}
