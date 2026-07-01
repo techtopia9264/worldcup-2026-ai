@@ -2,46 +2,189 @@
   "ai": "DeepSeek",
   "date": "2026-07-01",
   "nextMatchday": "2026-07-02",
-  "commentary": "今天三场淘汰赛踢完，法国3-0瑞典，姆巴佩双响登顶淘汰赛历史射手榜；挪威2-1绝杀科特迪瓦，哈兰德86分钟推射绝杀。墨西哥对厄瓜多尔那场还没踢，记者赛评写的对阵有误。德国和荷兰双双点球出局太伤了，德国44年点球不败纪录作古，荷兰连续三届倒在点球大战。摩洛哥点球淘汰荷兰继续黑马之旅，巴拉圭点杀德国更是惊天冷门。明天英格兰打加纳，三狮小组赛0-0被加纳逼平过，这场不好啃；美国主场打波黑，东道主优势明显；比利时打巴拉圭，黄金一代必须稳住。",
-  "champion": "阿根廷",
-  "championReason": "梅西连续7场世界杯进球历史第一，阿根廷小组赛全胜零封两场，防线固若金汤。卫冕冠军底蕴+最后一舞buff，天选剧本。",
+  "commentary": "",
   "predictions": {
-    "R32-7": { "winner": "英格兰", "score": "2:0", "extraTime": false, "penalties": false },
-    "R32-8": { "winner": "美国", "score": "2:1", "extraTime": false, "penalties": false },
-    "R32-9": { "winner": "比利时", "score": "2:1", "extraTime": false, "penalties": false }
+    "R32-7": {
+      "winner": "",
+      "score": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-8": {
+      "winner": "",
+      "score": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-9": {
+      "winner": "",
+      "score": "",
+      "extraTime": false,
+      "penalties": false
+    }
   },
+  "champion": "",
+  "championReason": "",
   "bracketPredictions": {
-    "R32-0": { "winner": "加拿大", "extraTime": false, "penalties": false },
-    "R32-1": { "winner": "巴拉圭", "extraTime": true, "penalties": true },
-    "R32-2": { "winner": "摩洛哥", "extraTime": true, "penalties": true },
-    "R32-3": { "winner": "巴西", "extraTime": false, "penalties": false },
-    "R32-4": { "winner": "法国", "extraTime": false, "penalties": false },
-    "R32-5": { "winner": "挪威", "extraTime": false, "penalties": false },
-    "R32-6": { "winner": "墨西哥", "extraTime": false, "penalties": false },
-    "R32-7": { "winner": "英格兰", "extraTime": false, "penalties": false },
-    "R32-8": { "winner": "美国", "extraTime": false, "penalties": false },
-    "R32-9": { "winner": "比利时", "extraTime": false, "penalties": false },
-    "R32-10": { "winner": "葡萄牙", "extraTime": false, "penalties": false },
-    "R32-11": { "winner": "西班牙", "extraTime": false, "penalties": false },
-    "R32-12": { "winner": "瑞士", "extraTime": false, "penalties": false },
-    "R32-13": { "winner": "阿根廷", "extraTime": false, "penalties": false },
-    "R32-14": { "winner": "哥伦比亚", "extraTime": false, "penalties": false },
-    "R32-15": { "winner": "埃及", "extraTime": false, "penalties": false },
-    "R16-0": { "winner": "摩洛哥", "extraTime": true, "penalties": true },
-    "R16-1": { "winner": "巴西", "extraTime": false, "penalties": false },
-    "R16-2": { "winner": "法国", "extraTime": false, "penalties": false },
-    "R16-3": { "winner": "英格兰", "extraTime": false, "penalties": false },
-    "R16-4": { "winner": "比利时", "extraTime": false, "penalties": false },
-    "R16-5": { "winner": "西班牙", "extraTime": false, "penalties": false },
-    "R16-6": { "winner": "阿根廷", "extraTime": true, "penalties": true },
-    "R16-7": { "winner": "埃及", "extraTime": false, "penalties": false },
-    "QF-0": { "winner": "巴西", "extraTime": false, "penalties": false },
-    "QF-1": { "winner": "法国", "extraTime": false, "penalties": false },
-    "QF-2": { "winner": "比利时", "extraTime": false, "penalties": false },
-    "QF-3": { "winner": "阿根廷", "extraTime": true, "penalties": false },
-    "SF-0": { "winner": "法国", "extraTime": false, "penalties": false },
-    "SF-1": { "winner": "阿根廷", "extraTime": false, "penalties": false },
-    "3RD-0": { "winner": "巴西", "extraTime": false, "penalties": false },
-    "FINAL-0": { "winner": "阿根廷", "extraTime": false, "penalties": false }
+    "R32-0": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-1": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-2": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-3": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-4": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-5": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-6": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-7": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-8": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-9": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-10": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-11": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-12": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-13": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-14": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R32-15": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-0": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-1": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-2": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-3": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-4": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-5": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-6": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "R16-7": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "QF-0": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "QF-1": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "QF-2": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "QF-3": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "SF-0": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "SF-1": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "3RD-0": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    },
+    "FINAL-0": {
+      "winner": "",
+      "extraTime": false,
+      "penalties": false
+    }
   }
 }
