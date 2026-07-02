@@ -184,8 +184,10 @@ function BracketContentInner({ allMatches, realResults, snapshots }: Omit<Bracke
     }, [selectedPreds, r32, r16, qf, sf, finalNode, thirdNode]);
 
     const displayNodes = selectedPreds ? aiNodes : { r32, r16, qf, sf, final: finalNode, third: thirdNode };
+    // FIFA 官方上下半区分组：上半区(左) R16-[0,1,4,5] / 下半区(右) R16-[2,3,6,7]
+    const TOP_R16 = [0, 1, 4, 5], BOTTOM_R16 = [2, 3, 6, 7];
     const topR32 = displayNodes.r32.slice(0, 8), bottomR32 = displayNodes.r32.slice(8, 16);
-    const topR16 = displayNodes.r16.slice(0, 4), bottomR16 = displayNodes.r16.slice(4, 8);
+    const topR16 = TOP_R16.map(i => displayNodes.r16[i]), bottomR16 = BOTTOM_R16.map(i => displayNodes.r16[i]);
     const topQf = displayNodes.qf.slice(0, 2), bottomQf = displayNodes.qf.slice(2, 4);
     const selectedPred = selectedAI !== 'real' ? aiBracketPreds[AI_NAME_TO_KEY[selectedAI]] : null;
 
@@ -205,27 +207,41 @@ function BracketContentInner({ allMatches, realResults, snapshots }: Omit<Bracke
                     })}
                 </div>
                 <div className="flex-1 overflow-auto mt-3 overscroll-x-contain">
-                    <div className="relative min-w-[900px] sm:min-w-[1100px] min-h-[600px] pb-8">
+                    <div className="relative min-w-[900px] sm:min-w-[1100px] min-h-[900px] pb-8">
                         <div className="absolute top-0 left-0 right-0 flex justify-between px-0" style={{ zIndex: 2 }}>
                             <div className="flex gap-0"><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>32强赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>16强赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>¼决赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '100px' }}>半决赛</div></div>
                             <div className="flex items-start justify-center pt-0 shrink-0" style={{ width: '100px' }}><span className="text-[10px] text-muted-foreground font-medium">决赛</span></div>
                             <div className="flex gap-0"><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '100px' }}>半决赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>¼决赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>16强赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>32强赛</div></div>
                         </div>
                         <div className="absolute top-6 bottom-0 left-0 flex gap-0" style={{ zIndex: 1 }}>
-                            <div className="flex flex-col justify-between py-12 gap-1">{topR32.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
+                            <div className="flex flex-col justify-between py-12">
+                                {[0, 2, 4, 6].map(i => (
+                                    <div key={i} className="flex flex-col gap-1">
+                                        <MatchCard node={topR32[i]} aiPred={getPred(topR32[i])} />
+                                        <MatchCard node={topR32[i+1]} aiPred={getPred(topR32[i+1])} />
+                                    </div>
+                                ))}
+                            </div><div className="w-6 shrink-0" />
                             <div className="flex flex-col justify-between py-20 gap-1">{topR16.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
                             <div className="flex flex-col justify-between py-28 gap-1">{topQf.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
                             <div className="flex flex-col justify-center py-8"><MatchCard node={displayNodes.sf[0]} aiPred={getPred(displayNodes.sf[0])} /></div>
                         </div>
                         <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-4" style={{ zIndex: 1, top: '22%' }}>
-                            <div className="text-center"><div className="text-[10px] text-muted-foreground mb-1">三四名决赛</div><MatchCard node={displayNodes.third} aiPred={getPred(displayNodes.third)} /></div>
                             <div className="text-center"><div className="flex items-center justify-center gap-1 mb-1"><Trophy size={14} className="text-amber-500" /><span className="text-[11px] font-bold">决赛</span></div><MatchCard node={displayNodes.final} aiPred={getPred(displayNodes.final)} /></div>
+                            <div className="text-center"><div className="text-[10px] text-muted-foreground mb-1">三四名决赛</div><MatchCard node={displayNodes.third} aiPred={getPred(displayNodes.third)} /></div>
                         </div>
                         <div className="absolute top-6 bottom-0 right-0 flex gap-0" style={{ zIndex: 1 }}>
                             <div className="w-6 shrink-0" /><div className="flex flex-col justify-center py-8"><MatchCard node={displayNodes.sf[1]} aiPred={getPred(displayNodes.sf[1])} /></div><div className="w-6 shrink-0" />
                             <div className="flex flex-col justify-between py-28 gap-1">{bottomQf.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
                             <div className="flex flex-col justify-between py-20 gap-1">{bottomR16.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
-                            <div className="flex flex-col justify-between py-12 gap-1">{bottomR32.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div>
+                            <div className="flex flex-col justify-between py-12">
+                                {[0, 2, 4, 6].map(i => (
+                                    <div key={i} className="flex flex-col gap-1">
+                                        <MatchCard node={bottomR32[i]} aiPred={getPred(bottomR32[i])} />
+                                        <MatchCard node={bottomR32[i+1]} aiPred={getPred(bottomR32[i+1])} />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
