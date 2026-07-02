@@ -403,7 +403,7 @@ function resolveR32Teams(schedule, results) {
     });
 }
 function fmtDateShort(raw) { if (!raw) return ''; const m = raw.match(/^(\d{4})-(\d{2})-(\d{2})/); if (!m) return raw.slice(0, 10); return parseInt(m[2]) + '/' + parseInt(m[3]); }
-function r32FeedsToR16(i, s) { const m = { 0: ['R32-1', 'R32-2'], 1: ['R32-0', 'R32-3'], 2: ['R32-5', 'R32-4'], 3: ['R32-6', 'R32-8'], 4: ['R32-9', 'R32-10'], 5: ['R32-7', 'R32-11'], 6: ['R32-12', 'R32-14'], 7: ['R32-13', 'R32-15'] }; return (m[i] || ['?', '?'])[s] || '?'; }
+function r32FeedsToR16(i, s) { const m = { 0: ['R32-1', 'R32-4'], 1: ['R32-0', 'R32-2'], 2: ['R32-3', 'R32-5'], 3: ['R32-6', 'R32-7'], 4: ['R32-10', 'R32-11'], 5: ['R32-8', 'R32-9'], 6: ['R32-13', 'R32-15'], 7: ['R32-12', 'R32-14'] }; return (m[i] || ['?', '?'])[s] || '?'; }
 function resolveMatchTeams(m, schedule, results) {
     const r32 = resolveR32Teams(schedule, results); const f = r32.find(t => t.id === m.matchId);
     if (f) return { home: f.home, away: f.away };

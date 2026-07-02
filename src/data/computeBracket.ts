@@ -29,44 +29,47 @@ interface R32Template {
 }
 
 const R32_TEMPLATES: R32Template[] = [
-    // 上半区 (→ SF-0)
+    // R16-0 (M89): R32-1 vs R32-4
     { id: 'R32-1', home: '1E', away: '3D', feedsToR16: 0, slot: 0 },
-    { id: 'R32-2', home: '1F', away: '2C', feedsToR16: 0, slot: 1 },
+    { id: 'R32-2', home: '1F', away: '2C', feedsToR16: 1, slot: 1 },
     { id: 'R32-0', home: '2A', away: '2B', feedsToR16: 1, slot: 0 },
-    { id: 'R32-3', home: '1C', away: '2F', feedsToR16: 1, slot: 1 },
-    { id: 'R32-5', home: '2E', away: '2I', feedsToR16: 2, slot: 0 },
-    { id: 'R32-4', home: '1I', away: '3F', feedsToR16: 2, slot: 1 },
+    { id: 'R32-3', home: '1C', away: '2F', feedsToR16: 2, slot: 0 },
+    { id: 'R32-5', home: '2E', away: '2I', feedsToR16: 2, slot: 1 },
+    { id: 'R32-4', home: '1I', away: '3F', feedsToR16: 0, slot: 1 },
+    // R16-3 (M92): R32-6 vs R32-7
     { id: 'R32-6', home: '1A', away: '3E', feedsToR16: 3, slot: 0 },
-    { id: 'R32-8', home: '1D', away: '3B', feedsToR16: 3, slot: 1 },
-    // 下半区 (→ SF-1)
-    { id: 'R32-9', home: '1G', away: '3I', feedsToR16: 4, slot: 0 },
-    { id: 'R32-10', home: '2K', away: '2L', feedsToR16: 4, slot: 1 },
-    { id: 'R32-7', home: '1L', away: '3K', feedsToR16: 5, slot: 0 },
-    { id: 'R32-11', home: '1H', away: '2J', feedsToR16: 5, slot: 1 },
-    { id: 'R32-12', home: '1B', away: '3J', feedsToR16: 6, slot: 0 },
-    { id: 'R32-14', home: '1K', away: '3L', feedsToR16: 6, slot: 1 },
-    { id: 'R32-13', home: '1J', away: '2H', feedsToR16: 7, slot: 0 },
-    { id: 'R32-15', home: '2D', away: '2G', feedsToR16: 7, slot: 1 },
+    { id: 'R32-8', home: '1D', away: '3B', feedsToR16: 5, slot: 0 },
+    { id: 'R32-9', home: '1G', away: '3I', feedsToR16: 5, slot: 1 },
+    // R16-4 (M93): R32-10 vs R32-11
+    { id: 'R32-10', home: '2K', away: '2L', feedsToR16: 4, slot: 0 },
+    { id: 'R32-7', home: '1L', away: '3K', feedsToR16: 3, slot: 1 },
+    { id: 'R32-11', home: '1H', away: '2J', feedsToR16: 4, slot: 1 },
+    // R16-7 (M96): R32-12 vs R32-14
+    { id: 'R32-12', home: '1B', away: '3J', feedsToR16: 7, slot: 0 },
+    { id: 'R32-14', home: '1K', away: '3L', feedsToR16: 7, slot: 1 },
+    // R16-6 (M95): R32-13 vs R32-15
+    { id: 'R32-13', home: '1J', away: '2H', feedsToR16: 6, slot: 0 },
+    { id: 'R32-15', home: '2D', away: '2G', feedsToR16: 6, slot: 1 },
 ];
 
-// R16 → QF 映射：R16 索引 → QF 索引 + slot
+// R16 → QF 映射：R16 索引 → QF 索引 + slot (M97-M100)
 const R16_TO_QF: { feedsToQF: number; slot: 0 | 1 }[] = [
-    { feedsToQF: 0, slot: 0 },  // R16-0
-    { feedsToQF: 0, slot: 1 },  // R16-1
-    { feedsToQF: 1, slot: 0 },  // R16-2
-    { feedsToQF: 1, slot: 1 },  // R16-3
-    { feedsToQF: 2, slot: 0 },  // R16-4
-    { feedsToQF: 2, slot: 1 },  // R16-5
-    { feedsToQF: 3, slot: 0 },  // R16-6
-    { feedsToQF: 3, slot: 1 },  // R16-7
+    { feedsToQF: 0, slot: 0 },  // R16-0 (M89) → QF-0 (M97)
+    { feedsToQF: 0, slot: 1 },  // R16-1 (M90) → QF-0 (M97)
+    { feedsToQF: 2, slot: 0 },  // R16-2 (M91) → QF-2 (M99)
+    { feedsToQF: 2, slot: 1 },  // R16-3 (M92) → QF-2 (M99)
+    { feedsToQF: 1, slot: 0 },  // R16-4 (M93) → QF-1 (M98)
+    { feedsToQF: 1, slot: 1 },  // R16-5 (M94) → QF-1 (M98)
+    { feedsToQF: 3, slot: 0 },  // R16-6 (M95) → QF-3 (M100)
+    { feedsToQF: 3, slot: 1 },  // R16-7 (M96) → QF-3 (M100)
 ];
 
-// QF → SF 映射
+// QF → SF 映射 (M97-M98→M101, M99-M100→M102)
 const QF_TO_SF: { sf: number; slot: 0 | 1 }[] = [
-    { sf: 0, slot: 0 },  // QF-0
-    { sf: 0, slot: 1 },  // QF-1
-    { sf: 1, slot: 0 },  // QF-2
-    { sf: 1, slot: 1 },  // QF-3
+    { sf: 0, slot: 0 },  // QF-0 (M97) → SF-0 (M101)
+    { sf: 0, slot: 1 },  // QF-1 (M98) → SF-0 (M101)
+    { sf: 1, slot: 0 },  // QF-2 (M99) → SF-1 (M102)
+    { sf: 1, slot: 1 },  // QF-3 (M100) → SF-1 (M102)
 ];
 
 // SF → Final/3RD: SF-0 胜者 → Final home, SF-1 胜者 → Final away
