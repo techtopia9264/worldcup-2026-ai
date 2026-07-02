@@ -214,7 +214,7 @@ function BracketContentInner({ allMatches, realResults, snapshots }: Omit<Bracke
                             <div className="flex gap-0"><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '100px' }}>半决赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>¼决赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>16强赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>32强赛</div></div>
                         </div>
                         <div className="absolute top-6 bottom-0 left-0 flex gap-0" style={{ zIndex: 1 }}>
-                            <div className="flex flex-col justify-between py-12">
+                            <div className="flex flex-col justify-center gap-8 py-12">
                                 {[0, 2, 4, 6].map(i => (
                                     <div key={i} className="flex flex-col gap-1">
                                         <MatchCard node={topR32[i]} aiPred={getPred(topR32[i])} />
@@ -222,8 +222,8 @@ function BracketContentInner({ allMatches, realResults, snapshots }: Omit<Bracke
                                     </div>
                                 ))}
                             </div><div className="w-6 shrink-0" />
-                            <div className="flex flex-col justify-between py-20 gap-1">{topR16.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
-                            <div className="flex flex-col justify-between py-28 gap-1">{topQf.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
+                            <div className="flex flex-col justify-center gap-8 py-20">{topR16.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
+                            <div className="flex flex-col justify-center gap-8 py-28">{topQf.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
                             <div className="flex flex-col justify-center py-8"><MatchCard node={displayNodes.sf[0]} aiPred={getPred(displayNodes.sf[0])} /></div>
                         </div>
                         <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-4" style={{ zIndex: 1, top: '22%' }}>
@@ -232,9 +232,9 @@ function BracketContentInner({ allMatches, realResults, snapshots }: Omit<Bracke
                         </div>
                         <div className="absolute top-6 bottom-0 right-0 flex gap-0" style={{ zIndex: 1 }}>
                             <div className="w-6 shrink-0" /><div className="flex flex-col justify-center py-8"><MatchCard node={displayNodes.sf[1]} aiPred={getPred(displayNodes.sf[1])} /></div><div className="w-6 shrink-0" />
-                            <div className="flex flex-col justify-between py-28 gap-1">{bottomQf.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
-                            <div className="flex flex-col justify-between py-20 gap-1">{bottomR16.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
-                            <div className="flex flex-col justify-between py-12">
+                            <div className="flex flex-col justify-center gap-8 py-28">{bottomQf.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
+                            <div className="flex flex-col justify-center gap-8 py-20">{bottomR16.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
+                            <div className="flex flex-col justify-center gap-8 py-12">
                                 {[0, 2, 4, 6].map(i => (
                                     <div key={i} className="flex flex-col gap-1">
                                         <MatchCard node={bottomR32[i]} aiPred={getPred(bottomR32[i])} />
