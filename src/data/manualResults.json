@@ -312,5 +312,21 @@
         "homeScore": 2,
         "awayScore": 0,
         "winner": "墨西哥"
+    },
+    "R32-7": {
+        "homeScore": 2,
+        "awayScore": 1,
+        "winner": "英格兰"
+    },
+    "R32-8": {
+        "homeScore": 2,
+        "awayScore": 0,
+        "winner": "美国"
+    },
+    "R32-9": {
+        "homeScore": 3,
+        "awayScore": 2,
+        "winner": "比利时",
+        "extraTime": true
     }
 }
