@@ -1,4 +1,6 @@
 import schedule from '../../world_cup_2026.json';
+import bundledResults from './realResults.json';
+import manualOverrides from './manualResults.json';
 
 /* ====== 动态加载每日预测（import.meta.glob 在构建时扫描） ====== */
 
@@ -386,6 +388,38 @@ export function useMatchData(): {
         if (b.match.time === 'TBD') return -1;
         return a.match.time.localeCompare(b.match.time);
     });
+
+    // 解析淘汰赛"胜XX"占位符：用实际结果替换队名
+    const allResults: Record<string, { winner: string }> = { ...bundledResults, ...manualOverrides };
+    const fifaNumToMatchId: Record<number, string> = {};
+    // R32: match 73-88 → R32-0..R32-15
+    for (let i = 0; i < 16; i++) fifaNumToMatchId[73 + i] = `R32-${i}`;
+    // R16: match 89-96 → R16-0..R16-7
+    for (let i = 0; i < 8; i++) fifaNumToMatchId[89 + i] = `R16-${i}`;
+    // QF: match 97-100 → QF-0..QF-3
+    for (let i = 0; i < 4; i++) fifaNumToMatchId[97 + i] = `QF-${i}`;
+    // SF: match 101-102 → SF-0..SF-1
+    for (let i = 0; i < 2; i++) fifaNumToMatchId[101 + i] = `SF-${i}`;
+
+    function resolveTeam(name: string): string {
+        const m = name.match(/^胜(\d+)$/);
+        if (!m) return name;
+        const matchId = fifaNumToMatchId[parseInt(m[1])];
+        if (!matchId) return name;
+        const result = allResults[matchId];
+        return result?.winner || name;
+    }
+
+    for (const m of allMatches) {
+        if (!m.match.isPlaceholder) continue;
+        const home = resolveTeam(m.match.home);
+        const away = resolveTeam(m.match.away);
+        if (home !== m.match.home || away !== m.match.away) {
+            m.match.home = home;
+            m.match.away = away;
+            m.match.isPlaceholder = isPlaceholder(home) || isPlaceholder(away);
+        }
+    }
 
     // 按日期分组
     const dayMap: Record<string, MatchWithPredictions[]> = {};
