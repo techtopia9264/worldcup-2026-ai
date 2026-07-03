@@ -40,7 +40,7 @@ function TeamRow({ team, score, isHighlight, isLoser }: {
 }
 
 /* ====== 对阵卡片 ====== */
-function MatchCard({ node, aiPred }: { node: BracketNode; aiPred?: { winner: string | null; isChampionPath: boolean } }) {
+function MatchCard({ node, aiPred, isRealTab }: { node: BracketNode; aiPred?: { winner: string | null; isChampionPath: boolean }; isRealTab?: boolean }) {
     const hasResult = node.winner !== null;
     const predictedW = aiPred?.winner || null;
     const isChampionPath = aiPred?.isChampionPath || false;
@@ -54,8 +54,10 @@ function MatchCard({ node, aiPred }: { node: BracketNode; aiPred?: { winner: str
     const homeScoreStr = penHome ? `${node.homeScore}(${penHome})` : node.homeScore;
     const awayScoreStr = penAway ? `${node.awayScore}(${penAway})` : node.awayScore;
 
+    const bgStyle = (isRealTab && hasResult) ? { backgroundColor: '#EFEFEF' } : {};
+
     return (
-        <div className={'border rounded p-1 bg-background shrink-0 w-[110px] shadow-sm'
+        <div style={bgStyle} className={'border rounded p-1 shrink-0 w-[110px] shadow-sm'
             + (node.stage === 'FINAL' ? ' border-2 border-amber-500/50' : '')
             + (isChampionPath ? ' border-predict-correct ring-2 ring-predict-correct/40' : predictedW ? ' border-predict-correct/30' : ' border-border')}
             data-match-id={node.id}>
@@ -190,6 +192,7 @@ function BracketContentInner({ allMatches, realResults, snapshots }: Omit<Bracke
     const topR16 = TOP_R16.map(i => displayNodes.r16[i]), bottomR16 = BOTTOM_R16.map(i => displayNodes.r16[i]);
     const topQf = displayNodes.qf.slice(0, 2), bottomQf = displayNodes.qf.slice(2, 4);
     const selectedPred = selectedAI !== 'real' ? aiBracketPreds[AI_NAME_TO_KEY[selectedAI]] : null;
+    const isRealTab = selectedAI === 'real';
 
     return (
         <div className="flex flex-col h-full">
@@ -218,48 +221,48 @@ function BracketContentInner({ allMatches, realResults, snapshots }: Omit<Bracke
                                 <div className="flex flex-col justify-around w-[110px]" style={{ gap: '2px' }}>
                                     {[0, 2, 4, 6].map(i => (
                                         <div key={i} className="flex flex-col gap-1">
-                                            <MatchCard node={topR32[i]} aiPred={getPred(topR32[i])} />
-                                            <MatchCard node={topR32[i+1]} aiPred={getPred(topR32[i+1])} />
+                                            <MatchCard node={topR32[i]} isRealTab={isRealTab} aiPred={getPred(topR32[i])} />
+                                            <MatchCard node={topR32[i+1]} isRealTab={isRealTab} aiPred={getPred(topR32[i+1])} />
                                         </div>
                                     ))}
                                 </div>
                                 <div className="w-6 shrink-0" />
                                 <div className="flex flex-col justify-around w-[110px]">
-                                    {topR16.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}
+                                    {topR16.map((n) => (<MatchCard key={n.id} node={n} isRealTab={isRealTab} aiPred={getPred(n)} />))}
                                 </div>
                                 <div className="w-6 shrink-0" />
                                 <div className="flex flex-col justify-around w-[110px]">
-                                    {topQf.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}
+                                    {topQf.map((n) => (<MatchCard key={n.id} node={n} isRealTab={isRealTab} aiPred={getPred(n)} />))}
                                 </div>
                                 <div className="w-6 shrink-0" />
                                 <div className="flex flex-col justify-center w-[100px]">
-                                    <MatchCard node={displayNodes.sf[0]} aiPred={getPred(displayNodes.sf[0])} />
+                                    <MatchCard node={displayNodes.sf[0]} isRealTab={isRealTab} aiPred={getPred(displayNodes.sf[0])} />
                                 </div>
                             </div>
                             {/* 中心：决赛 + 三四名 */}
                             <div className="flex flex-col justify-center items-center w-[100px]" style={{ gap: '200px' }}>
-                                <div className="text-center"><div className="flex items-center justify-center gap-1 mb-1"><Trophy size={14} className="text-amber-500" /><span className="text-[11px] font-bold">决赛</span></div><MatchCard node={displayNodes.final} aiPred={getPred(displayNodes.final)} /></div>
-                                <div className="text-center"><div className="text-[10px] text-muted-foreground mb-1">三四名决赛</div><MatchCard node={displayNodes.third} aiPred={getPred(displayNodes.third)} /></div>
+                                <div className="text-center"><div className="flex items-center justify-center gap-1 mb-1"><Trophy size={14} className="text-amber-500" /><span className="text-[11px] font-bold">决赛</span></div><MatchCard node={displayNodes.final} isRealTab={isRealTab} aiPred={getPred(displayNodes.final)} /></div>
+                                <div className="text-center"><div className="text-[10px] text-muted-foreground mb-1">三四名决赛</div><MatchCard node={displayNodes.third} isRealTab={isRealTab} aiPred={getPred(displayNodes.third)} /></div>
                             </div>
                             {/* 右半区（镜像） */}
                             <div className="flex">
                                 <div className="flex flex-col justify-center w-[100px]">
-                                    <MatchCard node={displayNodes.sf[1]} aiPred={getPred(displayNodes.sf[1])} />
+                                    <MatchCard node={displayNodes.sf[1]} isRealTab={isRealTab} aiPred={getPred(displayNodes.sf[1])} />
                                 </div>
                                 <div className="w-6 shrink-0" />
                                 <div className="flex flex-col justify-around w-[110px]">
-                                    {bottomQf.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}
+                                    {bottomQf.map((n) => (<MatchCard key={n.id} node={n} isRealTab={isRealTab} aiPred={getPred(n)} />))}
                                 </div>
                                 <div className="w-6 shrink-0" />
                                 <div className="flex flex-col justify-around w-[110px]">
-                                    {bottomR16.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}
+                                    {bottomR16.map((n) => (<MatchCard key={n.id} node={n} isRealTab={isRealTab} aiPred={getPred(n)} />))}
                                 </div>
                                 <div className="w-6 shrink-0" />
                                 <div className="flex flex-col justify-around w-[110px]" style={{ gap: '2px' }}>
                                     {[0, 2, 4, 6].map(i => (
                                         <div key={i} className="flex flex-col gap-1">
-                                            <MatchCard node={bottomR32[i]} aiPred={getPred(bottomR32[i])} />
-                                            <MatchCard node={bottomR32[i+1]} aiPred={getPred(bottomR32[i+1])} />
+                                            <MatchCard node={bottomR32[i]} isRealTab={isRealTab} aiPred={getPred(bottomR32[i])} />
+                                            <MatchCard node={bottomR32[i+1]} isRealTab={isRealTab} aiPred={getPred(bottomR32[i+1])} />
                                         </div>
                                     ))}
                                 </div>
