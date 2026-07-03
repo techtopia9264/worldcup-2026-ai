@@ -194,10 +194,7 @@ function BracketContentInner({ allMatches, realResults, snapshots }: Omit<Bracke
     return (
         <div className="flex flex-col h-full">
                 <div className="flex items-center gap-2 mb-1">
-                    <h2 className="text-lg font-semibold flex items-center gap-2">
-                        <Trophy size={18} />淘汰赛对阵图
-                    </h2>
-                    {selectedPred?.champion && <span className="text-xs text-muted-foreground">· {selectedAI} 看好 <span className="text-predict-correct font-semibold">{selectedPred.champion}</span> 夺冠</span>}
+                    {selectedPred?.champion && <span className="text-xs text-muted-foreground">{selectedAI} 看好 <span className="text-predict-correct font-semibold">{selectedPred.champion}</span> 夺冠</span>}
                 </div>
                 <div className="flex gap-0.5 mt-2 flex-wrap">
                     <button onClick={() => setSelectedAI('real')} className={'text-[11px] px-2 py-1 rounded transition-colors' + (selectedAI === 'real' ? ' text-foreground font-semibold underline underline-offset-4' : ' text-muted-foreground hover:text-foreground')}>实际结果</button>
@@ -207,40 +204,65 @@ function BracketContentInner({ allMatches, realResults, snapshots }: Omit<Bracke
                     })}
                 </div>
                 <div className="flex-1 overflow-auto mt-3 overscroll-x-contain">
-                    <div className="relative min-w-[900px] sm:min-w-[1100px] min-h-[900px] pb-8">
+                    <div className="relative min-w-[900px] sm:min-w-[1100px] pb-8" style={{ minHeight: '700px' }}>
+                        {/* 阶段标签 */}
                         <div className="absolute top-0 left-0 right-0 flex justify-between px-0" style={{ zIndex: 2 }}>
-                            <div className="flex gap-0"><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>32强赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>16强赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>¼决赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '100px' }}>半决赛</div></div>
-                            <div className="flex items-start justify-center pt-0 shrink-0" style={{ width: '100px' }}><span className="text-[10px] text-muted-foreground font-medium">决赛</span></div>
-                            <div className="flex gap-0"><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '100px' }}>半决赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>¼决赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>16强赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium" style={{ width: '110px' }}>32强赛</div></div>
+                            <div className="flex"><div className="text-center text-[10px] text-muted-foreground font-medium w-[110px]">32强赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium w-[110px]">16强赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium w-[110px]">¼决赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium w-[100px]">半决赛</div></div>
+                            <div className="w-[100px] text-center text-[10px] text-muted-foreground font-medium">决赛</div>
+                            <div className="flex"><div className="text-center text-[10px] text-muted-foreground font-medium w-[100px]">半决赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium w-[110px]">¼决赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium w-[110px]">16强赛</div><div className="w-6" /><div className="text-center text-[10px] text-muted-foreground font-medium w-[110px]">32强赛</div></div>
                         </div>
-                        <div className="absolute top-6 bottom-0 left-0 flex gap-0" style={{ zIndex: 1 }}>
-                            <div className="flex flex-col justify-center gap-8 py-12">
-                                {[0, 2, 4, 6].map(i => (
-                                    <div key={i} className="flex flex-col gap-1">
-                                        <MatchCard node={topR32[i]} aiPred={getPred(topR32[i])} />
-                                        <MatchCard node={topR32[i+1]} aiPred={getPred(topR32[i+1])} />
-                                    </div>
-                                ))}
-                            </div><div className="w-6 shrink-0" />
-                            <div className="flex flex-col justify-center gap-8 py-20">{topR16.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
-                            <div className="flex flex-col justify-center gap-8 py-28">{topQf.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
-                            <div className="flex flex-col justify-center py-8"><MatchCard node={displayNodes.sf[0]} aiPred={getPred(displayNodes.sf[0])} /></div>
-                        </div>
-                        <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-4" style={{ zIndex: 1, top: '22%' }}>
-                            <div className="text-center"><div className="flex items-center justify-center gap-1 mb-1"><Trophy size={14} className="text-amber-500" /><span className="text-[11px] font-bold">决赛</span></div><MatchCard node={displayNodes.final} aiPred={getPred(displayNodes.final)} /></div>
-                            <div className="text-center"><div className="text-[10px] text-muted-foreground mb-1">三四名决赛</div><MatchCard node={displayNodes.third} aiPred={getPred(displayNodes.third)} /></div>
-                        </div>
-                        <div className="absolute top-6 bottom-0 right-0 flex gap-0" style={{ zIndex: 1 }}>
-                            <div className="w-6 shrink-0" /><div className="flex flex-col justify-center py-8"><MatchCard node={displayNodes.sf[1]} aiPred={getPred(displayNodes.sf[1])} /></div><div className="w-6 shrink-0" />
-                            <div className="flex flex-col justify-center gap-8 py-28">{bottomQf.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
-                            <div className="flex flex-col justify-center gap-8 py-20">{bottomR16.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}</div><div className="w-6 shrink-0" />
-                            <div className="flex flex-col justify-center gap-8 py-12">
-                                {[0, 2, 4, 6].map(i => (
-                                    <div key={i} className="flex flex-col gap-1">
-                                        <MatchCard node={bottomR32[i]} aiPred={getPred(bottomR32[i])} />
-                                        <MatchCard node={bottomR32[i+1]} aiPred={getPred(bottomR32[i+1])} />
-                                    </div>
-                                ))}
+                        {/* 主体：每列 flex-col space-around，统一高度自动对齐 */}
+                        <div className="absolute top-6 bottom-0 left-0 right-0 flex justify-between px-0" style={{ zIndex: 1 }}>
+                            {/* 左半区 */}
+                            <div className="flex">
+                                <div className="flex flex-col justify-around w-[110px]" style={{ gap: '2px' }}>
+                                    {[0, 2, 4, 6].map(i => (
+                                        <div key={i} className="flex flex-col gap-1">
+                                            <MatchCard node={topR32[i]} aiPred={getPred(topR32[i])} />
+                                            <MatchCard node={topR32[i+1]} aiPred={getPred(topR32[i+1])} />
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="w-6 shrink-0" />
+                                <div className="flex flex-col justify-around w-[110px]">
+                                    {topR16.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}
+                                </div>
+                                <div className="w-6 shrink-0" />
+                                <div className="flex flex-col justify-around w-[110px]">
+                                    {topQf.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}
+                                </div>
+                                <div className="w-6 shrink-0" />
+                                <div className="flex flex-col justify-center w-[100px]">
+                                    <MatchCard node={displayNodes.sf[0]} aiPred={getPred(displayNodes.sf[0])} />
+                                </div>
+                            </div>
+                            {/* 中心：决赛 + 三四名 */}
+                            <div className="flex flex-col justify-center items-center w-[100px]" style={{ gap: '200px' }}>
+                                <div className="text-center"><div className="flex items-center justify-center gap-1 mb-1"><Trophy size={14} className="text-amber-500" /><span className="text-[11px] font-bold">决赛</span></div><MatchCard node={displayNodes.final} aiPred={getPred(displayNodes.final)} /></div>
+                                <div className="text-center"><div className="text-[10px] text-muted-foreground mb-1">三四名决赛</div><MatchCard node={displayNodes.third} aiPred={getPred(displayNodes.third)} /></div>
+                            </div>
+                            {/* 右半区（镜像） */}
+                            <div className="flex">
+                                <div className="flex flex-col justify-center w-[100px]">
+                                    <MatchCard node={displayNodes.sf[1]} aiPred={getPred(displayNodes.sf[1])} />
+                                </div>
+                                <div className="w-6 shrink-0" />
+                                <div className="flex flex-col justify-around w-[110px]">
+                                    {bottomQf.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}
+                                </div>
+                                <div className="w-6 shrink-0" />
+                                <div className="flex flex-col justify-around w-[110px]">
+                                    {bottomR16.map((n) => (<MatchCard key={n.id} node={n} aiPred={getPred(n)} />))}
+                                </div>
+                                <div className="w-6 shrink-0" />
+                                <div className="flex flex-col justify-around w-[110px]" style={{ gap: '2px' }}>
+                                    {[0, 2, 4, 6].map(i => (
+                                        <div key={i} className="flex flex-col gap-1">
+                                            <MatchCard node={bottomR32[i]} aiPred={getPred(bottomR32[i])} />
+                                            <MatchCard node={bottomR32[i+1]} aiPred={getPred(bottomR32[i+1])} />
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -253,7 +275,7 @@ function BracketContentInner({ allMatches, realResults, snapshots }: Omit<Bracke
 export function BracketView({ open, onClose, ...props }: BracketViewProps) {
     return (
         <Dialog open={open} onOpenChange={(v) => { if (!v) onClose(); }}>
-            <DialogContent className="max-w-[98vw] sm:max-w-6xl max-h-[90vh] flex flex-col">
+            <DialogContent className="max-w-[98vw] sm:max-w-7xl max-h-[92vh] flex flex-col">
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">
                         <Trophy size={18} />淘汰赛对阵图
@@ -267,5 +289,12 @@ export function BracketView({ open, onClose, ...props }: BracketViewProps) {
 
 /** 页面内嵌版本 */
 export function BracketInline(props: Omit<BracketViewProps, 'open' | 'onClose'>) {
-    return <BracketContentInner {...props} />;
+    return (
+        <div>
+            <h2 className="text-lg font-semibold flex items-center gap-2 mb-3">
+                <Trophy size={18} />淘汰赛对阵图
+            </h2>
+            <BracketContentInner {...props} />
+        </div>
+    );
 }
