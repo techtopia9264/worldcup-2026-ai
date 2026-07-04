@@ -343,5 +343,23 @@
         "homeScore": 2,
         "awayScore": 0,
         "winner": "瑞士"
+    },
+    "R32-13": {
+        "homeScore": 3,
+        "awayScore": 2,
+        "winner": "阿根廷",
+        "extraTime": true
+    },
+    "R32-14": {
+        "homeScore": 1,
+        "awayScore": 0,
+        "winner": "哥伦比亚"
+    },
+    "R32-15": {
+        "homeScore": 1,
+        "awayScore": 1,
+        "winner": "埃及",
+        "extraTime": true,
+        "penalties": "2-4"
     }
 }
