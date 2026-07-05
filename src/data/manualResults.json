@@ -361,5 +361,15 @@
         "winner": "埃及",
         "extraTime": true,
         "penalties": "2-4"
+    },
+    "R16-0": {
+        "homeScore": 1,
+        "awayScore": 0,
+        "winner": "法国"
+    },
+    "R16-1": {
+        "homeScore": 3,
+        "awayScore": 0,
+        "winner": "摩洛哥"
     }
 }
