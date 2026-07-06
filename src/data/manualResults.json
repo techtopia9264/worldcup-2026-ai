@@ -371,5 +371,15 @@
         "homeScore": 3,
         "awayScore": 0,
         "winner": "摩洛哥"
+    },
+    "R16-2": {
+        "homeScore": 1,
+        "awayScore": 2,
+        "winner": "挪威"
+    },
+    "R16-3": {
+        "homeScore": 3,
+        "awayScore": 2,
+        "winner": "英格兰"
     }
 }
