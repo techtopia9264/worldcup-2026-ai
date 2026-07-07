@@ -381,5 +381,15 @@
         "homeScore": 3,
         "awayScore": 2,
         "winner": "英格兰"
+    },
+    "R16-4": {
+        "homeScore": 1,
+        "awayScore": 0,
+        "winner": "西班牙"
+    },
+    "R16-5": {
+        "homeScore": 4,
+        "awayScore": 1,
+        "winner": "比利时"
     }
 }
