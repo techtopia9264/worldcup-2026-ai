@@ -7,16 +7,16 @@
   "championReason": "姆巴佩持续高效得分，阵容深度断层领先，攻防均衡，加时与点球大赛抗压稳定性远超其余豪门。",
   "predictions": {
     "R16-6": {
-      "winner": "瑞士",
-      "score": "1-1",
-      "extraTime": true,
-      "penalties": true
-    },
-    "R16-7": {
       "winner": "阿根廷",
       "score": "2-0",
       "extraTime": false,
       "penalties": false
+    },
+    "R16-7": {
+      "winner": "瑞士",
+      "score": "1-1",
+      "extraTime": true,
+      "penalties": true
     }
   },
   "bracketPredictions": {
@@ -42,8 +42,8 @@
     "R16-3": { "winner": "英格兰", "extraTime": true, "penalties": false },
     "R16-4": { "winner": "西班牙", "extraTime": true, "penalties": false },
     "R16-5": { "winner": "比利时", "extraTime": false, "penalties": false },
-    "R16-6": { "winner": "瑞士", "extraTime": true, "penalties": true },
-    "R16-7": { "winner": "阿根廷", "extraTime": false, "penalties": false },
+    "R16-6": { "winner": "阿根廷", "extraTime": false, "penalties": false },
+    "R16-7": { "winner": "瑞士", "extraTime": true, "penalties": true },
     "QF-0": { "winner": "法国", "extraTime": false, "penalties": false },
     "QF-1": { "winner": "挪威", "extraTime": true, "penalties": false },
     "QF-2": { "winner": "西班牙", "extraTime": false, "penalties": false },
