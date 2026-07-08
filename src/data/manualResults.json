@@ -391,5 +391,17 @@
         "homeScore": 4,
         "awayScore": 1,
         "winner": "比利时"
+    },
+    "R16-6": {
+        "homeScore": 3,
+        "awayScore": 2,
+        "winner": "阿根廷"
+    },
+    "R16-7": {
+        "homeScore": 0,
+        "awayScore": 0,
+        "winner": "瑞士",
+        "extraTime": true,
+        "penalties": "4-3"
     }
 }
