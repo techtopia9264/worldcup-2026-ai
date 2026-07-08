@@ -423,11 +423,32 @@ function resolveR32Teams(schedule, results) {
 function fmtDateShort(raw) { if (!raw) return ''; const m = raw.match(/^(\d{4})-(\d{2})-(\d{2})/); if (!m) return raw.slice(0, 10); return parseInt(m[2]) + '/' + parseInt(m[3]); }
 function r32FeedsToR16(i, s) { const m = { 0: ['R32-1', 'R32-4'], 1: ['R32-0', 'R32-2'], 2: ['R32-3', 'R32-5'], 3: ['R32-6', 'R32-7'], 4: ['R32-10', 'R32-11'], 5: ['R32-8', 'R32-9'], 6: ['R32-13', 'R32-15'], 7: ['R32-12', 'R32-14'] }; return (m[i] || ['?', '?'])[s] || '?'; }
 function resolveMatchTeams(m, schedule, results) {
+    // 解析"胜74"→实际队名
+    function resolveSlot(name) {
+        const fm = name.match(/^胜(\d+)$/);
+        if (!fm) return name;
+        const num = parseInt(fm[1]);
+        const fid = fifaNumToMatchId(num);
+        if (!fid) return name;
+        const r = results[fid];
+        return r?.winner || name;
+    }
     const r32 = resolveR32Teams(schedule, results); const f = r32.find(t => t.id === m.matchId);
     if (f) return { home: f.home, away: f.away };
     const st = { round_of_16: 'R16', quarterfinals: 'QF', semifinals: 'SF', final: 'FINAL', third_place: '3RD' };
-    for (const [sk, lb] of Object.entries(st)) { const ms = schedule[sk]; if (!ms) continue; for (let i = 0; i < ms.length; i++) if (lb + '-' + i === m.matchId) return { home: ms[i].home || '?', away: ms[i].away || '?' }; }
-    return { home: m.home || '?', away: m.away || '?' };
+    for (const [sk, lb] of Object.entries(st)) { const ms = schedule[sk]; if (!ms) continue; for (let i = 0; i < ms.length; i++) if (lb + '-' + i === m.matchId) return { home: resolveSlot(ms[i].home || '?'), away: resolveSlot(ms[i].away || '?') }; }
+    return { home: resolveSlot(m.home || '?'), away: resolveSlot(m.away || '?') };
+}
+
+// 构建FIFA编号→matchId映射（供resolveSlot使用）
+function fifaNumToMatchId(num) {
+    if (num >= 73 && num <= 88) return 'R32-' + (num - 73);
+    if (num >= 89 && num <= 96) return 'R16-' + (num - 89);
+    if (num >= 97 && num <= 100) return 'QF-' + (num - 97);
+    if (num >= 101 && num <= 102) return 'SF-' + (num - 101);
+    if (num === 103) return '3RD-0';
+    if (num === 104) return 'FINAL-0';
+    return null;
 }
 
 
