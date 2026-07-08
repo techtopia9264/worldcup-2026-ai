@@ -34,12 +34,12 @@
     "R16-6": { "winner": "阿根廷", "extraTime": false, "penalties": false },
     "R16-7": { "winner": "瑞士", "extraTime": false, "penalties": true },
     "QF-0": { "winner": "法国", "extraTime": false, "penalties": false },
-    "QF-1": { "winner": "英格兰", "extraTime": false, "penalties": false },
-    "QF-2": { "winner": "西班牙", "extraTime": false, "penalties": false },
+    "QF-1": { "winner": "西班牙", "extraTime": false, "penalties": false },
+    "QF-2": { "winner": "挪威", "extraTime": false, "penalties": false },
     "QF-3": { "winner": "阿根廷", "extraTime": false, "penalties": false },
     "SF-0": { "winner": "法国", "extraTime": false, "penalties": false },
     "SF-1": { "winner": "阿根廷", "extraTime": false, "penalties": false },
-    "3RD-0": { "winner": "英格兰", "extraTime": false, "penalties": false },
+    "3RD-0": { "winner": "西班牙", "extraTime": false, "penalties": false },
     "FINAL-0": { "winner": "法国", "extraTime": false, "penalties": false }
   }
 }
