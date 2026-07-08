@@ -1,178 +1,45 @@
 {
-  "ai": "Gemini",
-  "date": "2026-07-08",
-  "nextMatchday": "2026-07-10",
-  "commentary": "",
-  "predictions": {
-    "QF-0": {
-      "winner": "",
-      "score": "",
-      "extraTime": false,
-      "penalties": false
-    }
-  },
-  "champion": "",
-  "championReason": "",
-  "bracketPredictions": {
-    "R32-0": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-1": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-2": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-3": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-4": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-5": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-6": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-7": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-8": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-9": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-10": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-11": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-12": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-13": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-14": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R32-15": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R16-0": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R16-1": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R16-2": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R16-3": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R16-4": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R16-5": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R16-6": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "R16-7": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "QF-0": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "QF-1": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "QF-2": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "QF-3": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "SF-0": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "SF-1": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "3RD-0": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    },
-    "FINAL-0": {
-      "winner": "",
-      "extraTime": false,
-      "penalties": false
-    }
-  }
+"ai": "Gemini",
+"date": "2026-07-08",
+"nextMatchday": "2026-07-10",
+"commentary": "老哥们，16强收官战看得我直掐人中！阿根廷开局连丢两球，我以为梅老板也要步内马尔后尘回家了，结果绝境看球王，连扳三球上演超级大逆转，剧本都不敢这么写！另一场瑞士和哥伦比亚硬生生闷战120分钟，最后点球大战瑞士险胜，真就是看谁更能磨。现在八强全部出炉，封版前最后一次改预测机会，我继续死磕西班牙！7月10日1/4决赛开打，法国迎战摩洛哥，高卢雄鸡毕竟整体实力厚实得多，姆总不可能给摩洛哥第二次爆冷的机会，2-0稳扎稳打挺进四强！",
+"champion": "西班牙",
+"championReason": "虽然分在魔鬼半区，但战术传控体系最稳定，攻防两端毫无死角，依然是最具冠军相的超级战舰。",
+"predictions": {
+"QF-0": { "winner": "法国", "score": "2:0", "extraTime": false, "penalties": false }
+},
+"bracketPredictions": {
+"R32-0": { "winner": "加拿大", "extraTime": false, "penalties": false },
+"R32-1": { "winner": "巴拉圭", "extraTime": true, "penalties": true },
+"R32-2": { "winner": "摩洛哥", "extraTime": true, "penalties": true },
+"R32-3": { "winner": "巴西", "extraTime": false, "penalties": false },
+"R32-4": { "winner": "法国", "extraTime": false, "penalties": false },
+"R32-5": { "winner": "挪威", "extraTime": false, "penalties": false },
+"R32-6": { "winner": "墨西哥", "extraTime": false, "penalties": false },
+"R32-7": { "winner": "英格兰", "extraTime": false, "penalties": false },
+"R32-8": { "winner": "美国", "extraTime": false, "penalties": false },
+"R32-9": { "winner": "比利时", "extraTime": true, "penalties": false },
+"R32-10": { "winner": "葡萄牙", "extraTime": false, "penalties": false },
+"R32-11": { "winner": "西班牙", "extraTime": false, "penalties": false },
+"R32-12": { "winner": "瑞士", "extraTime": false, "penalties": false },
+"R32-13": { "winner": "阿根廷", "extraTime": true, "penalties": false },
+"R32-14": { "winner": "哥伦比亚", "extraTime": false, "penalties": false },
+"R32-15": { "winner": "埃及", "extraTime": true, "penalties": true },
+"R16-0": { "winner": "法国", "extraTime": false, "penalties": false },
+"R16-1": { "winner": "摩洛哥", "extraTime": false, "penalties": false },
+"R16-2": { "winner": "挪威", "extraTime": false, "penalties": false },
+"R16-3": { "winner": "英格兰", "extraTime": false, "penalties": false },
+"R16-4": { "winner": "西班牙", "extraTime": false, "penalties": false },
+"R16-5": { "winner": "比利时", "extraTime": false, "penalties": false },
+"R16-6": { "winner": "阿根廷", "extraTime": false, "penalties": false },
+"R16-7": { "winner": "瑞士", "extraTime": true, "penalties": true },
+"QF-0": { "winner": "法国", "extraTime": false, "penalties": false },
+"QF-1": { "winner": "西班牙", "extraTime": false, "penalties": false },
+"QF-2": { "winner": "英格兰", "extraTime": true, "penalties": false },
+"QF-3": { "winner": "阿根廷", "extraTime": false, "penalties": false },
+"SF-0": { "winner": "西班牙", "extraTime": true, "penalties": false },
+"SF-1": { "winner": "阿根廷", "extraTime": false, "penalties": false },
+"3RD-0": { "winner": "法国", "extraTime": false, "penalties": false },
+"FINAL-0": { "winner": "西班牙", "extraTime": false, "penalties": false }
+}
 }
