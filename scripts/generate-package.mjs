@@ -177,13 +177,29 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
         }
     }
 
-    // 任务说明（淘汰赛模式）
+    // 阶段判断
+    const todayDate = new Date();
+    const qfStartDate = new Date('2026-07-10');
+    const isAfterQF = todayDate >= qfStartDate;
+    const isLastChanceDay = !isAfterQF && nextMatchday === '2026-07-10';
+
+    // 任务说明
     prompt += `# 世界杯 AI 锐评任务 · ${today}\n\n`;
     prompt += `你是 **${aiName}**，一个懂球的老哥，被拉来参加 AI 看球实验。\n`;
     prompt += `6 个 AI 每天各自分析数据、预测比赛、点评赛况。最后看谁眼光最毒。\n\n`;
     prompt += `**这不是赌博，只是 AI 能力对比实验。**\n\n`;
-    prompt += `## 🔥 淘汰赛模式\n\n`;
-    prompt += `小组赛已全部结束，进入淘汰赛阶段。**没有平局了**——加时赛、点球大战随时可能上演。\n\n`;
+
+    if (isAfterQF) {
+        // QF 阶段：简化提示
+        prompt += `## 🔥 1/4决赛阶段\n\n`;
+        prompt += `1/4决赛正在进行中。**没有平局了**——加时赛、点球大战随时可能上演。\n\n`;
+    } else if (isLastChanceDay) {
+        prompt += `## 🔥 1/4决赛前夕\n\n`;
+        prompt += `16强战已全部结束，即将进入1/4决赛。\n\n`;
+    } else {
+        prompt += `## 🔥 淘汰赛模式\n\n`;
+        prompt += `小组赛已全部结束，进入淘汰赛阶段。**没有平局了**——加时赛、点球大战随时可能上演。\n\n`;
+    }
     prompt += `## 你的任务\n\n`;
     prompt += `**⚠️ 在预测之前，你必须先搜索今日赛果！** 用搜索工具找 ESPN、FotMob、SkySports 等来源。\n\n`;
     prompt += `1. **搜赛果**：今天哪些比赛结束了？比分多少？谁进了球？有没有加时/点球？\n`;
@@ -230,51 +246,50 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
     const isKnockout = nextMatches.some((m) => m.matchId.startsWith('R') || m.matchId.startsWith('QF') || m.matchId.startsWith('SF') || m.matchId.startsWith('FINAL') || m.matchId.startsWith('3RD'));
     const isFirstKnockout = isKnockout && (!currentPredictions || !currentPredictions.bracketPredictions);
 
-    // 冠军+全赛程预测
-    prompt += `\n---\n\n## 🏆 冠军预测 & 晋级剧本\n\n`;
-    const todayDate = new Date();
-    const qfLockDate = new Date('2026-07-10');
-    const isBeforeQF = todayDate < qfLockDate;
-
-    if (isFirstKnockout) {
-        prompt += `小组赛已全部收官！在预测明天的比赛之前，你需要先完成以下特别任务：\n\n`;
-        prompt += `### 1. 小组赛总结\n`;
-        prompt += `简要总结小组赛的看点和结果：哪些强队表现符合预期？哪些黑马让人意外？哪些传统豪强翻车了？\n\n`;
-        prompt += `### 2. 冠军预测\n`;
-        prompt += `选出你**最看好夺冠的球队**，并写出它的完整晋级"剧本"。\n`;
-        prompt += `例如：\`R32 轻取加拿大 → R16 点球淘汰巴西 → QF 加时绝杀德国 → SF 完胜法国 → 决赛击败阿根廷夺冠\`\n`;
-        prompt += `剧本要有画面感，像说书一样，让老哥们看了直呼内行！\n\n`;
-        prompt += `### 3. 全赛程预测\n`;
-        prompt += `在 \`bracketPredictions\` 中预测全部 32 场淘汰赛的胜者（R32→R16→QF→SF→FINAL→3RD）。\n`;
-        prompt += `冠军的晋级路线要和剧本一致哦！\n\n`;
-    }
-
-    // 修改规则
-    prompt += `## 🔒 冠军预测修改规则\n\n`;
-    if (isBeforeQF) {
-        prompt += `当前处于淘汰赛早期阶段。你可以：\n`;
-        prompt += `- ✅ **每天修改一次**冠军预测和晋级路线（在 \`predictions\` 之后更新 \`champion\` 和 \`bracketPredictions\`）\n`;
-        prompt += `- ✅ 也可以选择**不改**，沿用上一次的预测\n`;
-        prompt += `- ⚠️ **四分之一决赛（7月10日）开打后将封版**，不可再修改！请谨慎选择\n`;
-    } else {
-        prompt += `⚠️ **四分之一决赛已开始，冠军预测已封版！**\n`;
-        prompt += `- ❌ 不可再修改 \`champion\` 和 \`bracketPredictions\`\n`;
-        prompt += `- 如果 JSON 中包含这些字段，请保持与上次一致\n`;
-    }
-    prompt += `\n`;
-
-    if (currentPredictions?.champion) {
-        prompt += `你当前的冠军选择：**${currentPredictions.champion}**。`;
-        if (isBeforeQF) {
-            prompt += `今天可以修改，也可以保持不变。\n`;
-        } else {
-            prompt += `已锁定，不可修改。\n`;
+    // 冠军预测段（QF前）或封版提示（QF后）
+    if (!isAfterQF) {
+        prompt += `\n---\n\n## 🏆 冠军预测 & 晋级剧本\n\n`;
+        if (isLastChanceDay) {
+            prompt += `世界杯8强已全部诞生，1/4决赛对阵如下：\n\n`;
+            prompt += `- 法国 vs 摩洛哥\n`;
+            prompt += `- 西班牙 vs 比利时\n`;
+            prompt += `- 挪威 vs 英格兰\n`;
+            prompt += `- 阿根廷 vs 瑞士\n\n`;
+            prompt += `这是**最后一次**允许修改看好的冠军球队的机会！请根据你对2026美加墨世界杯的全部理解，谨慎选择一支看好的夺冠球队。\n\n`;
         }
-    } else if (!isFirstKnockout) {
-        prompt += `你还没有选择冠军。`;
-        if (isBeforeQF) prompt += `请在今天的预测中补上！\n`;
+        if (isFirstKnockout && !isLastChanceDay) {
+            prompt += `小组赛已全部收官！在预测明天的比赛之前，你需要先完成以下特别任务：\n\n`;
+            prompt += `### 1. 小组赛总结\n`;
+            prompt += `简要总结小组赛的看点和结果。\n\n`;
+            prompt += `### 2. 冠军预测\n`;
+            prompt += `选出你**最看好夺冠的球队**，并写出它的完整晋级"剧本"。\n`;
+            prompt += `例如：\`R32 轻取加拿大 → R16 点球淘汰巴西 → QF 加时绝杀德国 → SF 完胜法国 → 决赛击败阿根廷夺冠\`\n\n`;
+            prompt += `### 3. 全赛程预测\n`;
+            prompt += `在 \`bracketPredictions\` 中预测全部 32 场淘汰赛的胜者。\n`;
+            prompt += `冠军的晋级路线要和剧本一致哦！\n\n`;
+        }
+
+        // 修改规则
+        prompt += `## 🔒 冠军预测修改规则\n\n`;
+        prompt += `- ✅ **四分之一决赛（7月10日）开打前**可以修改冠军预测和晋级路线\n`;
+        prompt += `- ⚠️ **7月10日开打后将封版**，不可再修改！${isLastChanceDay ? '**今天是最后的机会！**' : '请谨慎选择'}\n`;
+        prompt += `\n`;
+
+        if (currentPredictions?.champion) {
+            prompt += `你当前的冠军选择：**${currentPredictions.champion}**。${isLastChanceDay ? '今天是最后修改机会。' : '可以修改或保持不变。'}\n`;
+        } else if (!isFirstKnockout) {
+            prompt += `你还没有选择冠军，请补上！\n`;
+        }
+        prompt += `\n`;
+    } else {
+        // QF后：冠军已封版
+        prompt += `\n---\n\n## 🔒 冠军预测已封版\n\n`;
+        prompt += `四分之一决赛已开始，冠军预测已锁定，不可修改。\n`;
+        if (currentPredictions?.champion) {
+            prompt += `你的冠军选择：**${currentPredictions.champion}**（已锁定）\n`;
+        }
+        prompt += `\n`;
     }
-    prompt += `\n`;
 
     // 上次预测
     prompt += `\n---\n\n## 你上次的预测\n\n`;
@@ -317,9 +332,12 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
     prompt += `| score | 可选 | 预测比分，如 "2:1" |\n`;
     prompt += `| extraTime | 可选 | 是否加时赛，true/false |\n`;
     prompt += `| penalties | 可选 | 是否点球大战，true/false |\n`;
-    prompt += `| champion | ✅首次 | 看好的冠军球队 |\n`;
-    prompt += `| championReason | ✅首次 | 冠军理由，50字内 |\n`;
-    prompt += `| bracketPredictions | ✅首次 | 全淘汰赛预测 |\n\n`;
+    if (!isAfterQF) {
+        prompt += `| champion | ✅ | 看好的冠军球队 |\n`;
+        prompt += `| championReason | 可选 | 冠军理由，50字内 |\n`;
+        prompt += `| bracketPredictions | 可选 | 全淘汰赛预测 |\n`;
+    }
+    prompt += '\n';
 
     const matchIds = nextMatches.map((m) => m.matchId);
     prompt += '```json\n';
@@ -329,7 +347,7 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
     prompt += `  "nextMatchday": "${nextMatchday || ''}",\n`;
     prompt += `  "commentary": "在这里写你对赛况的点评。口语化风格，像贴吧老哥聊球。300字以内。",\n`;
 
-    if (isFirstKnockout) {
+    if (!isAfterQF) {
         prompt += `  "champion": "你预测的冠军球队名",\n`;
         prompt += `  "championReason": "选择这个冠军的理由",\n`;
     }
@@ -339,7 +357,7 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
         prompt += `    "${id}": { "winner": "", "score": "", "extraTime": false, "penalties": false },\n`;
     }
     prompt += `  }`;
-    if (isFirstKnockout) {
+    if (!isAfterQF) {
         prompt += `,\n  "bracketPredictions": {\n`;
         const allKoIds = getAllKoMatchIds(schedule);
         for (let i = 0; i < allKoIds.length; i++) {
@@ -527,6 +545,11 @@ async function main() {
             const latestPred = allPredictions[aiKey];
             const isFirstKo = isKnockout && (!latestPred || !latestPred.bracketPredictions);
 
+            const todayStr = new Date().toISOString().slice(0, 10);
+            const qfStart = '2026-07-10';
+            const isAfterQf = todayStr >= qfStart;
+            const isLastChance = !isAfterQf && (nextMatchday === qfStart);
+
             const template = {
                 ai: AI_NAMES[aiKey],
                 date: today,
@@ -536,7 +559,8 @@ async function main() {
                     nextMatches.map((m) => [m.matchId, { winner: '', score: '', extraTime: false, penalties: false }]),
                 ),
             };
-            if (isFirstKo) {
+            // QF前（含最后修改日）：包含冠军+全赛程预测
+            if (!isAfterQf && (isFirstKo || isLastChance)) {
                 template.champion = '';
                 template.championReason = '';
                 const allKoIds = getAllKoMatchIds(schedule);
