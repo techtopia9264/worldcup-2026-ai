@@ -403,5 +403,10 @@
         "winner": "瑞士",
         "extraTime": true,
         "penalties": "4-3"
+    },
+    "QF-0": {
+        "homeScore": 2,
+        "awayScore": 0,
+        "winner": "法国"
     }
 }

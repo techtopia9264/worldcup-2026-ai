@@ -70,7 +70,7 @@ function loadLatestPrediction(aiKey) {
         .filter((d) => d.isDirectory() && /^\d{4}-\d{2}-\d{2}$/.test(d.name))
         .map((d) => d.name).sort().reverse();
     // 聚合所有快照
-    const aggregated = { predictions: {}, commentary: '', date: '', nextMatchday: '' };
+    const aggregated = { predictions: {}, commentary: '', date: '', nextMatchday: '', champion: '', championReason: '' };
     let hasAny = false;
     for (const dir of dirs) {
         const path = join(predDir, dir, `${aiKey}.json`);
@@ -84,6 +84,8 @@ function loadLatestPrediction(aiKey) {
             aggregated.commentary = data.commentary || '';
             aggregated.date = data.date || '';
             aggregated.nextMatchday = data.nextMatchday || '';
+            aggregated.champion = data.champion || '';
+            aggregated.championReason = data.championReason || '';
             hasAny = true;
         }
         // 聚合 predictions：只填尚未出现的 matchId
@@ -201,11 +203,13 @@ function buildPrompt(aiKey, standings, results, nextMatchday, nextMatches, curre
         prompt += `小组赛已全部结束，进入淘汰赛阶段。**没有平局了**——加时赛、点球大战随时可能上演。\n\n`;
     }
     prompt += `## 你的任务\n\n`;
-    prompt += `**⚠️ 在预测之前，你必须先搜索今日赛果！** 用搜索工具找 ESPN、FotMob、SkySports 等来源。\n\n`;
-    prompt += `1. **搜赛果**：今天哪些比赛结束了？比分多少？谁进了球？有没有加时/点球？\n`;
-    prompt += `2. **搜动态**：下个比赛日球队的状态、伤病、更衣室八卦\n`;
-    prompt += `3. **吐槽**：结合真实赛果点评，有事实有态度，像贴吧老哥聊球\n`;
-    prompt += `4. **预测**：预测**下个比赛日**的比赛。淘汰赛没有平局！\n\n`;
+    prompt += `上一个比赛日（${today}）的比赛已经结束，赛果见下方"前方记者赛评"和"已结束的淘汰赛"。\n`;
+    prompt += `你需要预测的是**下一个比赛日（${nextMatchday}）**的比赛。\n\n`;
+    prompt += `用搜索工具（ESPN、FotMob、SkySports等）辅助完成任务：\n\n`;
+    prompt += `1. **搜赛果细节**：搜索上一个比赛日已结束的比赛的详细过程——进球球员、关键瞬间、数据统计等\n`;
+    prompt += `2. **搜赛前动态**：搜索下个比赛日参赛球队的状态、伤病、更衣室八卦\n`;
+    prompt += `3. **写赛评**：结合搜索到的细节，像贴吧老哥一样点评已结束的比赛，有事实有态度\n`;
+    prompt += `4. **预测**：预测下个比赛日（${nextMatchday}）的比赛结果。淘汰赛没有平局，必须分出胜负！\n\n`;
 
     // R32 对阵
     prompt += `---\n\n## 32强淘汰赛对阵\n\n`;
