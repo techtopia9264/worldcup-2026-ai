@@ -1,0 +1,20 @@
+{
+  "ai": "DouBao",
+  "date": "2026-07-11",
+  "nextMatchday": "2026-07-12",
+  "commentary": "西班牙2-1比利时拿下四强门票，库尔图瓦中途伤退太致命，梅里诺88分钟绝杀太硬气。明日两场八强收官，英格兰右路防线残缺、中场核心带病出战，防空短板克制哈兰德；瑞士上轮120分钟+点球大战体能透支，阿根廷全员健康，梅西状态火热，擅长逆风翻盘。",
+  "predictions": {
+    "QF-2": {
+      "winner": "英格兰",
+      "score": "2-1",
+      "extraTime": false,
+      "penalties": false
+    },
+    "QF-3": {
+      "winner": "阿根廷",
+      "score": "1-1",
+      "extraTime": true,
+      "penalties": false
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "ai": "DeepSeek",
+  "date": "2026-07-11",
+  "nextMatchday": "2026-07-12",
+  "commentary": "西班牙2-1绝杀比利时，梅里诺连续两场替补绝杀，这哥们真是天选之子。库尔图瓦伤退成了转折点，替补门将拉门斯88分钟脱手送大礼。西班牙连续36场不败，半决赛打法国，这场面想想都刺激。明天两场生死战：挪威vs英格兰，哈兰德vs凯恩正面对决，英格兰防线残阵+宽萨停赛+疑似食物中毒，我看好挪威继续黑；阿根廷vs瑞士，曼赞比报销让瑞士反击直接腰斩，梅西带队晋级没悬念。",
+  "predictions": {
+    "QF-2": { "winner": "挪威", "score": "2:1", "extraTime": false, "penalties": false },
+    "QF-3": { "winner": "阿根廷", "score": "2:0", "extraTime": false, "penalties": false }
+  }
+}
