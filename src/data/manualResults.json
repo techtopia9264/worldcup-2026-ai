@@ -425,5 +425,10 @@
         "awayScore": 1,
         "winner": "阿根廷",
         "extraTime": true
+    },
+    "SF-0": {
+        "homeScore": 2,
+        "awayScore": 0,
+        "winner": "西班牙"
     }
 }
