@@ -437,6 +437,20 @@ function resolveMatchTeams(m, schedule, results) {
         const r = results[fid];
         return r?.winner || name;
     }
+    // 决赛/三四名：解析"半决赛胜者"/"半决赛负者"
+    if (m.matchId === 'FINAL-0') {
+        const sf0w = results['SF-0']?.winner;
+        const sf1w = results['SF-1']?.winner;
+        return { home: sf0w || '半决赛胜者', away: sf1w || '半决赛胜者' };
+    }
+    if (m.matchId === '3RD-0') {
+        // 递归解析SF对阵以获取负者
+        const sf0 = resolveMatchTeams({ matchId: 'SF-0' }, schedule, results);
+        const sf1 = resolveMatchTeams({ matchId: 'SF-1' }, schedule, results);
+        const sf0Loser = results['SF-0']?.winner === sf0.home ? sf0.away : sf0.home;
+        const sf1Loser = results['SF-1']?.winner === sf1.home ? sf1.away : sf1.home;
+        return { home: sf0Loser || '半决赛负者', away: sf1Loser || '半决赛负者' };
+    }
     const r32 = resolveR32Teams(schedule, results); const f = r32.find(t => t.id === m.matchId);
     if (f) return { home: f.home, away: f.away };
     const st = { round_of_16: 'R16', quarterfinals: 'QF', semifinals: 'SF', final: 'FINAL', third_place: '3RD' };
