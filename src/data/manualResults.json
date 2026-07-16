@@ -432,8 +432,8 @@
         "winner": "西班牙"
     },
     "SF-1": {
-        "homeScore": 2,
-        "awayScore": 1,
+        "homeScore": 1,
+        "awayScore": 2,
         "winner": "阿根廷"
     }
 }
