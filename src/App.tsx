@@ -3,6 +3,7 @@ import { Button } from 'dud';
 import { BarChart3, MessageCircle, GitCommitHorizontal, Swords } from 'lucide-react';
 import { MatchCard } from './components/MatchCard';
 import { DayDivider } from './components/DayDivider';
+import { ChampionCard } from './components/ChampionCard';
 import { DayNavigator } from './components/DayNavigator';
 import { AIScoreboard } from './components/AIScoreboard';
 import { AIChart } from './components/AIChart';
@@ -136,6 +137,8 @@ export default function App() {
                                         realResult={realResults[m.match.id] || null}
                                     />
                                 ))}
+                                {/* 决赛日展示冠军卡片 */}
+                                {activeDay.date === '2026-07-20' && <ChampionCard />}
                             </div>
                         </section>
                     )}
