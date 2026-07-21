@@ -415,8 +415,8 @@
         "winner": "西班牙"
     },
     "QF-2": {
-        "homeScore": 2,
-        "awayScore": 1,
+        "homeScore": 1,
+        "awayScore": 2,
         "winner": "英格兰",
         "extraTime": true
     },
@@ -435,5 +435,16 @@
         "homeScore": 1,
         "awayScore": 2,
         "winner": "阿根廷"
+    },
+    "3RD-0": {
+        "homeScore": 4,
+        "awayScore": 6,
+        "winner": "英格兰"
+    },
+    "FINAL-0": {
+        "homeScore": 1,
+        "awayScore": 0,
+        "winner": "西班牙",
+        "extraTime": true
     }
 }
