@@ -1,7 +1,8 @@
-import { FlagAvatar } from './FlagAvatar';
+import { getFlagUrl } from '../data/countryCodes';
 
 /** 冠军特制卡片 — 展示在决赛卡片右侧 */
 export function ChampionCard() {
+    const flagUrl = getFlagUrl('西班牙');
     return (
         <div
             className="relative overflow-hidden rounded-2xl p-6 flex flex-col items-center justify-center gap-3 text-center min-h-[200px]"
@@ -20,12 +21,12 @@ export function ChampionCard() {
             />
 
             {/* 大力神杯 */}
-            <div
-                className="text-7xl relative z-10"
-                style={{ filter: 'drop-shadow(0 0 12px rgba(255,215,0,0.5))' }}
-            >
-                🏆
-            </div>
+            <img
+                src="/trophy.png"
+                alt="大力神杯"
+                className="relative z-10"
+                style={{ width: 100, height: 'auto', filter: 'drop-shadow(0 0 12px rgba(255,215,0,0.5))' }}
+            />
 
             {/* 标题 */}
             <p
@@ -37,7 +38,19 @@ export function ChampionCard() {
 
             {/* 队名 + 国旗 */}
             <div className="flex items-center gap-3 relative z-10">
-                <FlagAvatar country="西班牙" size="lg" />
+                {flagUrl && (
+                    <div
+                        className="rounded-full bg-white shadow-lg flex items-center justify-center shrink-0"
+                        style={{ width: 64, height: 64, padding: 4 }}
+                    >
+                        <img
+                            src={flagUrl}
+                            alt="西班牙"
+                            className="rounded-full object-cover"
+                            style={{ width: 56, height: 56 }}
+                        />
+                    </div>
+                )}
                 <h2
                     className="text-3xl font-bold"
                     style={{
