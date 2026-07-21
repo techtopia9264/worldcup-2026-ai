@@ -1,3 +1,5 @@
+import { FlagAvatar } from './FlagAvatar';
+
 /** 冠军特制卡片 — 展示在决赛卡片右侧 */
 export function ChampionCard() {
     return (
@@ -33,16 +35,19 @@ export function ChampionCard() {
                 2026 美加墨世界杯冠军
             </p>
 
-            {/* 队名 */}
-            <h2
-                className="text-3xl font-bold relative z-10"
-                style={{
-                    color: '#FFD700',
-                    textShadow: '0 0 20px rgba(255,215,0,0.6), 0 0 40px rgba(255,215,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
-                }}
-            >
-                西班牙
-            </h2>
+            {/* 队名 + 国旗 */}
+            <div className="flex items-center gap-3 relative z-10">
+                <FlagAvatar country="西班牙" size="lg" />
+                <h2
+                    className="text-3xl font-bold"
+                    style={{
+                        color: '#FFD700',
+                        textShadow: '0 0 20px rgba(255,215,0,0.6), 0 0 40px rgba(255,215,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
+                    }}
+                >
+                    西班牙
+                </h2>
+            </div>
 
             {/* 记录 */}
             <p

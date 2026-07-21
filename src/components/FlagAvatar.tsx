@@ -2,13 +2,14 @@ import { getFlagUrl } from '../data/countryCodes';
 
 interface FlagAvatarProps {
     country: string;
-    size?: 'sm' | 'md';
+    size?: 'sm' | 'md' | 'lg';
 }
 
 /** 国旗尺寸 */
 const SIZE_MAP = {
     sm: { container: 40, img: 32 },
     md: { container: 56, img: 48 },
+    lg: { container: 64, img: 56 },
 } as const;
 
 /**
