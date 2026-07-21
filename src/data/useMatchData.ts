@@ -410,11 +410,51 @@ export function useMatchData(): {
         return result?.winner || name;
     }
 
+    // 第一遍：解析"胜XX"占位符
     for (const m of allMatches) {
         if (!m.match.isPlaceholder) continue;
         const home = resolveTeam(m.match.home);
         const away = resolveTeam(m.match.away);
         if (home !== m.match.home || away !== m.match.away) {
+            m.match.home = home;
+            m.match.away = away;
+            m.match.isPlaceholder = isPlaceholder(home) || isPlaceholder(away);
+        }
+    }
+
+    // 第二遍：解析"半决赛胜者"/"半决赛负者"（决赛和三四名）
+    const sfMatch = (id: string) => allMatches.find(m => m.match.id === id);
+    for (const m of allMatches) {
+        if (!m.match.isPlaceholder) continue;
+        const homeRaw = m.match.home;
+        const awayRaw = m.match.away;
+        let home = homeRaw;
+        let away = awayRaw;
+
+        if (homeRaw === '半决赛胜者' || homeRaw === '半决赛负者' ||
+            awayRaw === '半决赛胜者' || awayRaw === '半决赛负者') {
+            const sf0 = allResults['SF-0'];
+            const sf1 = allResults['SF-1'];
+            const sf0Match = sfMatch('SF-0');
+            const sf1Match = sfMatch('SF-1');
+
+            // 决赛：半决赛胜者 vs 半决赛胜者（SF-0胜 vs SF-1胜）
+            if (m.match.id === 'FINAL-0') {
+                home = sf0?.winner || homeRaw;
+                away = sf1?.winner || awayRaw;
+            }
+            // 三四名：半决赛负者 vs 半决赛负者（SF-0负 vs SF-1负）
+            if (m.match.id === '3RD-0' && sf0Match && sf1Match) {
+                const sf0Home = sf0Match.match.home;
+                const sf0Away = sf0Match.match.away;
+                const sf1Home = sf1Match.match.home;
+                const sf1Away = sf1Match.match.away;
+                home = sf0?.winner === sf0Home ? sf0Away : sf0Home;
+                away = sf1?.winner === sf1Home ? sf1Away : sf1Home;
+            }
+        }
+
+        if (home !== homeRaw || away !== awayRaw) {
             m.match.home = home;
             m.match.away = away;
             m.match.isPlaceholder = isPlaceholder(home) || isPlaceholder(away);
